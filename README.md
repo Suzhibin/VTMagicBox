@@ -1,4 +1,5 @@
-# VTMagic
+# VTMagicBox
+VTMagicBox是VTMagic的一个分支。是一个用于iOS的页面容器库,在VTMagic的基础上 增加了多种功能
 
 VTMagic is a page container library for iOS, you can custom every page controller by different identifier if you need. It's so easy to use!（[中文手册传送门](http://www.jianshu.com/p/cb2edb21055f)）
 
