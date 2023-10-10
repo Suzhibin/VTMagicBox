@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  根据index获取对应索引的menuItem
  *
  *  @param menuBar self
- *  @param index   需要加载的menuItem对应的索引
+ *  @param itemIndex   需要加载的menuItem对应的索引
  *
  *  @return 当前索引对应的按钮
  */
@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  根据itemIndex获取对应menuItem的宽度，若返回结果为0，内部将自动计算其宽度
  *
- *  @param magicView self
+ *  @param menuBar self
  *  @param itemIndex menuItem对应的索引
  *
  *  @return menuItem的宽度
@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  根据itemIndex获取对应slider的宽度，若返回结果为0，内部将自动计算其宽度
  *
- *  @param magicView self
+ *  @param menuBar self
  *  @param itemIndex slider对应的索引
  *
  *  @return slider的宽度

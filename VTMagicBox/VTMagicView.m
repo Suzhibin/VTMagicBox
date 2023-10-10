@@ -182,7 +182,7 @@ static const void *kVTMagicView = &kVTMagicView;
      
         
         CGRect originalMenuFrame = _menuBar.frame;
-        CGFloat menuBarY = _headerHidden ? contentH : 0;
+//        CGFloat menuBarY = _headerHidden ? contentH : 0;
         CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
         CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
         CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
@@ -623,7 +623,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     if (index < 0) index = 0;
     CGPoint offset = CGPointMake(contentWidth*index, 0);
     [UIView animateWithDuration:0.35 animations:^{
-        [_contentView setContentOffset:offset animated:NO];
+        [self.contentView setContentOffset:offset animated:NO];
     }];
 }
 
@@ -883,7 +883,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 - (void)updateMenuBarWhenSwitchEnd {
     _menuBar.needSkipLayout = NO;
     [UIView animateWithDuration:0.25 animations:^{
-        [_menuBar updateSelectedItem:YES];
+        [self.menuBar updateSelectedItem:YES];
         [self updateMenuBarState];
     }];
 }
@@ -1210,7 +1210,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     [UIView animateWithDuration:duration animations:^{
         [self updateFrameForSubviews];
     } completion:^(BOOL finished) {
-        _headerView.hidden = _headerHidden;
+        self.headerView.hidden = self.headerHidden;
     }];
 }
 //#warning andi添加footerView 是否隐藏方法
@@ -1226,7 +1226,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     [UIView animateWithDuration:duration animations:^{
         [self updateFrameForSubviews];
     } completion:^(BOOL finished) {
-        _footerView.hidden = _footerHidden;
+        self.footerView.hidden = self.footerHidden;
     }];
 }
 

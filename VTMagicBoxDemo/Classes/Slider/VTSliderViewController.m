@@ -57,6 +57,8 @@
         self.magicView.bubbleInset = UIEdgeInsetsMake(2, 7, 2, 7);
         self.magicView.bubbleRadius = 10;
         [self createNavBtn];
+    }else if(self.type==VTDemoTypeSliderBubbleSelect){
+        self.magicView.sliderHidden=YES;
     }else if(self.type==VTDemoTypeSliderSquare){
         self.magicView.sliderStyle = VTSliderStyleBubble;
         self.magicView.sliderColor = RGBCOLOR(229, 229, 229);
@@ -122,6 +124,13 @@
         menuItem.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
         if (self.type==VTDemoTypeSliderCircle){
             [menuItem setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
+        }else if(self.type==VTDemoTypeSliderBubbleSelect){
+            if (@available(iOS 13.0, *)) {
+                [menuItem setBackgroundImage:[UIImage systemImageNamed:@"capsule"] forState:UIControlStateNormal];
+            }
+            if (@available(iOS 13.0, *)) {
+                [menuItem setBackgroundImage:[UIImage systemImageNamed:@"capsule.fill"] forState:UIControlStateSelected];
+            }
         }else{
             [menuItem setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];
         }
@@ -168,7 +177,9 @@
     // select/deselect menu item
     if (self.magicView.isDeselected) {
         [self.magicView reselectMenuItem];
-        self.magicView.sliderHidden = NO;
+        if(self.type!=VTDemoTypeSliderBubbleSelect){
+            self.magicView.sliderHidden = NO;
+        }
     } else {
         [self.magicView deselectMenuItem];
         self.magicView.sliderHidden = YES;
@@ -208,7 +219,7 @@
         }else{
             if(self.type==VTDemoTypeMenuMTText){
                 title = [NSString stringWithFormat:@"省份\n城市%d", index];
-            }else if(self.type==VTDemoTypeSliderImage){
+            }else if(self.type==VTDemoTypeSliderImage||self.type==VTDemoTypeSliderBubbleSelect){
                 title = [NSString stringWithFormat:@"省份%d", index];
             }else{
                 if (index % 2) {

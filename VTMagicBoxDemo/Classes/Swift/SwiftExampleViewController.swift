@@ -73,7 +73,7 @@ extension SwiftExampleViewController:VTMagicViewDataSource, VTMagicViewDelegate{
             gridViewController = VTGridViewController();
         }
         let Index = Int(pageIndex)
-        var menuInfo =  menuList [Index]
+        let menuInfo =  menuList [Index]
         gridViewController.menuInfo=menuInfo
         return gridViewController;
     }

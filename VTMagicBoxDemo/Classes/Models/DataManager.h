@@ -19,7 +19,7 @@
 /**
  *  保存页面数据
  *
- *  @param info   页面数据
+ *  @param infoList   页面数据
  *  @param menuId 菜单id
  */
 - (void)savePageInfo:(NSArray *)infoList menuId:(NSString *)menuId;

@@ -94,9 +94,9 @@ static NSInteger const kVTMenuBarTag = 1000;
     if(_selectedFont>0&&_normalFont>0){
         [self updateAllFrames];
         [UIView animateWithDuration:0.25 animations:^{
-            _selectedItem.titleLabel.font = _selectedFont;
-            if (![originalItem isEqual:_selectedItem]) {
-                originalItem.titleLabel.font = _normalFont;
+            self.selectedItem.titleLabel.font = self.selectedFont;
+            if (![originalItem isEqual:self.selectedItem]) {
+                originalItem.titleLabel.font = self.normalFont;
             }
         }];
     }else{

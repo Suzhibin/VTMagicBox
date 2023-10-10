@@ -213,7 +213,7 @@
     if(sender.tag==4000){
         //contentViewOffset 子页面距离导航的距离，设计师的考验
         if(self.magicView.contentViewOffset==0){
-            self.magicView.contentViewOffset=arc4random() %20;
+            self.magicView.contentViewOffset=arc4random() %30;
         }else{
             self.magicView.contentViewOffset=0;
         }

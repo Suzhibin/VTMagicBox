@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  获取索引对应的ViewController
  *  若index超出范围或对应控制器不可见，则返回nil
  *
- *  @param index 索引
+ *  @param pageIndex 索引
  *
  *  @return UIViewController对象
  */
