@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VTMagic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRu-e6-oVF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VTMagicBox" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRu-e6-oVF">
                                 <rect key="frame" x="16" y="259" width="361" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <nil key="textColor"/>
@@ -29,28 +29,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VTMagicBox" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2p-eJ-nau">
-                                <rect key="frame" x="16" y="312" width="361" height="31.333333333333314"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="zjq-Kv-cHa"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="wRu-e6-oVF" firstAttribute="leading" secondItem="d2p-eJ-nau" secondAttribute="leading" id="1bZ-wj-DBw"/>
                             <constraint firstItem="wRu-e6-oVF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="200" id="1fj-Pm-VC7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="WTP-vE-tAO" secondAttribute="bottom" constant="30" id="1s7-TE-hJx"/>
-                            <constraint firstItem="wRu-e6-oVF" firstAttribute="trailing" secondItem="d2p-eJ-nau" secondAttribute="trailing" id="8Hd-Rf-Syr"/>
                             <constraint firstItem="WTP-vE-tAO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="PGX-ea-ZEh"/>
+                            <constraint firstItem="wRu-e6-oVF" firstAttribute="leading" secondItem="WTP-vE-tAO" secondAttribute="leading" id="Sqd-Ue-jJC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WTP-vE-tAO" secondAttribute="trailing" constant="16" id="aYH-aZ-RgS"/>
-                            <constraint firstItem="d2p-eJ-nau" firstAttribute="top" secondItem="wRu-e6-oVF" secondAttribute="bottom" constant="10" id="cic-DA-xrK"/>
-                            <constraint firstItem="d2p-eJ-nau" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="jH9-hq-fIw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d2p-eJ-nau" secondAttribute="trailing" constant="16" id="vN1-d8-eld"/>
+                            <constraint firstItem="wRu-e6-oVF" firstAttribute="trailing" secondItem="WTP-vE-tAO" secondAttribute="trailing" id="n9u-uW-cbR"/>
                         </constraints>
                     </view>
                 </viewController>
