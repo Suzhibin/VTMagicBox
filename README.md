@@ -38,7 +38,7 @@ VTMagic is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile, and then import <VTMagic/VTMagic.h>:
 
 ```ruby
-pod "VTMagic"
+pod 'VTMagicBox', :git => 'https://github.com/Suzhibin/VTMagicBox.git'
 ```
 
 ### Manually
@@ -234,7 +234,7 @@ UIViewController *viewController = [self.magicController viewControllerAtPage:3]
 
 ## License
 
-VTMagic is released under the MIT license. See LICENSE for details.
+VTMagicBox is released under the MIT license. See LICENSE for details.
 
 
 
