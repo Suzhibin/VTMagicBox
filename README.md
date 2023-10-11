@@ -229,7 +229,7 @@ UIViewController *viewController = [self.magicController viewControllerAtPage:3]
 
 ## Author
 
-**VictorTian** *email: tianzhuo112@163.com*
+**VictorTian** *email: szb2323@163.com*
 
 
 ## License
