@@ -1,10 +1,15 @@
 # VTMagicBox
 VTMagicBox是([VTMagic](https://github.com/tianzhuo112/VTMagic)）的一个分支。是一个用于iOS的页面容器库,在([VTMagic](https://github.com/tianzhuo112/VTMagic)）的基础上 增加了多种功能
+
+
 增加功能：
+
 
 居右布局，底部布局，增加footerView,导航可添加view背景，增加菜单选中和非选中设置字体
 
+
 并增加大量例子解决了([VTMagic](https://github.com/tianzhuo112/VTMagic)）的issue大部分需求问题：
+
 
 气泡选中和非选中，字体选中和非选中，多行文本和富文本，竖线，第一个menu固定，子页面响应事件等等
 
