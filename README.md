@@ -43,7 +43,7 @@ pod 'VTMagicBox', :git => 'https://github.com/Suzhibin/VTMagicBox.git'
 
 ### Manually
 
-1. Download the project and drop `VTMagic` folder into your project.
+1. Download the project and drop `VTMagicBox` folder into your project.
 2. Import file `VTMagic.h`.
 
 ```objective-c
