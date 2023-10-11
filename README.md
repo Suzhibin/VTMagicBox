@@ -2,6 +2,7 @@
 VTMagicBox是([VTMagic](https://github.com/tianzhuo112/VTMagic)）的一个分支。是一个用于iOS的页面容器库,在([VTMagic](https://github.com/tianzhuo112/VTMagic)）的基础上 增加了多种功能
 
 
+
 增加功能：
 
 
