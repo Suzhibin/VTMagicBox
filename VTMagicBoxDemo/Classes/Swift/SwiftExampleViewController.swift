@@ -15,6 +15,7 @@ import UIKit
         view.backgroundColor=UIColor.white
         edgesForExtendedLayout = UIRectEdge.bottom
         
+        createMagic()
         let numbers=[Int](0...20)
         for (index,_) in numbers.enumerated(){
             let title = String(format: "省份%d", index)
@@ -22,14 +23,12 @@ import UIKit
             menu.title=title
             menuList.append(menu)
         }
-
-        createMagic()
+        magicVC.magicView .reloadData()
 
     }
     func createMagic() {
         magicVC.magicView.delegate=self
         magicVC.magicView.dataSource=self
-        magicVC.magicView.needPreloading=false
         magicVC.magicView.navigationHeight=50
         magicVC.magicView.displayCentered=true
         magicVC.magicView.layoutStyle = .default
@@ -38,11 +37,7 @@ import UIKit
         magicVC.magicView.itemScale=1.2
         addChild(magicVC)
         view.addSubview(magicVC.view)
-           
-        magicVC.magicView .reloadData()
     }
-
-
 }
 extension SwiftExampleViewController:VTMagicViewDataSource, VTMagicViewDelegate{
     func menuTitles(for magicView: VTMagicView) -> [String] {

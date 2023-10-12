@@ -40,6 +40,7 @@ typedef NS_ENUM(NSInteger, VTDemoType){
     VTDemoTypeMenuVLine,//竖线
     VTDemoTypeMenuNavigationImage,//导航图片
     VTDemoTypeMenuScreening,//筛选
+    VTDemoTypeMenuGIf,//某个栏目带gif
     VTDemoTypeHeader,//头部布局
     VTDemoTypeFooter,//尾部布局
     VTDemoTypeWebView,//Web

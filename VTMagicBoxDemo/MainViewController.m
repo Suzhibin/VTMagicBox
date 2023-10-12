@@ -89,7 +89,7 @@
         sliderVC.type=item.type;
         sliderVC.title=item.title;
         [self.navigationController pushViewController:sliderVC animated:YES];
-    }else if(item.type==VTDemoTypeFirstFixed){
+    }else if(item.type==VTDemoTypeFirstFixed||item.type==VTDemoTypeMenuGIf){
         VTBubbleViewController *bubbleVC = [[VTBubbleViewController alloc] init];
         bubbleVC.type=item.type;
         bubbleVC.title=item.title;
@@ -173,6 +173,7 @@
             [VTTableItem itemWithTitle:@"tilte+图片下" descr:@"需扩展UIButton,Menuitem不可使用复用机制" type:VTDemoTypeMenuImageBottom],
             [VTTableItem itemWithTitle:@"tilte+图片左" descr:@"需扩展UIButton,Menuitem不可使用复用机制" type:VTDemoTypeMenuImageLeft],
             [VTTableItem itemWithTitle:@"tilte+图片右" descr:@"需扩展UIButton,Menuitem不可使用复用机制" type:VTDemoTypeMenuImageRight],
+            [VTTableItem itemWithTitle:@"包含gif" descr:@"某个栏目带gif" type:VTDemoTypeMenuGIf],
             [VTTableItem itemWithTitle:@"多行文本" descr:@"菜单按钮位置支持2行，导航高度扩大" type:VTDemoTypeMenuMTText],
             [VTTableItem itemWithTitle:@"多行富文本" descr:@"自定义菜单按钮，导航高度扩大" type:VTDemoTypeMenuMTAtt],
             [VTTableItem itemWithTitle:@"红点" descr:@"需自定义菜单按钮，可单独刷新菜单" type:VTDemoTypeMenuRedDot],
@@ -183,7 +184,6 @@
             [VTTableItem itemWithTitle:@"SegmentedControl样式" descr:@"在导航和菜单按钮之间添加View，作为边界，调整滑块的bubbleInset" type:VTDemoTypeSegmentedControl],
             [VTTableItem itemWithTitle:@"导航添加图片" descr:@"在导航与menuBar 之间插入一个图片" type:VTDemoTypeMenuNavigationImage],
             [VTTableItem itemWithTitle:@"筛选" descr:@"默认不选中，菜单与弹窗关联互动" type:VTDemoTypeMenuScreening],
-
     ];
 }
 - (NSArray <VTTableItem *>*)createCustomItems {
