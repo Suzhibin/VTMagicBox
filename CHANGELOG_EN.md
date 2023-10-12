@@ -12,7 +12,7 @@ Released on Thursday, June 1st, 2023
 - Adding `footerView` uses the same method as adding `headerView`
 - Navigation Adds `navigationSubview` at the bottom of the menu for adding background images, etc
 - Increase the offset of the `contentViewOffset` content container relative to the bottom of the navigation for designers
-- Add `normalFont` and `selectedFont`, menu default font and selected font, invalidate itemScale after use
+- Add `normalFont` and `selectedFont`, menu default font and selected font, invalidate `itemScale` after use
 - Increase `contentHorizontalAlignment` adjust the menu button aligned to deal with the designer's test
 
 ##
