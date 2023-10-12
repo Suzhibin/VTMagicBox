@@ -7,13 +7,13 @@
 发布于2023年6月1日，周四
 ### 更新
 - VTMagicBox是VTMagic的一个分支
-- 增加菜单居右侧布局VTLayoutStyleRight
-- 增加导航居底部布局枚举VTPositionStyle，VTPositionStyleDefault为默认，VTPositionStyleBottom为底部
-- 增加footerView使用方法与headerView相同
-- 导航增加navigationSubview在菜单底部，用于添加背景图片等
-- 增加contentViewOffset内容容器相对导航底部的偏移量，应对设计师的考验
-- 增加normalFont和selectedFont，菜单默认字体和选中字体，使用后itemScale失效
-- 增加contentHorizontalAlignment调整菜单按钮对齐，应对设计师的考验
+- 增加菜单居右侧布局`VTLayoutStyleRight`
+- 增加导航居底部布局枚举`VTPositionStyle`，`VTPositionStyleDefault`为默认，`VTPositionStyleBottom`为底部
+- 增加`footerView`使用方法与`headerView`相同
+- 导航增加`navigationSubview`在菜单底部，用于添加背景图片等
+- 增加`contentViewOffset`内容容器相对导航底部的偏移量，应对设计师的考验
+- 增加`normalFont`和`selectedFont`，菜单默认字体和选中字体，使用后`itemScale`失效
+- 增加`contentHorizontalAlignment`调整菜单按钮对齐，应对设计师的考验
 ##
 
 
