@@ -12,7 +12,7 @@
 - 增加`footerView`使用方法与`headerView`相同
 - 导航增加`navigationSubview`在菜单底部，用于添加背景图片等
 - 增加`contentViewOffset`内容容器相对导航底部的偏移量，应对设计师的考验
-- 增加`normalFont`和`selectedFont`，菜单默认字体和选中字体，使用后`itemScale`失效
+- 增加`normalFont`和`selectedFont`，菜单使用默认字体和选中字体后`itemScale`失效
 - 增加`contentHorizontalAlignment`调整菜单按钮对齐，应对设计师的考验
 ##
 
