@@ -1,7 +1,19 @@
 # VTMagicBox
 VTMagicBox是([VTMagic](https://github.com/tianzhuo112/VTMagic)）的一个分支。是一个用于iOS的页面容器库,在([VTMagic](https://github.com/tianzhuo112/VTMagic)）的基础上 增加了多种功能
 
-VTMagic is a page container library for iOS, you can custom every page controller by different identifier if you need. It's so easy to use!（[中文手册传送门](http://www.jianshu.com/p/cb2edb21055f)）
+
+
+增加功能：
+
+
+居右布局，底部布局，增加footerView,导航可添加view背景，增加菜单选中和非选中设置字体等
+
+
+并增加大量例子解决了([VTMagic](https://github.com/tianzhuo112/VTMagic)）的issue大部分需求问题：
+
+
+气泡选中和非选中，字体选中和非选中，多行文本和富文本，竖线，第一个menu固定，子页面响应事件等
+
 
 [CHANGELOG][CHANGELOG_EN]\([变更日志][CHANGELOG_CN])
 
@@ -18,16 +30,16 @@ VTMagic is a page container library for iOS, you can custom every page controlle
 
 ### CocoaPods
 
-VTMagic is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile, and then import <VTMagic/VTMagic.h>:
+VTMagicBox is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile, and then import <VTMagicBox/VTMagic.h>:
 
 ```ruby
-pod "VTMagic"
+pod 'VTMagicBox', :git => 'https://github.com/Suzhibin/VTMagicBox.git'
 ```
 
 ### Manually
 
-1. Download the project and drop `VTMagic` folder into your project.
+1. Download the project and drop `VTMagicBox` folder into your project.
 2. Import file `VTMagic.h`.
 
 ```objective-c
@@ -213,12 +225,12 @@ UIViewController *viewController = [self.magicController viewControllerAtPage:3]
 
 ## Author
 
-**VictorTian** *email: tianzhuo112@163.com*
+**VictorTian** *email: szb2323@163.com*
 
 
 ## License
 
-VTMagic is released under the MIT license. See LICENSE for details.
+VTMagicBox is released under the MIT license. See LICENSE for details.
 
 
 
