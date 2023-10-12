@@ -57,6 +57,19 @@
         self.magicView.bubbleInset = UIEdgeInsetsMake(2, 7, 2, 7);
         self.magicView.bubbleRadius = 10;
         [self createNavBtn];
+    }else if(self.type==VTDemoTypeSliderBubbleShadow){
+        self.magicView.sliderStyle = VTSliderStyleBubble;
+        self.magicView.bubbleInset = UIEdgeInsetsMake(2, 7, 2, 7);
+        self.magicView.bubbleRadius = 10;
+        UIView *slider = [[UIView alloc] init];
+        slider.backgroundColor=RGBCOLOR(229, 229, 229);
+        slider.layer.cornerRadius = 13;
+        slider.layer.shadowColor = [UIColor blueColor].CGColor;
+        slider.layer.shadowRadius = 3;
+        slider.layer.shadowOffset = CGSizeMake(3, 4);
+        slider.layer.shadowOpacity = 0.6;
+        [self.magicView setSliderView:slider];
+        [self createNavBtn];
     }else if(self.type==VTDemoTypeSliderBubbleSelect){
         self.magicView.sliderHidden=YES;
     }else if(self.type==VTDemoTypeSliderSquare){

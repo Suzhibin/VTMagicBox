@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, VTDemoType){
     VTDemoTypeSliderLine,//常规线
     VTDemoTypeSliderBubble,//气泡
     VTDemoTypeSliderBubbleSelect,//气泡选中与非选中
+    VTDemoTypeSliderBubbleShadow,//气泡阴影
     VTDemoTypeSliderSquare,//方块
     VTDemoTypeSliderCircle,//自定义
     VTDemoTypeSliderImage,//图片

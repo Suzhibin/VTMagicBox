@@ -12,8 +12,8 @@
 #import "UIButton+ZBKit.h"
 @interface VTMenuViewController ()
 
-@property (nonatomic, strong)  NSArray *menuList;
-
+@property (nonatomic, strong) NSArray *menuList;
+@property (nonatomic, strong) UIImageView *navImage;
 @end
 
 @implementation VTMenuViewController
@@ -51,11 +51,13 @@
     }else if(self.type==VTDemoTypeMenuNavigationImage){
         UIImageView *navImage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.magicView.navigationHeight+kStatusBarHeight)];
         navImage.image=[UIImage imageNamed:@"bg"];
-        [self.magicView setNavigationSubview:navImage];
+        self.navImage=navImage;
+        [self.magicView setNavigationSubview:self.navImage];
         self.magicView.againstStatusBar=YES;//是否需要为状态栏留出区域
         self.magicView.headerHidden=NO;
         UIButton *leftButton=[self createleftButton];
         self.magicView.leftNavigatoinItem =leftButton;
+        [self createFooterView];
     }
     [self integrateComponents];
     [self addNotification];
@@ -74,7 +76,21 @@
     }
 
 }
-
+- (void)buttonAction:(UIButton *)sender{
+    NSInteger index = arc4random() %12;
+    self.navImage.image=[UIImage imageNamed:[NSString stringWithFormat:@"image_%ld",index]];
+}
+- (void)createFooterView{
+    self.magicView.footerHeight = 44;
+    self.magicView.footerHidden=NO;
+    UIButton *button1 = [[UIButton alloc] initWithFrame:CGRectMake(10, 6, 100, 30)];
+    [button1 addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [button1 setTitle:@"更换导航背景" forState:UIControlStateNormal];
+    [button1 setTitleColor:RGBACOLOR(169, 37, 37, 0.6) forState:UIControlStateSelected];
+    [button1 setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateNormal];
+    button1.titleLabel.font = [UIFont systemFontOfSize:15];
+    [self.magicView.footerView addSubview:button1];
+}
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -118,6 +134,8 @@
         menuItem = [VTMenuItem buttonWithType:UIButtonTypeCustom];
         if(self.type==VTDemoTypeMenuImage){
             [menuItem setImage:[UIImage imageNamed:@"magic_search"] forState:UIControlStateNormal];
+            [menuItem setImage:[UIImage imageNamed:@"home_moreIcon"] forState:UIControlStateSelected];
+            
         }else if (self.type==VTDemoTypeMenuScale||self.type==VTDemoTypeMenuFont||self.type==VTDemoTypeMenuVLine||self.type==VTDemoTypeMenuNavigationImage){
             [menuItem setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
             menuItem.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
@@ -131,6 +149,9 @@
                 menuItem.titleLabel.textAlignment=NSTextAlignmentCenter;
             }else{
                 [menuItem setImage:[UIImage imageNamed:@"magic_search"] forState:UIControlStateNormal];
+                if(self.type==VTDemoTypeMenuImageTop||self.type==VTDemoTypeMenuImageBottom||self.type==VTDemoTypeMenuImageLeft||self.type==VTDemoTypeMenuImageRight){
+                    [menuItem setImage:[UIImage imageNamed:@"home_moreIcon"] forState:UIControlStateSelected];
+                }
             }
         }
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -214,6 +235,5 @@
     }
     _menuList = menuList;
 }
-
 
 @end

@@ -84,7 +84,7 @@
         divideVC.type=item.type;
         divideVC.title=item.title;
         [self.navigationController pushViewController:divideVC animated:YES];
-    } else if(item.type==VTDemoTypeSliderLine||item.type==VTDemoTypeSliderBubble||item.type==VTDemoTypeSliderBubbleSelect||item.type==VTDemoTypeSliderSquare||item.type==VTDemoTypeSliderCircle||item.type==VTDemoTypeSliderImage||item.type==VTDemoTypeSliderItmeLine||item.type==VTDemoTypeSliderRandomColor){
+    } else if(item.type==VTDemoTypeSliderLine||item.type==VTDemoTypeSliderBubble||item.type==VTDemoTypeSliderBubbleSelect||item.type==VTDemoTypeSliderBubbleShadow||item.type==VTDemoTypeSliderSquare||item.type==VTDemoTypeSliderCircle||item.type==VTDemoTypeSliderImage||item.type==VTDemoTypeSliderItmeLine||item.type==VTDemoTypeSliderRandomColor){
         VTSliderViewController *sliderVC = [[VTSliderViewController alloc] init];
         sliderVC.type=item.type;
         sliderVC.title=item.title;
@@ -157,6 +157,7 @@
         [VTTableItem itemWithTitle:@"横线" descr:@"关键属性sliderWidth,右侧按钮调 滑块选中状态、位置" type:VTDemoTypeSliderLine],
         [VTTableItem itemWithTitle:@"与title同宽" descr:@"关键属性sliderExtension,右侧按钮调 滑块选中状态、位置" type:VTDemoTypeSliderItmeLine],
         [VTTableItem itemWithTitle:@"气泡" descr:@"VTSliderStyleBubble,右侧按钮调导航边距" type:VTDemoTypeSliderBubble],
+        [VTTableItem itemWithTitle:@"气泡+阴影" descr:@"VTSliderStyleBubble,右侧按钮调导航边距" type:VTDemoTypeSliderBubbleShadow],
         [VTTableItem itemWithTitle:@"气泡选中与非选中" descr:@"隐藏自带滑块,使用btn加载背景图片" type:VTDemoTypeSliderBubbleSelect],
         [VTTableItem itemWithTitle:@"方块" descr:@"VTSliderStyleBubble,右侧按钮调导航边距" type:VTDemoTypeSliderSquare],
         [VTTableItem itemWithTitle:@"圆圈" descr:@"自定义sliderView ,右侧按钮调 滑块选中状态、导航边距" type:VTDemoTypeSliderCircle],
