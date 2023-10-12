@@ -7,13 +7,13 @@ All notable changes to this project will be documented in this file.
 Released on Thursday, June 1st, 2023
 ### changed
 - VTMagicBox is a fork of VTMagic
-- Added menu in the right hand layout VTLayoutStyleRight
-- Add the navigation bottom layout enumeration VTPositionStyle, with VTPositionStyleDefault as the default and VTPositionStyleBottom as the bottom
-- Adding footerView uses the same method as adding headerView
-- Navigation Adds navigationSubview at the bottom of the menu for adding background images, etc
-- Increase the offset of the contentViewOffset content container relative to the bottom of the navigation for designers
-- Add normalFont and selectedFont, menu default font and selected font, invalidate itemScale after use
-- Increase contentHorizontalAlignment adjust the menu button aligned to deal with the designer's test
+- Added menu in the right hand layout `VTLayoutStyleRight`
+- Add the navigation bottom layout enumeration `VTPositionStyle`, with `VTPositionStyleDefault` as the default and `VTPositionStyleBottom` as the bottom
+- Adding `footerView` uses the same method as adding `headerView`
+- Navigation Adds `navigationSubview` at the bottom of the menu for adding background images, etc
+- Increase the offset of the `contentViewOffset` content container relative to the bottom of the navigation for designers
+- Add `normalFont` and `selectedFont`, menu default font and selected font, invalidate itemScale after use
+- Increase `contentHorizontalAlignment` adjust the menu button aligned to deal with the designer's test
 
 ##
 
