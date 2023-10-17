@@ -134,7 +134,7 @@
         menuItem = [VTMenuItem buttonWithType:UIButtonTypeCustom];
         if(self.type==VTDemoTypeMenuImage){
             [menuItem setImage:[UIImage imageNamed:@"magic_search"] forState:UIControlStateNormal];
-            [menuItem setImage:[UIImage imageNamed:@"home_moreIcon"] forState:UIControlStateSelected];
+            [menuItem setImage:[UIImage imageNamed:@"magic_arrow"] forState:UIControlStateSelected];
             
         }else if (self.type==VTDemoTypeMenuScale||self.type==VTDemoTypeMenuFont||self.type==VTDemoTypeMenuVLine||self.type==VTDemoTypeMenuNavigationImage){
             [menuItem setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
@@ -150,7 +150,7 @@
             }else{
                 [menuItem setImage:[UIImage imageNamed:@"magic_search"] forState:UIControlStateNormal];
                 if(self.type==VTDemoTypeMenuImageTop||self.type==VTDemoTypeMenuImageBottom||self.type==VTDemoTypeMenuImageLeft||self.type==VTDemoTypeMenuImageRight){
-                    [menuItem setImage:[UIImage imageNamed:@"home_moreIcon"] forState:UIControlStateSelected];
+                    [menuItem setImage:[UIImage imageNamed:@"magic_search"] forState:UIControlStateSelected];
                 }
             }
         }

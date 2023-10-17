@@ -139,10 +139,10 @@
             [menuItem setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
         }else if(self.type==VTDemoTypeSliderBubbleSelect){
             if (@available(iOS 13.0, *)) {
-                [menuItem setBackgroundImage:[UIImage systemImageNamed:@"capsule"] forState:UIControlStateNormal];
+                [menuItem setBackgroundImage:[UIImage systemImageNamed:@"rectangle"] forState:UIControlStateNormal];
             }
             if (@available(iOS 13.0, *)) {
-                [menuItem setBackgroundImage:[UIImage systemImageNamed:@"capsule.fill"] forState:UIControlStateSelected];
+                [menuItem setBackgroundImage:[UIImage systemImageNamed:@"capsule"] forState:UIControlStateSelected];
             }
         }else{
             [menuItem setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];

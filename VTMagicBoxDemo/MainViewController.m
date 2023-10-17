@@ -174,7 +174,7 @@
             [VTTableItem itemWithTitle:@"tilte+图片下" descr:@"需扩展UIButton,Menuitem不可使用复用机制" type:VTDemoTypeMenuImageBottom],
             [VTTableItem itemWithTitle:@"tilte+图片左" descr:@"需扩展UIButton,Menuitem不可使用复用机制" type:VTDemoTypeMenuImageLeft],
             [VTTableItem itemWithTitle:@"tilte+图片右" descr:@"需扩展UIButton,Menuitem不可使用复用机制" type:VTDemoTypeMenuImageRight],
-            [VTTableItem itemWithTitle:@"包含gif" descr:@"某个栏目带gif" type:VTDemoTypeMenuGIf],
+            [VTTableItem itemWithTitle:@"包含gif" descr:@"某个栏目带gif,Menuitem不可使用复用机制" type:VTDemoTypeMenuGIf],
             [VTTableItem itemWithTitle:@"多行文本" descr:@"菜单按钮位置支持2行，导航高度扩大" type:VTDemoTypeMenuMTText],
             [VTTableItem itemWithTitle:@"多行富文本" descr:@"自定义菜单按钮，导航高度扩大" type:VTDemoTypeMenuMTAtt],
             [VTTableItem itemWithTitle:@"红点" descr:@"需自定义菜单按钮，可单独刷新菜单" type:VTDemoTypeMenuRedDot],
