@@ -79,7 +79,7 @@
         centerVC.type=item.type;
         centerVC.title=item.title;
         [self.navigationController pushViewController:centerVC animated:YES];
-    }else if(item.type==VTDemoTypeDivide||item.type==VTDemoTypeSliderTriangle){
+    }else if(item.type==VTDemoTypeDivide||item.type==VTDemoTypeSliderTriangle||item.type==VTDemoTypeSliderHideMenu||item.type==VTDemoTypeSliderPageControl){
         VTDivideViewController *divideVC = [[VTDivideViewController alloc] init];
         divideVC.type=item.type;
         divideVC.title=item.title;
@@ -115,6 +115,7 @@
     }else if(item.type==VTDemoTypeMenuMTAtt){
         VTMTAttViewController*mtattVC = [[VTMTAttViewController alloc] init];
         mtattVC.title=item.title;
+        mtattVC.type=item.type;
         [self.navigationController pushViewController:mtattVC animated:YES];
     }else if(item.type==VTDemoTypeOneController||item.type==VTDemoTypeAllController){
         VTLoadAllViewController *allVC = [[VTLoadAllViewController alloc]init];
@@ -164,7 +165,8 @@
         [VTTableItem itemWithTitle:@"图片" descr:@"自定义sliderView view为UIImageView,右侧按钮调 滑块选中状态" type:VTDemoTypeSliderImage],
         [VTTableItem itemWithTitle:@"三角" descr:@"自定义sliderView view为UIImageView,右侧按钮调 滑块选中状态,定位到指定页面" type:VTDemoTypeSliderTriangle],
         [VTTableItem itemWithTitle:@"随机颜色" descr:@"magicView：viewDidAppear代理内设置,右侧按钮调 滑块选中状态、位置" type:VTDemoTypeSliderRandomColor],
-        
+        [VTTableItem itemWithTitle:@"展示指示器" descr:@"指示器替换滑块" type:VTDemoTypeSliderPageControl],
+        [VTTableItem itemWithTitle:@"只展示滑块" descr:@"隐藏菜单 只展示滑块" type:VTDemoTypeSliderHideMenu],
     ];
 }
 - (NSArray <VTTableItem *>*)createMenuItems {

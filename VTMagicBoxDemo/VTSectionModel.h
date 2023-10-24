@@ -27,6 +27,8 @@ typedef NS_ENUM(NSInteger, VTDemoType){
     VTDemoTypeSliderImage,//图片
     VTDemoTypeSliderTriangle,//三角
     VTDemoTypeSliderRandomColor,//随机颜色
+    VTDemoTypeSliderPageControl,//pageControl
+    VTDemoTypeSliderHideMenu,//隐藏菜单 展示滑块
     VTDemoTypeMenuImage,
     VTDemoTypeMenuImageTop,
     VTDemoTypeMenuImageBottom,

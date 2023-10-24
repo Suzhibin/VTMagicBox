@@ -13,7 +13,7 @@
 @interface VTDivideViewController()<VTMagicViewDataSource, VTMagicViewDelegate>
 
 @property (nonatomic, strong)  NSArray *menuList;
-
+@property (nonatomic, strong)UIPageControl *pageControl;
 @end
 
 @implementation VTDivideViewController
@@ -21,27 +21,54 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.edgesForExtendedLayout = UIRectEdgeAll;
+  
     self.view.backgroundColor = [UIColor whiteColor];
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.layoutStyle = VTLayoutStyleDivide;
     self.magicView.switchStyle = VTSwitchStyleStiff;
-    self.magicView.navigationHeight = 44.f;
-    self.magicView.againstStatusBar = YES;
     self.magicView.needPreloading = NO;
-    [self integrateComponents];
     if(self.type==VTDemoTypeDivide||self.type==VTDemoTypeSliderTriangle){
+        self.magicView.navigationHeight = 44.f;
+        self.magicView.againstStatusBar = YES;
+        self.edgesForExtendedLayout = UIRectEdgeAll;
         [self configCustomSlider];
+        [self integrateComponents];
+    }else if(self.type==VTDemoTypeSliderHideMenu){
+        UIView *bjView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 5)];
+        bjView.backgroundColor=[UIColor yellowColor];
+        [self.magicView setNavigationSubview:bjView];
+        self.magicView.navigationHeight = 5;
+        self.magicView.sliderColor= [UIColor orangeColor];
+        self.magicView.sliderHeight=3;
+    }else if (self.type==VTDemoTypeSliderPageControl){
+        self.magicView.sliderHidden=YES;
+        self.pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake(self.magicView.footerView.frame.size.width/2-160, 0, 320, 10)];
+        [self.magicView.footerView addSubview:self.pageControl];
+        self.magicView.footerHeight=15;
+        self.magicView.footerView.hidden=NO;
+        self.magicView.separatorHidden=YES;
     }
-    
+    NSInteger page = 1;
     [self generateTestData];
-    [self.magicView reloadDataToPage:1];
+    if (self.type==VTDemoTypeSliderPageControl){
+        self.pageControl.numberOfPages =self.menuList.count;
+        self.pageControl.currentPage  = page; //默认
+        self.pageControl.pageIndicatorTintColor = [UIColor grayColor];//未选中的颜色
+        self.pageControl.currentPageIndicatorTintColor = [UIColor redColor];//选中时的颜色
+        [self.pageControl addTarget:self action:@selector(pageControlChanged:) forControlEvents:UIControlEventValueChanged];
+     
+    }
+    [self.magicView reloadDataToPage:page];
+    
 }
-
+- (void)pageControlChanged:(UIPageControl*)sender{
+    [self.magicView switchToPage:sender.currentPage animated:YES];
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    if(self.type==VTDemoTypeDivide||self.type==VTDemoTypeSliderTriangle){
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }
 }
 
 #pragma mark - VTMagicViewDataSource
@@ -61,6 +88,9 @@
         [menuItem setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
         [menuItem setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];
         menuItem.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
+        if(self.type==VTDemoTypeSliderHideMenu){
+            menuItem.hidden=YES;//隐藏菜单
+        }
     }
     return menuItem;
 }
@@ -74,7 +104,11 @@
     viewController.menuInfo = _menuList[pageIndex];
     return viewController;
 }
-
+- (void)magicView:(VTMagicView *)magicView viewDidAppear:(__kindof UIViewController *)viewController atPage:(NSUInteger)pageIndex{
+    if (self.type==VTDemoTypeSliderPageControl){
+        self.pageControl.currentPage =pageIndex;
+    }
+}
 #pragma mark - actions
 - (void)subscribeAction {
     NSLog(@"取消／恢复菜单栏选中状态");

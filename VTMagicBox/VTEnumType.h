@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, VTLayoutStyle) {
     VTLayoutStyleDivide,
     /** 导航栏居中布局，间距由itemSpacing决定 */
     VTLayoutStyleCenter,
-    /** 导航栏右侧布局，间距由itemSpacing决定 */    //#warning andi 添加右侧布局
+    /** 导航栏右侧布局，间距由itemSpacing决定 */
     VTLayoutStyleRight,
 };
 

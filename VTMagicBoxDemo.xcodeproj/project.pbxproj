@@ -288,8 +288,8 @@
 		9F7772452A28710D00560144 /* Divide */ = {
 			isa = PBXGroup;
 			children = (
-				9F7772462A28710D00560144 /* VTDivideViewController.m */,
 				9F7772472A28710D00560144 /* VTDivideViewController.h */,
+				9F7772462A28710D00560144 /* VTDivideViewController.m */,
 			);
 			path = Divide;
 			sourceTree = "<group>";
@@ -359,8 +359,8 @@
 		9F7772622A28710D00560144 /* LoadAll */ = {
 			isa = PBXGroup;
 			children = (
-				9F7772632A28710D00560144 /* VTLoadAllViewController.m */,
 				9F7772642A28710D00560144 /* VTLoadAllViewController.h */,
+				9F7772632A28710D00560144 /* VTLoadAllViewController.m */,
 			);
 			path = LoadAll;
 			sourceTree = "<group>";

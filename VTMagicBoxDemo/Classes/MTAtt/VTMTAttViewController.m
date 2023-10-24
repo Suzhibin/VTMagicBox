@@ -20,25 +20,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.magicView.navigationHeight = 64;
-    
     self.magicView.displayCentered = YES;
 //    self.magicView.againstStatusBar = YES;
 //    self.edgesForExtendedLayout = UIRectEdgeAll;
     self.view.backgroundColor = [UIColor whiteColor];
 //    self.magicView.headerView.backgroundColor = RGBCOLOR(243, 40, 47);
-    self.magicView.layoutStyle = VTLayoutStyleDefault;
+
     self.magicView.navigationColor = [UIColor whiteColor];
     self.magicView.itemSpacing=30;//间距
     self.magicView.sliderWidth=20;
    // [self integrateComponents];
-    self.magicView.sliderStyle = VTSliderStyleBubble;
-    self.magicView.sliderColor = RGBCOLOR(229, 229, 229);
-    self.magicView.bubbleInset = UIEdgeInsetsMake(9, 7, 7, 7);
-    self.magicView.bubbleRadius = 10;
     [self addNotification];
-    [self generateTestData];
     
+    if(self.type == VTDemoTypeMenuMTAtt){
+        self.magicView.navigationHeight = 64;
+        self.magicView.sliderStyle = VTSliderStyleBubble;
+        self.magicView.sliderColor = RGBCOLOR(229, 229, 229);
+        self.magicView.bubbleInset = UIEdgeInsetsMake(9, 7, 7, 7);
+        self.magicView.bubbleRadius = 10;
+        self.magicView.layoutStyle = VTLayoutStyleDefault;
+        [self generateAttTestData];
+    }
+  
     [self.magicView reloadData];
     
 }
@@ -80,17 +83,29 @@
 }
 
 - (UIButton *)magicView:(VTMagicView *)magicView menuItemAtIndex:(NSUInteger)itemIndex {
-    static NSString *itemIdentifier = @"menuitemIdentifier";
-    VTMTAttMenuItem *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
-    if (!menuItem ) {
-        menuItem  = [VTMTAttMenuItem buttonWithType:UIButtonTypeCustom];
-        [menuItem  setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
-        menuItem .titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
-        [menuItem  setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];
+    if(self.type == VTDemoTypeMenuMTAtt){
+        static NSString *itemIdentifier = @"attMenuitemIdentifier";
+        VTMTAttMenuItem *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
+        if (!menuItem ) {
+            menuItem  = [VTMTAttMenuItem buttonWithType:UIButtonTypeCustom];
+            [menuItem  setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
+            menuItem .titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
+            [menuItem  setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];
+        }
+        MenuInfo *menu=[_menuList objectAtIndex:itemIndex];
+        menuItem.topTitle=menu.attTitle;
+        return menuItem;
+    }else{
+        static NSString *itemIdentifier = @"menuitemIdentifier";
+        UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
+        if (!menuItem ) {
+            menuItem  = [UIButton buttonWithType:UIButtonTypeCustom];
+            [menuItem  setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
+            menuItem .titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
+            [menuItem  setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];
+        }
+        return menuItem;
     }
-    MenuInfo *menu=[_menuList objectAtIndex:itemIndex];
-    menuItem.topTitle=menu.attTitle;
-    return menuItem;
 }
 
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex {
@@ -123,7 +138,7 @@
     self.magicView.rightNavigatoinItem = rightButton;
 }
 
-- (void)generateTestData {
+- (void)generateAttTestData {
     NSString *province = @"省份";
     NSString *city = @"城市";
     NSMutableArray *menuList = [[NSMutableArray alloc] initWithCapacity:24];
@@ -137,5 +152,15 @@
     _menuList = menuList;
 }
 
+- (void)generateTestData {
+    NSString *title = @"省份";
+    NSMutableArray *menuList = [[NSMutableArray alloc] initWithCapacity:24];
+    for (int index = 0; index < 20; index++) {
+        title = [NSString stringWithFormat:@"省份%d", index];
+        MenuInfo *menu = [MenuInfo menuInfoWithTitle:title];
+        [menuList addObject:menu];
+    }
+    _menuList = menuList;
+}
 
 @end
