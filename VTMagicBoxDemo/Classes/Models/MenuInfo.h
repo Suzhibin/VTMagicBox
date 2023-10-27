@@ -32,6 +32,8 @@
 @property (nonatomic, strong)NSMutableArray *listArr;
 
 @property (nonatomic, assign) BOOL subVCChange;//子视图响应
+
+@property (nonatomic, strong)UIColor *color;
 /**
  *  根据标题自动生成相应menu
  *

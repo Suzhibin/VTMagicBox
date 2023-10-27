@@ -21,6 +21,7 @@
 #import "VTLoadAllViewController.h"
 #import "VTScreeningViewController.h"
 #import "VTMagicBoxDemo-swift.h"
+#import "VTShowController.h"
 @interface MainViewController ()
 @property (nonatomic, strong) NSArray <VTSectionModel *>*list;
 @end
@@ -130,6 +131,11 @@
         SwiftExampleViewController *swift=[[SwiftExampleViewController alloc]init];
         swift.title=item.title;
         [self.navigationController pushViewController:swift animated:YES];
+    }else if (item.type==VTDemoTypeShow){
+        VTShowController *pager=[[VTShowController alloc]init];
+        pager.title=item.title;
+        pager.type=item.type;
+        [self.navigationController pushViewController:pager animated:YES];
     }
 
 }
@@ -198,7 +204,9 @@
             [VTTableItem itemWithTitle:@"与列表绑定" descr:@"电商分类常用，使用时不需要创建子页面" type:VTDemoTypeBindList],
             [VTTableItem itemWithTitle:@"子页面复用,响应事件" descr:@"子页面复用，父视图通知子视图响应事件" type:VTDemoTypeOneController],
             [VTTableItem itemWithTitle:@"子页面不复用，响应事件" descr:@"所有子页面都是单独创建的，父视图通知子视图响应事件" type:VTDemoTypeAllController],
-            [VTTableItem itemWithTitle:@"Swift" descr:@"Swift 使用VTMagic" type:VTDemoTypeSwift]
+            [VTTableItem itemWithTitle:@"Swift" descr:@"Swift 使用VTMagic" type:VTDemoTypeSwift],
+            [VTTableItem itemWithTitle:@"展示厅" descr:@"自动展示部分功能" type:VTDemoTypeShow],
+            
     ];
 }
 @end

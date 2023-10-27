@@ -53,6 +53,7 @@ typedef NS_ENUM(NSInteger, VTDemoType){
     VTDemoTypeOneController,//复用子视图
     VTDemoTypeAllController,//加载所有子视图
     VTDemoTypeSwift,
+    VTDemoTypeShow,//展示厅 自动展示部分功能
    
 };
 

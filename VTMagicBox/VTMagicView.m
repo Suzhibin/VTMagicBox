@@ -94,6 +94,7 @@ static const void *kVTMagicView = &kVTMagicView;
     _previewItems = 1;
     _sliderHeight = 2;
     _headerHeight = 64;
+    _footerHeight = 64;
     _bubbleRadius = 10;
     _separatorHeight = 0.5;
     _navigationHeight = 44;
@@ -201,7 +202,7 @@ static const void *kVTMagicView = &kVTMagicView;
         CGFloat headerH = _headerHidden ? 0 : _headerHeight;
         CGFloat footerH = _footerHidden ? 0 : _footerHeight;
  
-        _contentView.frame = CGRectMake(0, topY, size.width, contentH-  (_navigationHeight+headerH+ footerH));
+        _contentView.frame = CGRectMake(0, topY, size.width, contentH - (navigationH + headerH + footerH + _contentViewOffset+topY));
         if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
             [_contentView resetPageFrames];
         }
@@ -1022,7 +1023,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     [_navigationSubview removeFromSuperview];
     _navigationSubview = navigationSubview;
     [_navigationView addSubview:navigationSubview];
-    [_navigationView insertSubview:navigationSubview belowSubview:_menuBar];
+    [_navigationView sendSubviewToBack:navigationSubview];
 }
 
 - (VTMenuBar *)menuBar {

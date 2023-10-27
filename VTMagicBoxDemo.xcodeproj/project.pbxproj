@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		44035DFDD42AA66513423CD2 /* Pods_VTMagicBoxDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6290868EE3386FDC7B52C138 /* Pods_VTMagicBoxDemo.framework */; };
+		9F05BD792AEBBBCF00D0F5BA /* VTShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F05BD782AEBBBCF00D0F5BA /* VTShowController.m */; };
 		9F77720C2A28705500560144 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77720B2A28705500560144 /* AppDelegate.m */; };
 		9F77720F2A28705500560144 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77720E2A28705500560144 /* SceneDelegate.m */; };
 		9F7772122A28705500560144 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772112A28705500560144 /* ViewController.m */; };
@@ -51,6 +52,8 @@
 		4932BD542EEA853D48219C6E /* Pods-VTMagicBoxDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VTMagicBoxDemo.release.xcconfig"; path = "Target Support Files/Pods-VTMagicBoxDemo/Pods-VTMagicBoxDemo.release.xcconfig"; sourceTree = "<group>"; };
 		4B9D721EB55F49F0A5C622B3 /* Pods-VTMagicBoxDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VTMagicBoxDemo.debug.xcconfig"; path = "Target Support Files/Pods-VTMagicBoxDemo/Pods-VTMagicBoxDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		6290868EE3386FDC7B52C138 /* Pods_VTMagicBoxDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VTMagicBoxDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F05BD772AEBBBCF00D0F5BA /* VTShowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTShowController.h; sourceTree = "<group>"; };
+		9F05BD782AEBBBCF00D0F5BA /* VTShowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTShowController.m; sourceTree = "<group>"; };
 		9F7772072A28705500560144 /* VTMagicBoxDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VTMagicBoxDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F77720A2A28705500560144 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9F77720B2A28705500560144 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -154,6 +157,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9F05BD762AEBBB9300D0F5BA /* Show */ = {
+			isa = PBXGroup;
+			children = (
+				9F05BD772AEBBBCF00D0F5BA /* VTShowController.h */,
+				9F05BD782AEBBBCF00D0F5BA /* VTShowController.m */,
+			);
+			path = Show;
+			sourceTree = "<group>";
+		};
 		9F7771FE2A28705500560144 = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +224,7 @@
 		9F77722D2A28710D00560144 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9F05BD762AEBBB9300D0F5BA /* Show */,
 				9F77728B2A28846200560144 /* Swift */,
 				9F77722E2A28710D00560144 /* Home */,
 				9F77723A2A28710D00560144 /* BindList */,
@@ -534,6 +547,7 @@
 				9F7772722A28710D00560144 /* VTRecomViewController.m in Sources */,
 				9F77726F2A28710D00560144 /* UIButton+ZBKit.m in Sources */,
 				9F7772732A28710D00560144 /* VTRecomCell.m in Sources */,
+				9F05BD792AEBBBCF00D0F5BA /* VTShowController.m in Sources */,
 				9F7772802A28710D00560144 /* VTChatViewController.m in Sources */,
 				9F77727B2A28710D00560144 /* VTSliderViewController.m in Sources */,
 				9F7772742A28710D00560144 /* VTGridViewCell.m in Sources */,
