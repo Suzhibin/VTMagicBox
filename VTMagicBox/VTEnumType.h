@@ -49,6 +49,8 @@ typedef NS_ENUM(NSUInteger, VTSliderStyle) {
     VTSliderStyleDefault,
     /** 气泡样式，该样式下需结合bubbleInset和bubbleRadius使用 */
     VTSliderStyleBubble,
+    /** 显示下划线 动画缩放*/
+    VTSliderStyleDefaultZoom,
 };
 
 /** UIPanGestureRecognizer手势方向 */
@@ -72,6 +74,7 @@ typedef NS_ENUM(NSUInteger, VTAppearanceState) {
     /** 已经显示 */
     VTAppearanceStateDidAppear,
 };
+
 /** 导航位置 */
 typedef NS_ENUM(NSUInteger, VTPositionStyle) {
     /** 默认*/
@@ -79,4 +82,5 @@ typedef NS_ENUM(NSUInteger, VTPositionStyle) {
     /** 导航布局到底部 */
     VTPositionStyleBottom,
 };
+
 #endif /* VTEnumType_h */

@@ -103,6 +103,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (CGFloat)magicView:(VTMagicView *)magicView sliderWidthAtIndex:(NSUInteger)itemIndex;
 
+/**
+ *  相邻的item左右滑动时触发
+ *
+ *  @param magicView self
+ *  @param scale 比例参数
+ */
+- (void)magicView:(VTMagicView *)magicView scale:(CGFloat)scale;
+
 @end
 
 @interface VTMagicView : UIView

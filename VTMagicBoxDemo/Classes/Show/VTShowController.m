@@ -20,6 +20,7 @@
     [self addNotification];
     self.magicView.displayCentered = YES;
     self.magicView.againstStatusBar = YES;
+    self.magicView.againstSafeAreaBottom = YES;
     //    self.edgesForExtendedLayout = UIRectEdgeAll;
     self.view.backgroundColor = [UIColor whiteColor];
     self.magicView.separatorColor = [UIColor brownColor];
@@ -46,7 +47,7 @@
     
     [self integrateComponents];
     
-    self.methods=@[NSStringFromSelector(@selector(action0)), NSStringFromSelector(@selector(action1)), NSStringFromSelector(@selector(action2)), NSStringFromSelector(@selector(action3)), NSStringFromSelector(@selector(action4)), NSStringFromSelector(@selector(action5)), NSStringFromSelector(@selector(action6)), NSStringFromSelector(@selector(action7)), NSStringFromSelector(@selector(action8)), NSStringFromSelector(@selector(action9)), NSStringFromSelector(@selector(action10)), NSStringFromSelector(@selector(action11)), NSStringFromSelector(@selector(action12)),NSStringFromSelector(@selector(action13))];
+    self.methods=@[NSStringFromSelector(@selector(action0)), NSStringFromSelector(@selector(action1)), NSStringFromSelector(@selector(action2)), NSStringFromSelector(@selector(action3)), NSStringFromSelector(@selector(action4)), NSStringFromSelector(@selector(action5)), NSStringFromSelector(@selector(action6)), NSStringFromSelector(@selector(action7)), NSStringFromSelector(@selector(action8)), NSStringFromSelector(@selector(action9)), NSStringFromSelector(@selector(action10)), NSStringFromSelector(@selector(action11)), NSStringFromSelector(@selector(action12)), NSStringFromSelector(@selector(action13)),NSStringFromSelector(@selector(action14))];
     self.infoLabel.text=@"准备展示～～";
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerUpdate) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
@@ -142,12 +143,13 @@
 }
 #pragma mark - actions
 - (void)action0{
-    self.magicView.againstStatusBar = !self.magicView.againstStatusBar;
-    if(self.magicView.againstStatusBar==YES){
-        self.infoLabel.text=@"状态栏留出区域";
+    if(self.magicView.navigationHeight == 44){
+        self.magicView.navigationHeight = 54;
     }else{
-        self.infoLabel.text=@"状态栏隐藏区域";
+        self.magicView.navigationHeight = 44;
     }
+    self.infoLabel.text=[NSString stringWithFormat:@"导航高度:%.2f",self.magicView.navigationHeight];
+    [self.magicView reloadData];
 }
 - (void)action1{
     [self.magicView setHeaderHidden:!self.magicView.isHeaderHidden duration:0.35];
@@ -168,6 +170,7 @@
 - (void)action3{
     if(self.magicView.positionStyle==VTPositionStyleBottom){
         self.magicView.positionStyle=VTPositionStyleDefault;
+        self.magicView.againstStatusBar = YES;
     }else{
         self.magicView.positionStyle=VTPositionStyleBottom;
         self.magicView.againstSafeAreaBottom = YES;
@@ -213,11 +216,8 @@
 }
 
 - (void)action8{
-    UIImageView *navImage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.magicView.navigationHeight+kStatusBarHeight)];
-    NSInteger index = arc4random() %12;
-    navImage.image=[UIImage imageNamed:[NSString stringWithFormat:@"image_%ld",index]];
-    [self.magicView setNavigationSubview:navImage];
-    self.infoLabel.text=[NSString stringWithFormat:@"切换导航背景图片:%ld",index];
+    self.magicView.navigationColor=[self randomColor];
+    self.infoLabel.text=[NSString stringWithFormat:@"切换导航背景颜色"];
 }
 
 - (void)action9{
@@ -243,7 +243,7 @@
 - (void)action11{
     if(self.magicView.sliderOffset==-3){
         self.infoLabel.text=[NSString stringWithFormat:@"滑块位于导航菜单顶部"];
-        self.magicView.sliderOffset=-40;
+        self.magicView.sliderOffset=-42;
     }else{
         self.magicView.sliderOffset=-3;
         self.infoLabel.text=[NSString stringWithFormat:@"滑块位于导航菜单底部"];
@@ -251,18 +251,14 @@
     [self.magicView reloadMenuTitles];
 }
 - (void)action12{
-//    if(self.magicView.rightNavigatoinItem==nil){
-//        UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 44)];
-//        [rightButton setImage:[UIImage imageNamed:@"home_moreIcon"] forState:UIControlStateNormal];
-//        rightButton.center = self.view.center;
-//        rightButton.backgroundColor=[UIColor whiteColor];
-//        self.magicView.rightNavigatoinItem = rightButton;
-//        self.infoLabel.text=[NSString stringWithFormat:@"显示rightNavigatoinItem"];
-//    }else{
-//        self.magicView.rightNavigatoinItem=nil;
-//        self.infoLabel.text=[NSString stringWithFormat:@"隐藏rightNavigatoinItem"];
-//    }
-//    [self.magicView reloadMenuTitles];
+    if(self.magicView.navigationInset.left==0){
+        [self.magicView switchToPage:0 animated:YES];
+        self.magicView.navigationInset=UIEdgeInsetsMake(0, self.view.frame.size.width/2, 0, 0);
+    }else{
+        self.magicView.navigationInset=UIEdgeInsetsMake(0, 0, 0, 0);
+    }
+    self.infoLabel.text=[NSString stringWithFormat:@"导航菜单左侧偏移量:%.2f",self.magicView.navigationInset.left];
+    [self.magicView reloadMenuTitles];
 }
 - (void)action13{
     if(self.magicView.contentViewOffset==0){
@@ -272,6 +268,21 @@
     }
     self.infoLabel.text=[NSString stringWithFormat:@"内容页面偏移量(%.f)",self.magicView.contentViewOffset];
     [self.magicView reloadData];
+}
+- (void)action14{
+    if(self.magicView.sliderStyle==VTSliderStyleDefault){
+        self.magicView.sliderStyle=VTSliderStyleBubble;
+        self.magicView.sliderColor = RGBCOLOR(229, 229, 229);
+        self.magicView.bubbleInset = UIEdgeInsetsMake(2, 7, 2, 7);
+        self.magicView.bubbleRadius = 10;
+        self.infoLabel.text=@"导航栏滑块样式 气泡样式";
+    }else{
+        self.magicView.sliderStyle=VTSliderStyleDefault;
+        self.magicView.sliderColor=[UIColor blackColor];
+        self.infoLabel.text=@"导航栏滑块样式 下划线";
+    }
+
+    [self.magicView reloadMenuTitles];
 }
 - (void)backAction{
     [self.navigationController popViewControllerAnimated:YES];
@@ -293,7 +304,17 @@
     [self.view addSubview: infoLabel];
     self.infoLabel=infoLabel;
 }
-
+- (void)generateDivideTestData{
+    NSString *title = @"省份";
+    NSMutableArray *menuList = [[NSMutableArray alloc] initWithCapacity:4];
+    for (int index = 0; index < 4; index++) {
+        title = [NSString stringWithFormat:@"省份%d", index];
+        MenuInfo *menu = [MenuInfo menuInfoWithTitle:title];
+        menu.color=[self randomColor];
+        [menuList addObject:menu];
+    }
+    _menuList = menuList;
+}
 - (void)generateTestData {
     NSString *title = @"省份";
     NSMutableArray *menuList = [[NSMutableArray alloc] initWithCapacity:24];

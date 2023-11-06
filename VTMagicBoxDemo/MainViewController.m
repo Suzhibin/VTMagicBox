@@ -85,7 +85,7 @@
         divideVC.type=item.type;
         divideVC.title=item.title;
         [self.navigationController pushViewController:divideVC animated:YES];
-    } else if(item.type==VTDemoTypeSliderLine||item.type==VTDemoTypeSliderBubble||item.type==VTDemoTypeSliderBubbleSelect||item.type==VTDemoTypeSliderBubbleShadow||item.type==VTDemoTypeSliderSquare||item.type==VTDemoTypeSliderCircle||item.type==VTDemoTypeSliderImage||item.type==VTDemoTypeSliderItmeLine||item.type==VTDemoTypeSliderRandomColor){
+    } else if(item.type==VTDemoTypeSliderLine||item.type==VTDemoTypeSliderBubble||item.type==VTDemoTypeSliderBubbleSelect||item.type==VTDemoTypeSliderBubbleShadow||item.type==VTDemoTypeSliderSquare||item.type==VTDemoTypeSliderCircle||item.type==VTDemoTypeSliderImage||item.type==VTDemoTypeSliderItmeLine||item.type==VTDemoTypeSliderRandomColor||item.type==VTDemoTypeSliderZoom||item.type==VTDemoTypeSliderDotZoom){
         VTSliderViewController *sliderVC = [[VTSliderViewController alloc] init];
         sliderVC.type=item.type;
         sliderVC.title=item.title;
@@ -171,8 +171,10 @@
         [VTTableItem itemWithTitle:@"图片" descr:@"自定义sliderView view为UIImageView,右侧按钮调 滑块选中状态" type:VTDemoTypeSliderImage],
         [VTTableItem itemWithTitle:@"三角" descr:@"自定义sliderView view为UIImageView,右侧按钮调 滑块选中状态,定位到指定页面" type:VTDemoTypeSliderTriangle],
         [VTTableItem itemWithTitle:@"随机颜色" descr:@"magicView：viewDidAppear代理内设置,右侧按钮调 滑块选中状态、位置" type:VTDemoTypeSliderRandomColor],
+        [VTTableItem itemWithTitle:@"横线缩放" descr:@"移动横线动画缩放，在代理内实现动画" type:VTDemoTypeSliderZoom],
+        [VTTableItem itemWithTitle:@"点缩放" descr:@"移动点动画缩放，在代理内实现动画" type:VTDemoTypeSliderDotZoom],
         [VTTableItem itemWithTitle:@"展示指示器" descr:@"指示器替换滑块" type:VTDemoTypeSliderPageControl],
-        [VTTableItem itemWithTitle:@"只展示滑块" descr:@"隐藏菜单 只展示滑块" type:VTDemoTypeSliderHideMenu],
+        [VTTableItem itemWithTitle:@"只展示滑块" descr:@"隐藏菜单 只展示滑块" type:VTDemoTypeSliderHideMenu]
     ];
 }
 - (NSArray <VTTableItem *>*)createMenuItems {
@@ -193,6 +195,7 @@
             [VTTableItem itemWithTitle:@"SegmentedControl样式" descr:@"在导航和菜单按钮之间添加View，作为边界，调整滑块的bubbleInset" type:VTDemoTypeSegmentedControl],
             [VTTableItem itemWithTitle:@"导航添加图片" descr:@"在导航与menuBar 之间插入一个图片" type:VTDemoTypeMenuNavigationImage],
             [VTTableItem itemWithTitle:@"筛选" descr:@"默认不选中，菜单与弹窗关联互动" type:VTDemoTypeMenuScreening],
+            
     ];
 }
 - (NSArray <VTTableItem *>*)createCustomItems {

@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-   
+
     if(self.type==VTDemoTypeMenuMTText){
         self.magicView.navigationHeight = 64;
     }else{
@@ -91,7 +91,23 @@
         [self createNavBtn];
     }else if(self.type==VTDemoTypeSliderImage){
         [self configCustomSliderBanner];
+    }else if(self.type==VTDemoTypeSliderZoom){
+        self.magicView.sliderWidth=20;
+        self.magicView.sliderColor =[UIColor redColor];
+        self.magicView.sliderStyle=VTSliderStyleDefaultZoom;
+        [self createNavBtn];
+    }else if(self.type==VTDemoTypeSliderDotZoom){
+        self.magicView.sliderWidth=10;
+        self.magicView.sliderHeight=10;
+        self.magicView.sliderStyle=VTSliderStyleDefaultZoom;
+        UIView *slider = [[UIView alloc] init];
+        slider.layer.masksToBounds = YES;
+        slider.layer.cornerRadius = 5;
+        self.magicView.sliderColor=[UIColor redColor];
+        [self.magicView setSliderView:slider];
+        [self createNavBtn];
     }
+    
     [self addNotification];
     [self generateTestData];
     
@@ -169,6 +185,11 @@
         self.magicView.sliderColor =[self randomColor];
     }
 }
+
+- (void)magicView:(VTMagicView *)magicView scale:(CGFloat)scale{
+    NSLog(@"%.2f",scale);
+}
+
 #pragma mark - actions
 - (void)subscribeAction {
     NSLog(@"subscribeAction");
@@ -178,7 +199,11 @@
         self.magicView.navigationInset=UIEdgeInsetsMake(0, self.insetLeft, 0, 0);
     }else{
         if(self.magicView.sliderOffset==0){
-            self.magicView.sliderOffset=-40;
+            if(self.type==VTDemoTypeSliderDotZoom){
+                self.magicView.sliderOffset=-32;
+            }else{
+                self.magicView.sliderOffset=-40;
+            }
         }else{
             self.magicView.sliderOffset=0;
         }
@@ -203,10 +228,7 @@
    
     UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 44)];
     [rightButton addTarget:self action:@selector(rightButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    [rightButton setTitleColor:RGBACOLOR(169, 37, 37, 0.6) forState:UIControlStateSelected];
-    [rightButton setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateNormal];
-    [rightButton setTitle:@"+" forState:UIControlStateNormal];
-    rightButton.titleLabel.font = [UIFont boldSystemFontOfSize:28];
+    [rightButton setImage:[UIImage imageNamed:@"home_moreIcon"] forState:UIControlStateNormal];
     rightButton.center = self.view.center;
     self.magicView.rightNavigatoinItem = rightButton;
 }
