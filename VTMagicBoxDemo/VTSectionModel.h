@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, VTDemoType){
     VTDemoTypeNormal,//正常
@@ -56,7 +56,7 @@ typedef NS_ENUM(NSInteger, VTDemoType){
     VTDemoTypeAllController,//加载所有子视图
     VTDemoTypeSwift,
     VTDemoTypeShow,//展示厅 自动展示部分功能
-   
+    VTDemoTypeScroll,//滑动监听
 };
 
 @interface VTTableItem : NSObject

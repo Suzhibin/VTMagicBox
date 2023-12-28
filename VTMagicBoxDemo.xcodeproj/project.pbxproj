@@ -46,6 +46,8 @@
 		9F7772882A28710D00560144 /* VTScreeningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77726C2A28710D00560144 /* VTScreeningViewController.m */; };
 		9F77728E2A2884F500560144 /* SwiftExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F77728D2A2884F500560144 /* SwiftExampleViewController.swift */; };
 		9F7E339A2AD6A411007A97AF /* newsMenulive_n.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9F7E33992AD6A411007A97AF /* newsMenulive_n.gif */; };
+		9F9CAC2F2B3D65CD00744C82 /* VTScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CAC2E2B3D65CD00744C82 /* VTScrollController.m */; };
+		9F9CAC322B3D660D00744C82 /* VTScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CAC312B3D660D00744C82 /* VTScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +128,10 @@
 		9F77728C2A2884F400560144 /* VTMagicBoxDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VTMagicBoxDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		9F77728D2A2884F500560144 /* SwiftExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftExampleViewController.swift; sourceTree = "<group>"; };
 		9F7E33992AD6A411007A97AF /* newsMenulive_n.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = newsMenulive_n.gif; sourceTree = "<group>"; };
+		9F9CAC2D2B3D65CD00744C82 /* VTScrollController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTScrollController.h; sourceTree = "<group>"; };
+		9F9CAC2E2B3D65CD00744C82 /* VTScrollController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTScrollController.m; sourceTree = "<group>"; };
+		9F9CAC302B3D660D00744C82 /* VTScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTScrollView.h; sourceTree = "<group>"; };
+		9F9CAC312B3D660D00744C82 /* VTScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +230,7 @@
 		9F77722D2A28710D00560144 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9F9CAC262B3D163B00744C82 /* BindMagic */,
 				9F05BD762AEBBB9300D0F5BA /* Show */,
 				9F77728B2A28846200560144 /* Swift */,
 				9F77722E2A28710D00560144 /* Home */,
@@ -407,6 +414,17 @@
 			path = Swift;
 			sourceTree = "<group>";
 		};
+		9F9CAC262B3D163B00744C82 /* BindMagic */ = {
+			isa = PBXGroup;
+			children = (
+				9F9CAC2D2B3D65CD00744C82 /* VTScrollController.h */,
+				9F9CAC2E2B3D65CD00744C82 /* VTScrollController.m */,
+				9F9CAC302B3D660D00744C82 /* VTScrollView.h */,
+				9F9CAC312B3D660D00744C82 /* VTScrollView.m */,
+			);
+			path = BindMagic;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -528,9 +546,11 @@
 				9F77727E2A28710D00560144 /* VTBubbleViewController.m in Sources */,
 				9F7772842A28710D00560144 /* VTMenuViewController.m in Sources */,
 				9F77727D2A28710D00560144 /* MenuInfo.m in Sources */,
+				9F9CAC322B3D660D00744C82 /* VTScrollView.m in Sources */,
 				9F77726D2A28710D00560144 /* VTNavigationController.m in Sources */,
 				9F7772772A28710D00560144 /* VTBindListViewController.m in Sources */,
 				9F77727A2A28710D00560144 /* VTDivideViewController.m in Sources */,
+				9F9CAC2F2B3D65CD00744C82 /* VTScrollController.m in Sources */,
 				9F7772792A28710D00560144 /* VTCenterViewController.m in Sources */,
 				9F7772812A28710D00560144 /* VTDetailViewController.m in Sources */,
 				9F7772712A28710D00560144 /* VTHomeViewController.m in Sources */,

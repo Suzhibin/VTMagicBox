@@ -22,6 +22,7 @@
 #import "VTScreeningViewController.h"
 #import "VTMagicBoxDemo-swift.h"
 #import "VTShowController.h"
+#import "VTScrollController.h"
 @interface MainViewController ()
 @property (nonatomic, strong) NSArray <VTSectionModel *>*list;
 @end
@@ -136,6 +137,11 @@
         pager.title=item.title;
         pager.type=item.type;
         [self.navigationController pushViewController:pager animated:YES];
+    }else if(item.type==VTDemoTypeScroll){
+        VTScrollController*scrollVC=[[VTScrollController alloc]init];
+        scrollVC.title=item.title;
+        scrollVC.type=item.type;
+        [self.navigationController pushViewController:scrollVC animated:YES];
     }
 
 }
@@ -202,6 +208,7 @@
     return @[
             [VTTableItem itemWithTitle:@"Header使用" descr:@"可添加自定义view" type:VTDemoTypeHeader],
             [VTTableItem itemWithTitle:@"Footer使用" descr:@"可添加筛选按钮和自定义view，可调节子页面距离导航的距离" type:VTDemoTypeFooter],
+            [VTTableItem itemWithTitle:@"滑动监听" descr:@"添加新的代理，可以监听视图控制器 滑动事件" type:VTDemoTypeScroll],
             [VTTableItem itemWithTitle:@"WebView" descr:@"描述" type:VTDemoTypeWebView],
             [VTTableItem itemWithTitle:@"第一个menu固定左侧" descr:@"leftNavigatoinItem，navigationInset,同时定位到指定页面" type:VTDemoTypeFirstFixed],
             [VTTableItem itemWithTitle:@"与列表绑定" descr:@"电商分类常用，使用时不需要创建子页面" type:VTDemoTypeBindList],

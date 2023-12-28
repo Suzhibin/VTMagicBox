@@ -186,8 +186,9 @@
     }
 }
 
-- (void)magicView:(VTMagicView *)magicView scale:(CGFloat)scale{
-    NSLog(@"%.2f",scale);
+- (void)magicView:(VTMagicView *)magicView scrollViewDidScroll:(nonnull UIScrollView *)scrollView{
+    CGFloat offsetX = scrollView.contentOffset.x;
+    NSLog(@"offsetX：%.2f",offsetX);
 }
 
 #pragma mark - actions

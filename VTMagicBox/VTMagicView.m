@@ -683,10 +683,6 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     CGFloat currentWidth = currentFrame.size.width;
     sliderFrame.size.width = currentWidth - (currentWidth - nextWidth) * absScale;
     
-    if ([_delegate respondsToSelector:@selector(magicView:scale:)]) {
-        [_delegate magicView:self scale:scale];
-    }
-    
     if(_sliderStyle==VTSliderStyleDefaultZoom){
         CGFloat distance = fabs(CGRectGetMidX(nextFrame) - CGRectGetMidX(currentFrame));
         CGFloat fromX = CGRectGetMidX(currentFrame) - sliderFrame.size.width/2.0f;
@@ -855,6 +851,9 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if ([_delegate respondsToSelector:@selector(magicView:scrollViewDidScroll:)]) {
+        [_delegate magicView:self scrollViewDidScroll:scrollView];
+    }
     if (![scrollView isEqual:_contentView] || _needSkipUpdate || CGRectIsEmpty(self.frame)) {
         return;
     }
