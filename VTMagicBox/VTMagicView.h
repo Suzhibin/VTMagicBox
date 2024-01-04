@@ -111,6 +111,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)magicView:(VTMagicView *)magicView scrollViewDidScroll:(UIScrollView *)scrollView;
 
+/**
+ *  sliderView自定义动画，实现此代理，默认动画将无效
+ *
+ *  @param magicView    self
+ *  @param scale        等于 _contentView.contentOffset.x/_contentView.frame.size.width - _currentPage
+ *  @param currentFrame slider当前的frame
+ *  @param nextFrame    slider新位置的frame
+ *  @param sliderView   滑块对象
+ */
+- (void)magicView:(VTMagicView *)magicView scale:(CGFloat)scale currentFrame:(CGRect)currentFrame nextFrame:(CGRect)nextFrame  sliderView:(UIView *)sliderView;
+
 @end
 
 @interface VTMagicView : UIView

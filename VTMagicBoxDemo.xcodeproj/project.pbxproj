@@ -48,6 +48,7 @@
 		9F7E339A2AD6A411007A97AF /* newsMenulive_n.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9F7E33992AD6A411007A97AF /* newsMenulive_n.gif */; };
 		9F9CAC2F2B3D65CD00744C82 /* VTScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CAC2E2B3D65CD00744C82 /* VTScrollController.m */; };
 		9F9CAC322B3D660D00744C82 /* VTScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CAC312B3D660D00744C82 /* VTScrollView.m */; };
+		9FB8346A2B46A47D00517B7C /* VTSliderCustomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB834692B46A47D00517B7C /* VTSliderCustomAnimationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +133,8 @@
 		9F9CAC2E2B3D65CD00744C82 /* VTScrollController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTScrollController.m; sourceTree = "<group>"; };
 		9F9CAC302B3D660D00744C82 /* VTScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTScrollView.h; sourceTree = "<group>"; };
 		9F9CAC312B3D660D00744C82 /* VTScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTScrollView.m; sourceTree = "<group>"; };
+		9FB834682B46A47D00517B7C /* VTSliderCustomAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTSliderCustomAnimationController.h; sourceTree = "<group>"; };
+		9FB834692B46A47D00517B7C /* VTSliderCustomAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTSliderCustomAnimationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,7 +233,8 @@
 		9F77722D2A28710D00560144 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				9F9CAC262B3D163B00744C82 /* BindMagic */,
+				9FB8346B2B46A48800517B7C /* SliderAnimation */,
+				9F9CAC262B3D163B00744C82 /* BindScroll */,
 				9F05BD762AEBBB9300D0F5BA /* Show */,
 				9F77728B2A28846200560144 /* Swift */,
 				9F77722E2A28710D00560144 /* Home */,
@@ -414,7 +418,7 @@
 			path = Swift;
 			sourceTree = "<group>";
 		};
-		9F9CAC262B3D163B00744C82 /* BindMagic */ = {
+		9F9CAC262B3D163B00744C82 /* BindScroll */ = {
 			isa = PBXGroup;
 			children = (
 				9F9CAC2D2B3D65CD00744C82 /* VTScrollController.h */,
@@ -422,7 +426,16 @@
 				9F9CAC302B3D660D00744C82 /* VTScrollView.h */,
 				9F9CAC312B3D660D00744C82 /* VTScrollView.m */,
 			);
-			path = BindMagic;
+			path = BindScroll;
+			sourceTree = "<group>";
+		};
+		9FB8346B2B46A48800517B7C /* SliderAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				9FB834682B46A47D00517B7C /* VTSliderCustomAnimationController.h */,
+				9FB834692B46A47D00517B7C /* VTSliderCustomAnimationController.m */,
+			);
+			path = SliderAnimation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -561,6 +574,7 @@
 				9F7772822A28710D00560144 /* VTMTAttMenuItem.m in Sources */,
 				9F7772872A28710D00560144 /* VTDataViewController.m in Sources */,
 				9F7772852A28710D00560144 /* VTLoadAllViewController.m in Sources */,
+				9FB8346A2B46A47D00517B7C /* VTSliderCustomAnimationController.m in Sources */,
 				9F77720F2A28705500560144 /* SceneDelegate.m in Sources */,
 				9F7772752A28710D00560144 /* VTGridViewController.m in Sources */,
 				9F7772832A28710D00560144 /* VTMenuItem.m in Sources */,

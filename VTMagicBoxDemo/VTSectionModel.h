@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger, VTDemoType){
     VTDemoTypeSliderDotZoom,//滑块点缩放
     VTDemoTypeSliderPageControl,//pageControl
     VTDemoTypeSliderHideMenu,//隐藏菜单 展示滑块
+    VTDemoTypeSliderCustomAnimation,//自定义动画
     VTDemoTypeMenuImage,
     VTDemoTypeMenuImageTop,
     VTDemoTypeMenuImageBottom,

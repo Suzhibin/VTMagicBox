@@ -683,52 +683,56 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     CGFloat currentWidth = currentFrame.size.width;
     sliderFrame.size.width = currentWidth - (currentWidth - nextWidth) * absScale;
     
-    if(_sliderStyle==VTSliderStyleDefaultZoom){
-        CGFloat distance = fabs(CGRectGetMidX(nextFrame) - CGRectGetMidX(currentFrame));
-        CGFloat fromX = CGRectGetMidX(currentFrame) - sliderFrame.size.width/2.0f;
-        CGFloat toX = CGRectGetMidX(nextFrame) - sliderFrame.size.width/2.0f;
-        CGFloat progress =scale;
-        if (progress > 0) {//向右移动
-            //前半段0~0.5，x不变 w变大
-            if (progress <= 0.5) {
-                //让过程变成0~1
-                CGFloat newProgress = 2*fabs(progress);
-                CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
-                sliderFrame.size.width = newWidth;
-                sliderFrame.origin.x = fromX;
-                _sliderView.frame = sliderFrame;
-            }else if (progress >= 0.5) { //后半段0.5~1，x变大 w变小
-                //让过程变成1~0
-                CGFloat newProgress = 2*(1-fabs(progress));
-                CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
-                CGFloat newX = toX - newProgress*distance;
-                sliderFrame.size.width = newWidth;
-                sliderFrame.origin.x = newX;
-                _sliderView.frame = sliderFrame;
-            }
-        }else {//向左移动
-            //前半段0~-0.5，x变小 w变大
-            if (progress >= -0.5) {
-                //让过程变成0~1
-                CGFloat newProgress = 2*fabs(progress);
-                CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
-                CGFloat newX = fromX - newProgress*distance;
-                sliderFrame.size.width = newWidth;
-                sliderFrame.origin.x = newX;
-                _sliderView.frame = sliderFrame;
-            }else if (progress <= -0.5) { //后半段-0.5~-1，x变大 w变小
-                //让过程变成1~0
-                CGFloat newProgress = 2*(1-fabs(progress));
-                CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
-                sliderFrame.size.width = newWidth;
-                sliderFrame.origin.x = toX;
-                _sliderView.frame = sliderFrame;
-            }
-        }
+    if ([_delegate respondsToSelector:@selector(magicView:scale:currentFrame:nextFrame:sliderView:)]) {
+        [_delegate magicView:self scale:scale currentFrame:currentFrame nextFrame:nextFrame sliderView:_sliderView];
     }else{
-        CGFloat offset = ABS(currentFrame.origin.x - nextFrame.origin.x) * scale;
-        sliderFrame.origin.x = currentFrame.origin.x + offset;
-        _sliderView.frame = sliderFrame;
+        if(_sliderStyle==VTSliderStyleDefaultZoom){
+            CGFloat distance = fabs(CGRectGetMidX(nextFrame) - CGRectGetMidX(currentFrame));
+            CGFloat fromX = CGRectGetMidX(currentFrame) - sliderFrame.size.width/2.0f;
+            CGFloat toX = CGRectGetMidX(nextFrame) - sliderFrame.size.width/2.0f;
+            CGFloat progress =scale;
+            if (progress > 0) {//向右移动
+                //前半段0~0.5，x不变 w变大
+                if (progress <= 0.5) {
+                    //让过程变成0~1
+                    CGFloat newProgress = 2*fabs(progress);
+                    CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
+                    sliderFrame.size.width = newWidth;
+                    sliderFrame.origin.x = fromX;
+                    _sliderView.frame = sliderFrame;
+                }else if (progress >= 0.5) { //后半段0.5~1，x变大 w变小
+                    //让过程变成1~0
+                    CGFloat newProgress = 2*(1-fabs(progress));
+                    CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
+                    CGFloat newX = toX - newProgress*distance;
+                    sliderFrame.size.width = newWidth;
+                    sliderFrame.origin.x = newX;
+                    _sliderView.frame = sliderFrame;
+                }
+            }else {//向左移动
+                //前半段0~-0.5，x变小 w变大
+                if (progress >= -0.5) {
+                    //让过程变成0~1
+                    CGFloat newProgress = 2*fabs(progress);
+                    CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
+                    CGFloat newX = fromX - newProgress*distance;
+                    sliderFrame.size.width = newWidth;
+                    sliderFrame.origin.x = newX;
+                    _sliderView.frame = sliderFrame;
+                }else if (progress <= -0.5) { //后半段-0.5~-1，x变大 w变小
+                    //让过程变成1~0
+                    CGFloat newProgress = 2*(1-fabs(progress));
+                    CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
+                    sliderFrame.size.width = newWidth;
+                    sliderFrame.origin.x = toX;
+                    _sliderView.frame = sliderFrame;
+                }
+            }
+        }else{
+            CGFloat offset = ABS(currentFrame.origin.x - nextFrame.origin.x) * scale;
+            sliderFrame.origin.x = currentFrame.origin.x + offset;
+            _sliderView.frame = sliderFrame;
+        }
     }
    
     if (1.0 == _itemScale || 0 == absScale) {
