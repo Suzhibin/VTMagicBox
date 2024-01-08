@@ -223,11 +223,6 @@ UIViewController *viewController = [self.magicController viewControllerAtPage:3]
 ```
 
 
-## Author
-
-**VictorTian** *email: szb2323@163.com*
-
-
 ## License
 
 VTMagicBox is released under the MIT license. See LICENSE for details.
