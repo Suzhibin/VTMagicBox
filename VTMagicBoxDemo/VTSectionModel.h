@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, VTDemoType){
     VTDemoTypeDivide,//平分
     VTDemoTypeRight,//居右
     VTDemoTypeHideNav,//隐藏导航
+    VTDemoTypeAlphaNav,//导航透明
     VTDemoTypeBottom,//居底部
     VTDemoTypeBottomDivide,//居底部平分
     VTDemoTypeSliderItmeLine,//常规线

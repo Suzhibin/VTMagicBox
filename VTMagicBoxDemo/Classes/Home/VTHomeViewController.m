@@ -9,7 +9,7 @@
 #import "VTHomeViewController.h"
 #import "VTRecomViewController.h"
 #import "VTGridViewController.h"
-
+#import "ViewController.h"
 @interface VTHomeViewController ()
 
 @property (nonatomic, strong)  NSArray *menuList;
@@ -22,7 +22,7 @@
 #pragma mark - Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = RGBCOLOR(243, 40, 47);
+    self.view.backgroundColor =[UIColor whiteColor];
     self.edgesForExtendedLayout = UIRectEdgeAll;
     //    self.magicView.bounces = YES;
     //    self.magicView.headerHidden = NO;
@@ -77,6 +77,24 @@
         self.magicView.againstSafeAreaBottom =YES;
         self.magicView.sliderWidth=20;
         [self createRightNavBtn];
+    }else if(self.type==VTDemoTypeAlphaNav){
+//        self.magicView.againstStatusBar = YES;
+        self.magicView.navigationColor = [UIColor clearColor];
+        self.magicView.contentViewOffset = -(kStatusBarHeight+60+44);
+        self.magicView.separatorHidden=YES;
+        self.magicView.sliderHidden = YES;
+        self.magicView.itemScale = 1.5;
+        self.magicView.headerHidden=NO;
+        self.magicView.headerHeight = kStatusBarHeight+60;
+        self.magicView.headerView.backgroundColor = [UIColor clearColor];
+        self.magicView.navigationHeight = 44;
+        UIButton *leftButton=[self createleftButton];
+        leftButton.frame = CGRectMake(20, kStatusBarHeight, 44, 44);
+        [self.magicView.headerView addSubview:leftButton];
+        
+        UIView *tagView=[[UIView alloc]initWithFrame:CGRectMake(80, kStatusBarHeight, self.view.frame.size.width-160 , 44)];
+        tagView.backgroundColor=[[UIColor whiteColor]colorWithAlphaComponent:0.4];
+        [self.magicView.headerView addSubview:tagView];
     }
     
     [self addNotification];
@@ -147,8 +165,14 @@
     UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
     if (!menuItem) {
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
-        [menuItem setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];
+        if(self.type==VTDemoTypeAlphaNav){
+            [menuItem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [menuItem setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        }else{
+            [menuItem setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
+            [menuItem setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];
+        }
+   
         menuItem.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
     }
     // 默认会自动完成赋值
@@ -158,24 +182,36 @@
 }
 
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex {
-    MenuInfo *menuInfo = _menuList[pageIndex];
-    if (0 == pageIndex) {
-        static NSString *recomId = @"recom.identifier";
-        VTRecomViewController *recomViewController = [magicView dequeueReusablePageWithIdentifier:recomId];
-        if (!recomViewController) {
-            recomViewController = [[VTRecomViewController alloc] init];
-        }
-        recomViewController.menuInfo = menuInfo;
-        return recomViewController;
-    }
     
-    static NSString *gridId = @"grid.identifier";
-    VTGridViewController *viewController = [magicView dequeueReusablePageWithIdentifier:gridId];
-    if (!viewController) {
-        viewController = [[VTGridViewController alloc] init];
+    if(self.type==VTDemoTypeAlphaNav){
+        static NSString *gridId = @"ViewController.identifier";
+        ViewController *viewController = [magicView dequeueReusablePageWithIdentifier:gridId];
+        if (!viewController) {
+            viewController = [[ViewController alloc] init];
+        }
+        return viewController;
+        
+    }else{
+        MenuInfo *menuInfo = _menuList[pageIndex];
+        if (0 == pageIndex) {
+            static NSString *recomId = @"recom.identifier";
+            VTRecomViewController *recomViewController = [magicView dequeueReusablePageWithIdentifier:recomId];
+            if (!recomViewController) {
+                recomViewController = [[VTRecomViewController alloc] init];
+            }
+            recomViewController.menuInfo = menuInfo;
+            return recomViewController;
+        }
+        
+        static NSString *gridId = @"grid.identifier";
+        VTGridViewController *viewController = [magicView dequeueReusablePageWithIdentifier:gridId];
+        if (!viewController) {
+            viewController = [[VTGridViewController alloc] init];
+        }
+        viewController.menuInfo = menuInfo;
+        return viewController;
     }
-    viewController.menuInfo = menuInfo;
-    return viewController;
+   
 }
 
 #pragma mark - VTMagicViewDelegate
@@ -246,10 +282,15 @@
 - (UIButton *)createleftButton{
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 50, 44)];
     [leftButton addTarget:self action:@selector(leftButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    if(self.type==VTDemoTypeAlphaNav){
+        [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }else{
+        [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [leftButton setImage:[UIImage imageNamed:@"back_icon"] forState:UIControlStateNormal];
+    }
     [leftButton setTitle:@"返回" forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont boldSystemFontOfSize:13];
-    [leftButton setImage:[UIImage imageNamed:@"back_icon"] forState:UIControlStateNormal];
+
     return leftButton;
 }
 - (void)integrateComponents {
@@ -261,13 +302,16 @@
         rightButton.center = self.view.center;
         self.magicView.rightNavigatoinItem = rightButton;
     }else{
-        UIButton *leftButton=[self createleftButton];
-        self.magicView.leftNavigatoinItem =leftButton;
-        UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 44)];
-        [rightButton addTarget:self action:@selector(subscribeAction) forControlEvents:UIControlEventTouchUpInside];
-        [rightButton setImage:[UIImage imageNamed:@"home_moreIcon"] forState:UIControlStateNormal];
-        rightButton.center = self.view.center;
-        self.magicView.rightNavigatoinItem = rightButton;
+        if  (self.type==VTDemoTypeAlphaNav){
+        }else{
+            UIButton *leftButton=[self createleftButton];
+            self.magicView.leftNavigatoinItem =leftButton;
+            UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 44)];
+            [rightButton addTarget:self action:@selector(subscribeAction) forControlEvents:UIControlEventTouchUpInside];
+            [rightButton setImage:[UIImage imageNamed:@"home_moreIcon"] forState:UIControlStateNormal];
+            rightButton.center = self.view.center;
+            self.magicView.rightNavigatoinItem = rightButton;
+        }
     }
 //    if(self.type==VTDemoTypeNormal){
 //        UIButton *leftButton=[self createleftButton];

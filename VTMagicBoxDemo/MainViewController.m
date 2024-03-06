@@ -71,8 +71,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     VTTableItem *item=self.list[indexPath.section].items[indexPath.row];
-
-    if(item.type==VTDemoTypeNormal||item.type==VTDemoTypeHeader||item.type==VTDemoTypeFooter||item.type==VTDemoTypeHideNav||item.type==VTDemoTypeBottom||item.type==VTDemoTypeBottomDivide){
+    
+    if(item.type==VTDemoTypeNormal||item.type==VTDemoTypeHeader||item.type==VTDemoTypeFooter||item.type==VTDemoTypeHideNav||item.type==VTDemoTypeBottom||item.type==VTDemoTypeBottomDivide||item.type==VTDemoTypeAlphaNav){
         VTHomeViewController *homeVC=[[VTHomeViewController alloc]init];
         homeVC.type=item.type;
         homeVC.title=item.title;
@@ -164,8 +164,9 @@
             [VTTableItem itemWithTitle:@"常规" descr:@"Header可显示/隐藏" type:VTDemoTypeNormal],
              [VTTableItem itemWithTitle:@"居中" descr:@"右侧按钮可以切换page" type:VTDemoTypeCenter],
              [VTTableItem itemWithTitle:@"平分" descr:@"定位到指定页面,右侧按钮调 滑块选中状态" type:VTDemoTypeDivide],
-             [VTTableItem itemWithTitle:@"居右" descr:@"描述" type:VTDemoTypeRight],
+             [VTTableItem itemWithTitle:@"居右" descr:@"居右布局" type:VTDemoTypeRight],
              [VTTableItem itemWithTitle:@"隐藏菜单" descr:@"招聘app职位详情常用，左右切换" type:VTDemoTypeHideNav],
+             [VTTableItem itemWithTitle:@"菜单透明" descr:@"内容页面在菜单后" type:VTDemoTypeAlphaNav],
              [VTTableItem itemWithTitle:@"居底部" descr:@"菜单在底部。常规位置所有设置通用" type:VTDemoTypeBottom],
              [VTTableItem itemWithTitle:@"居底部代替tabbar" descr:@"可平分、居中、居左、居右。常规位置所有设置通用" type:VTDemoTypeBottomDivide],
     ];
