@@ -363,7 +363,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat navigationHeight;
 
 /**
- *  顶部导航条的宽度，默认是屏幕宽度
+ *  顶部导航条的宽度，默认是100
  *  @warning 该属性在VTPositionStyleLeft,VTPositionStyleRight样式下有效
  */
 @property (nonatomic, assign) CGFloat navigationWidth;
