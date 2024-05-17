@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name       = 'VTMagicBox'
-    s.version    = '2.0.0'
+    s.version    = '2.0.1'
     s.license    = { :type => 'MIT' }
     s.homepage   = 'https://github.com/Suzhibin/VTMagicBox'
     s.authors    = { 'suzhibin' => 'szb2323@163.com' }

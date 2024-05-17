@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "VTMagicMacros.h"
-
+#import "VTEnumType.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @class VTContentView;
@@ -34,6 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  数据源
  */
 @property (nonatomic, weak, nullable) id <VTContentViewDataSource> dataSource;
+
+/**
+ *  导航栏位置 默认在上
+ */
+@property (nonatomic, assign) VTPositionStyle positionStyle;
 
 /**
  *  页面数量

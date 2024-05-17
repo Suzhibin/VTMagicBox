@@ -20,7 +20,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    if (@available(iOS 15.0, *)) {
+        self.tableView.sectionHeaderTopPadding = 0;
+    }
     self.tableView.scrollsToTop = NO;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, VTTABBAR_HEIGHT, 0);
     self.view.backgroundColor = RGBCOLOR(239, 239, 239);
@@ -88,10 +93,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     VTDetailViewController *detailViewController = [[VTDetailViewController alloc] init];
     detailViewController.hidesBottomBarWhenPushed = YES;
+#if TARGET_OS_MACCATALYST
+    [self showViewController:detailViewController sender:nil];
+#else
     [self.navigationController pushViewController:detailViewController animated:YES];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+#endif
 }
 
 #pragma mark - VTMagicReuseProtocol

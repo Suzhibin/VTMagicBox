@@ -86,6 +86,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) VTSliderStyle sliderStyle;
 
 /**
+ *  导航栏位置 默认在上
+ */
+@property (nonatomic, assign) VTPositionStyle positionStyle;
+
+/**
  *  当前选中item对应的索引
  */
 @property (nonatomic, assign) NSUInteger currentIndex;
@@ -118,6 +123,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat itemWidth;
 
 /**
+ *  自定义item高度，默认44，当设置改属性时，itemSpacing的设置无效
+ *
+ *  @warning 该属性在VTPositionStyleLeft样式下有效
+ */
+@property (nonatomic, assign) CGFloat itemHeight;
+
+/**
  *  两个导航菜单item文本之间的间距，默认是25，其优先级低于itemWidth
  *  如果菜单item包含图片，则实际间距可能会更小
  *
@@ -137,9 +149,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) UIEdgeInsets menuInset;
 
 /**
- *  气泡相对menuItem文本的edgeInsets，默认(2, 5, 2, 5)
+ *  气泡相对menuItem文本的edgeInsets，默认(2, 5, 2, 5),根据文本长度变化而变化
  */
 @property (nonatomic, assign) UIEdgeInsets bubbleInset;
+
+/**
+ *  气泡相对menuItem大小，默认不设置,固定宽高，优先级高于bubbleInset
+ */
+@property (nonatomic, assign) CGSize bubbleSize;
 
 /**
  *  顶部导航栏滑块高度，默认2

@@ -61,6 +61,9 @@
     [self.scrollView setContentOffset:CGPointMake(contentOffSet.x / (SCREEN_WIDTH / imageWidth), 0) animated:NO];
     //选中合适的按钮
     NSInteger targetIndex = round(self.scrollView.contentOffset.x / imageWidth);
+    if(targetIndex>=self.titleBtns.count){
+        return;
+    }
     UIButton *btn = self.titleBtns[targetIndex];
     self.selectButton=btn;
 }
@@ -98,7 +101,9 @@
     NSInteger leftIndex = offsetX;
     // 右边的label角标
     NSInteger rightIndex = leftIndex + 1;
-
+    if(leftIndex>=self.titleBtns.count){
+        return;
+    }
     UIButton *leftBtn = self.titleBtns[leftIndex];
     
     UIButton *rightBtn;

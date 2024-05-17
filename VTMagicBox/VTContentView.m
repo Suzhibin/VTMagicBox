@@ -54,15 +54,28 @@
     if (CGRectIsEmpty(self.frame)) {
         return;
     }
-    
-    CGFloat offset = self.contentOffset.x;
-    CGFloat width = self.frame.size.width;
-    BOOL isNotBorder = 0 != (int)offset%(int)width;
-    NSInteger currentPage = offset/self.frame.size.width;
-    if (_currentPage == currentPage && isNotBorder) {
-        return;
+    NSInteger currentPage;
+    if (_positionStyle == VTPositionStyleLeft||_positionStyle == VTPositionStyleRight){
+        CGFloat offset = self.contentOffset.y;
+        CGFloat height = self.frame.size.height;
+        BOOL isNotBorder = 0 != (int)offset%(int)height;
+       currentPage = offset/self.frame.size.height;
+        if (_currentPage == currentPage && isNotBorder) {
+            return;
+        }
+    }else{
+        CGFloat offset = self.contentOffset.x;
+        CGFloat width = self.frame.size.width;
+        BOOL isNotBorder = 0 != (int)offset%(int)width;
+        currentPage = offset/self.frame.size.width;
+        if (_currentPage == currentPage && isNotBorder) {
+            return;
+        }
     }
-    
+    BOOL isVertical = NO;
+    if (_positionStyle == VTPositionStyleLeft||_positionStyle == VTPositionStyleRight){
+        isVertical = YES;
+    }
     _currentPage = currentPage;
     CGRect frame = CGRectZero;
     UIViewController *viewController = nil;
@@ -71,7 +84,7 @@
         frame = [_frameList[indexPath.row] CGRectValue];
         viewController = _visibleDict[indexPath];
         // 控制器若移出屏幕则将其视图从父类中移除，并添加到缓存池中
-        if (![self vtm_isNeedDisplayWithFrame:frame preloading:_needPreloading]) {
+        if (![self vtm_isNeedDisplayWithFrame:frame isVertical:isVertical preloading:_needPreloading]) {
             [self moveViewControllerToCache:viewController];
             [_visibleDict removeObjectForKey:indexPath];
         } else {
@@ -83,7 +96,7 @@
     [tempPaths removeObjectsInArray:pathList];
     for (NSIndexPath *indexPath in tempPaths) {
         frame = [_frameList[indexPath.row] CGRectValue];
-        if ([self vtm_isNeedDisplayWithFrame:frame preloading:_needPreloading]) {
+        if ([self vtm_isNeedDisplayWithFrame:frame isVertical:isVertical preloading:_needPreloading]) {
             [self loadViewControllerAtIndexPath:indexPath];
         }
     }
@@ -127,12 +140,21 @@
 - (void)resetPageFrames {
     [_frameList removeAllObjects];
     CGRect frame = self.bounds;
-    for (NSIndexPath *indexPath in _indexList) {
-        frame.origin.x = indexPath.row * frame.size.width;
-        [_frameList addObject:[NSValue valueWithCGRect:frame]];
+    if (_positionStyle == VTPositionStyleLeft||_positionStyle == VTPositionStyleRight){
+        for (NSIndexPath *indexPath in _indexList) {
+            frame.origin.y = indexPath.row * frame.size.height;
+            [_frameList addObject:[NSValue valueWithCGRect:frame]];
+        }
+        self.contentSize = CGSizeMake(0, CGRectGetMaxY(frame));
+        self.contentOffset = CGPointMake(0, CGRectGetHeight(frame)*_currentPage);
+    }else{
+        for (NSIndexPath *indexPath in _indexList) {
+            frame.origin.x = indexPath.row * frame.size.width;
+            [_frameList addObject:[NSValue valueWithCGRect:frame]];
+        }
+        self.contentSize = CGSizeMake(CGRectGetMaxX(frame), 0);
+        self.contentOffset = CGPointMake(CGRectGetWidth(frame)*_currentPage, 0);
     }
-    self.contentSize = CGSizeMake(CGRectGetMaxX(frame), 0);
-    self.contentOffset = CGPointMake(CGRectGetWidth(frame)*_currentPage, 0);
 }
 
 #pragma mark - 根据页面控制器获取对应的索引

@@ -31,6 +31,7 @@ static NSInteger const kVTMenuBarTag = 1000;
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        _itemHeight = 44;
         _itemScale = 1.0;
         _itemSpacing = 25.f;
         _sliderHeight = 2.0f;
@@ -52,7 +53,10 @@ static NSInteger const kVTMenuBarTag = 1000;
     if (!mandatory && _needSkipLayout && !self.isDecelerating) {
         return;
     }
-    
+    BOOL isVertical = NO;
+    if (_positionStyle == VTPositionStyleLeft||_positionStyle == VTPositionStyleRight){
+        isVertical = YES;
+    }
     UIButton *menuItem = nil;
     CGRect frame = CGRectZero;
     NSArray *indexList = [_visibleDict allKeys];
@@ -61,7 +65,7 @@ static NSInteger const kVTMenuBarTag = 1000;
         if([index integerValue] < _frameList.count){
             frame = [_frameList[[index integerValue]] CGRectValue];
         }
-        if (![self vtm_isItemNeedDisplayWithFrame:frame]) {
+        if (![self vtm_isItemNeedDisplayWithFrame:frame isVertical:isVertical]) {
             [menuItem setSelected:NO];
             [menuItem removeFromSuperview];
             [_visibleDict removeObjectForKey:index];
@@ -76,7 +80,7 @@ static NSInteger const kVTMenuBarTag = 1000;
     [leftIndexList removeObjectsInArray:indexList];
     for (NSNumber *index in leftIndexList) {
         frame = [_frameList[[index integerValue]] CGRectValue];
-        if ([self vtm_isItemNeedDisplayWithFrame:frame]) {
+        if ([self vtm_isItemNeedDisplayWithFrame:frame isVertical:isVertical]) {
             [self loadItemAtIndex:[index integerValue]];
         }
     }
@@ -192,8 +196,8 @@ static NSInteger const kVTMenuBarTag = 1000;
         case VTLayoutStyleCenter:
             [self resetFramesForCenter];
             break;
-        case VTLayoutStyleRight://#warning andi添加右侧布局
-            [self resetFramesForRight];
+        case VTLayoutStyleLast:
+            [self resetFramesForLast];
             break;
         default:
             [self resetFramesForDefault];
@@ -202,92 +206,161 @@ static NSInteger const kVTMenuBarTag = 1000;
     
     [self resetSliderFrames];
     CGRect lastFrame = [[_frameList lastObject] CGRectValue];
-    CGFloat contentWidth = CGRectGetMaxX(lastFrame);
-    contentWidth += _menuInset.right;
-    self.contentSize = CGSizeMake(contentWidth, 0);
+    if(self.positionStyle == VTPositionStyleLeft||self.positionStyle == VTPositionStyleRight){
+        CGFloat contentHeight = CGRectGetMaxY(lastFrame);
+        contentHeight += _menuInset.bottom;
+        self.contentSize = CGSizeMake(0, contentHeight);
+    }else{
+        CGFloat contentWidth = CGRectGetMaxX(lastFrame);
+        contentWidth += _menuInset.right;
+        self.contentSize = CGSizeMake(contentWidth, 0);
+    }
+  
     if (menuItem && _currentIndex < _frameList.count) {
         menuItem.frame = [_frameList[_currentIndex] CGRectValue];
     }
 }
 
 - (void)resetFramesForDefault {
-    CGFloat itemWidth = 0;
-    NSString *title = nil;
-    CGRect frame = CGRectZero;
-    CGFloat itemX = _menuInset.left;
-    CGFloat height = self.frame.size.height;
-    height -= _menuInset.top + _menuInset.bottom;
-    for (int index = 0; index < _menuTitles.count; index++) {
-        BOOL isSelected = (index == _currentIndex);
-        itemWidth = [self itemWidthAtIndex:index];
-        if (!itemWidth) {
-            title = [_menuTitles objectAtIndex:index];
-            itemWidth = _itemWidth ?: ([self sizeWithTitle:title isSelected:isSelected].width + _itemSpacing);
+    if(self.positionStyle == VTPositionStyleLeft||self.positionStyle == VTPositionStyleRight){
+        CGFloat itemHeight = _itemHeight;
+        CGRect frame = CGRectZero;
+        CGFloat itemY = _menuInset.top;
+        CGFloat width = self.frame.size.width;
+        width -= _menuInset.left + _menuInset.right;
+        for (int index = 0; index < _menuTitles.count; index++) {
+            frame = CGRectMake( _menuInset.left, itemY, width, itemHeight);
+            [_frameList addObject:[NSValue valueWithCGRect:frame]];
+            itemY += frame.size.height + _acturalSpacing;
         }
-        frame = CGRectMake(itemX, _menuInset.top, itemWidth, height);
-        [_frameList addObject:[NSValue valueWithCGRect:frame]];
-        itemX += frame.size.width + _acturalSpacing;
+    }else{
+        CGFloat itemWidth = 0;
+        NSString *title = nil;
+        CGRect frame = CGRectZero;
+        CGFloat itemX = _menuInset.left;
+        CGFloat height = self.frame.size.height;
+        height -= _menuInset.top + _menuInset.bottom;
+        for (int index = 0; index < _menuTitles.count; index++) {
+            BOOL isSelected = (index == _currentIndex);
+            itemWidth = [self itemWidthAtIndex:index];
+            if (!itemWidth) {
+                title = [_menuTitles objectAtIndex:index];
+                itemWidth = _itemWidth ?: ([self sizeWithTitle:title isSelected:isSelected].width + _itemSpacing);
+            }
+            frame = CGRectMake(itemX, _menuInset.top, itemWidth, height);
+            [_frameList addObject:[NSValue valueWithCGRect:frame]];
+            itemX += frame.size.width + _acturalSpacing;
+        }
     }
 }
 
 - (void)resetFramesForDivide {
-    CGRect frame = CGRectZero;
-    NSInteger count = _menuTitles.count;
-    CGFloat height = self.frame.size.height;
-    height -= _menuInset.top + _menuInset.bottom;
-    CGFloat totalSpace = _menuInset.left + _menuInset.right;
-    totalSpace += 1 < count ? (count - 1) * _acturalSpacing : 0;
-    CGFloat itemWidth = (CGRectGetWidth(self.frame) - totalSpace)/count;
-    frame.origin = CGPointMake(_menuInset.left, _menuInset.top);
-    frame.size = CGSizeMake(itemWidth, height);
-    for (int index = 0; index < count; index++) {
-        [_frameList addObject:[NSValue valueWithCGRect:frame]];
-        frame.origin.x += itemWidth + _acturalSpacing;
+    if(self.positionStyle == VTPositionStyleLeft||self.positionStyle == VTPositionStyleRight){
+        CGRect frame = CGRectZero;
+        NSInteger count = _menuTitles.count;
+        CGFloat width = self.frame.size.width;
+        width -= _menuInset.left + _menuInset.right;
+        CGFloat totalSpace = _menuInset.top + _menuInset.bottom;
+        totalSpace += 1 < count ? (count - 1) * _acturalSpacing : 0;
+        CGFloat itemHeight = (CGRectGetHeight(self.frame) - totalSpace)/count;
+        frame.origin = CGPointMake(_menuInset.left, _menuInset.top);
+        frame.size = CGSizeMake(width, itemHeight);
+        for (int index = 0; index < count; index++) {
+            [_frameList addObject:[NSValue valueWithCGRect:frame]];
+            frame.origin.y += itemHeight + _acturalSpacing;
+        }
+    }else{
+        CGRect frame = CGRectZero;
+        NSInteger count = _menuTitles.count;
+        CGFloat height = self.frame.size.height;
+        height -= _menuInset.top + _menuInset.bottom;
+        CGFloat totalSpace = _menuInset.left + _menuInset.right;
+        totalSpace += 1 < count ? (count - 1) * _acturalSpacing : 0;
+        CGFloat itemWidth = (CGRectGetWidth(self.frame) - totalSpace)/count;
+        frame.origin = CGPointMake(_menuInset.left, _menuInset.top);
+        frame.size = CGSizeMake(itemWidth, height);
+        for (int index = 0; index < count; index++) {
+            [_frameList addObject:[NSValue valueWithCGRect:frame]];
+            frame.origin.x += itemWidth + _acturalSpacing;
+        }
     }
 }
 
 - (void)resetFramesForCenter {
     [self resetFramesForDefault];
-    CGFloat menuWidth = CGRectGetWidth(self.frame);
-    CGRect lastFame = [[_frameList lastObject] CGRectValue];
-    CGFloat contentWidth = menuWidth - _menuInset.right;
-    CGFloat itemOffset = (contentWidth - CGRectGetMaxX(lastFame))/2;
-    if (itemOffset <= 0) {
-        return;
+    CGFloat itemOffset = 0;
+    if(self.positionStyle == VTPositionStyleLeft||self.positionStyle == VTPositionStyleRight){
+        CGFloat menuHeight = CGRectGetHeight(self.frame);
+        CGRect lastFame = [[_frameList lastObject] CGRectValue];
+        CGFloat contentHeight = menuHeight - _menuInset.bottom;
+        itemOffset = (contentHeight - CGRectGetMaxY(lastFame))/2;
+        if (itemOffset <= 0) {
+            return;
+        }
+    }else{
+        CGFloat menuWidth = CGRectGetWidth(self.frame);
+        CGRect lastFame = [[_frameList lastObject] CGRectValue];
+        CGFloat contentWidth = menuWidth - _menuInset.right;
+        itemOffset = (contentWidth - CGRectGetMaxX(lastFame))/2;
+        if (itemOffset <= 0) {
+            return;
+        }
     }
+
     
     CGRect frame = CGRectZero;
     NSArray *frames = [NSArray arrayWithArray:_frameList];
     [_frameList removeAllObjects];
     for (NSValue *value in frames) {
         frame = [value CGRectValue];
-        frame.origin.x += itemOffset;
+        if(self.positionStyle == VTPositionStyleLeft||self.positionStyle == VTPositionStyleRight){
+            frame.origin.y += itemOffset;
+        }else{
+            frame.origin.x += itemOffset;
+        }
         [_frameList addObject:[NSValue valueWithCGRect:frame]];
     }
 }
 // 居右侧布局下重置frame
-- (void)resetFramesForRight {
+- (void)resetFramesForLast{
     [self resetFramesForDefault];
-    CGFloat menuWidth = CGRectGetWidth(self.frame);
-    CGRect lastFame = [[_frameList lastObject] CGRectValue];
-    CGFloat contentWidth = menuWidth - _menuInset.right;
-    CGFloat itemOffset = contentWidth - CGRectGetMaxX(lastFame)-8;
-    if (itemOffset <= 0) {
-        return;
+    CGFloat itemOffset = 0;
+    if(self.positionStyle == VTPositionStyleLeft||self.positionStyle == VTPositionStyleRight){
+        CGFloat menuHeight = CGRectGetHeight(self.frame);
+        CGRect lastFame = [[_frameList lastObject] CGRectValue];
+        CGFloat contentHeight  = menuHeight - _menuInset.bottom;
+        itemOffset = contentHeight - CGRectGetMaxY(lastFame)-8;
+        if (itemOffset <= 0) {
+            return;
+        }
+    }else{
+        CGFloat menuWidth = CGRectGetWidth(self.frame);
+        CGRect lastFame = [[_frameList lastObject] CGRectValue];
+        CGFloat contentWidth = menuWidth - _menuInset.right;
+        itemOffset = contentWidth - CGRectGetMaxX(lastFame)-8;
+        if (itemOffset <= 0) {
+            return;
+        }
     }
-    
     CGRect frame = CGRectZero;
     NSArray *frames = [NSArray arrayWithArray:_frameList];
     [_frameList removeAllObjects];
     for (NSValue *value in frames) {
         frame = [value CGRectValue];
-        frame.origin.x += itemOffset;
+        if(self.positionStyle == VTPositionStyleLeft||self.positionStyle == VTPositionStyleRight){
+            frame.origin.y += itemOffset;
+        }else{
+            frame.origin.x += itemOffset;
+        }
         [_frameList addObject:[NSValue valueWithCGRect:frame]];
     }
 }
 
 - (CGFloat)itemWidthAtIndex:(NSUInteger)itemIndex {// 获取Item宽度
-    return [self.delegate menuBar:self itemWidthAtIndex:itemIndex];
+    if ([self.delegate respondsToSelector:@selector(menuBar:itemWidthAtIndex:)]) {
+        return [self.delegate menuBar:self itemWidthAtIndex:itemIndex];
+    }
+    return 0;
 }
 
 #pragma mark reset slider frames
@@ -327,12 +400,18 @@ static NSInteger const kVTMenuBarTag = 1000;
                 frame.size.width = itemFrame.size.width;
             }
         }
-        if(_contentHorizontalAlignment == UIControlContentHorizontalAlignmentLeft){
-            CGFloat titleWidth = [self sizeWithTitle:title isSelected:isSelected].width;
-            frame.origin.x = CGRectGetMinX(itemFrame) + (titleWidth - frame.size.width)/2;
-        }else{
+        if(self.positionStyle == VTPositionStyleLeft||self.positionStyle == VTPositionStyleRight){
+            frame.origin.y =CGRectGetMaxY(itemFrame) - frame.size.height/2 - 1 + _sliderOffset;
             frame.origin.x = CGRectGetMidX(itemFrame) - frame.size.width/2;
+        }else{
+            if(_contentHorizontalAlignment == UIControlContentHorizontalAlignmentLeft){
+                CGFloat titleWidth = [self sizeWithTitle:title isSelected:isSelected].width;
+                frame.origin.x = CGRectGetMinX(itemFrame) + (titleWidth - frame.size.width)/2;
+            }else{
+                frame.origin.x = CGRectGetMidX(itemFrame) - frame.size.width/2;
+            }
         }
+
         [_sliderList addObject:[NSValue valueWithCGRect:frame]];
         index++;
     }
@@ -348,8 +427,16 @@ static NSInteger const kVTMenuBarTag = 1000;
         BOOL isSelected = (index == _currentIndex);
         size = [self sizeWithTitle:title isSelected:isSelected];
         itemFrame = [self itemFrameAtIndex:index];
-        size.width += _bubbleInset.left + _bubbleInset.right;
-        size.height += _bubbleInset.top + _bubbleInset.bottom;
+        if (_bubbleSize.width) {
+            size.width = _bubbleSize.width;
+        }else{
+            size.width += _bubbleInset.left + _bubbleInset.right;
+        }
+        if (_bubbleSize.height) {
+            size.height = _bubbleSize.height;
+        }else{
+            size.height += _bubbleInset.top + _bubbleInset.bottom;
+        }
         bubblePoint.x = CGRectGetMidX(itemFrame) - size.width/2;
         bubblePoint.y = CGRectGetMidY(itemFrame) - size.height/2;
         frame = (CGRect){bubblePoint, size};
@@ -359,7 +446,10 @@ static NSInteger const kVTMenuBarTag = 1000;
 }
 
 - (CGFloat)sliderWidthAtIndex:(NSUInteger)itemIndex {
-    return [self.delegate menuBar:self sliderWidthAtIndex:itemIndex];
+    if ([self.delegate respondsToSelector:@selector(menuBar:sliderWidthAtIndex:)]) {
+        [self.delegate menuBar:self sliderWidthAtIndex:itemIndex];
+    }
+    return 0;
 }
 
 - (CGSize)sizeWithTitle:(NSString *)title isSelected:(BOOL)isSelected{

@@ -85,3 +85,4 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 //#define VTSAFEAREA_BOTTOM_HEIGHT (CGFloat)(IS_IPhoneX_All?(34.0):(0.0))
 #define VTSAFEAREA_BOTTOM_HEIGHT (CGFloat)(kSafeBottomHeight)
 #endif
+

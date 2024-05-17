@@ -96,8 +96,10 @@ static const void *kVTMagicView = &kVTMagicView;
     _headerHeight = 64;
     _footerHeight = 64;
 //    _bubbleRadius = 10;
-    _separatorHeight = 0.5;
     _navigationHeight = 44;
+    _navigationWidth = 100;
+    _separatorWidth = self.frame.size.width;
+    _separatorHeight = 0.5;
     _headerHidden = YES;
     _footerHidden = YES;
     _scrollEnabled = YES;
@@ -123,25 +125,31 @@ static const void *kVTMagicView = &kVTMagicView;
 
 - (void)updateFrameForSubviews {
     CGSize size = self.frame.size;
-    CGFloat topY = _againstStatusBar ? VTSTATUSBAR_HEIGHT : 0;
+    CGFloat topY = 0;
+#if TARGET_OS_MACCATALYST
+    topY = _againstStatusBar ? 36 : 0;
+#else
+    topY = _againstStatusBar ? VTSTATUSBAR_HEIGHT : 0;
+#endif
+    
     //#warning andi 增加 导航位置 VTPositionStyle的逻辑
-    if(self.positionStyle==VTPositionStyleDefault){
-     
+    if(self.positionStyle==VTPositionStyleDefault)
+    {
         CGFloat headerY = _headerHidden ? -_headerHeight : topY;
         _headerView.frame = CGRectMake(0, headerY, size.width, _headerHeight);
         
-        CGFloat navigationY = _headerHidden ? 0 : CGRectGetMaxY(_headerView.frame);
-        CGFloat navigationH = _navigationHeight + (_headerHidden ? topY : 0);
+        CGFloat navigationY = _headerHidden ? topY : CGRectGetMaxY(_headerView.frame);
+        CGFloat navigationH = _navigationHeight ;//+ (_headerHidden ? topY : 0);
         _navigationView.frame = CGRectMake(0, navigationY, size.width, navigationH);
         
         CGFloat separatorY = CGRectGetHeight(_navigationView.frame) - _separatorHeight;
         _separatorView.frame = CGRectMake(0, separatorY, size.width, _separatorHeight);
-        //#warning andi添加footerView 布局
+ 
         CGFloat footerY = CGRectGetMaxY(_navigationView.frame);
         _footerView.frame = CGRectMake(0,footerY, size.width, _footerHeight);
         
         CGRect originalMenuFrame = _menuBar.frame;
-        CGFloat menuBarY = _headerHidden ? topY : 0;
+        CGFloat menuBarY = 0;//_headerHidden ? topY : 0;
         CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
         CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
         CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
@@ -156,7 +164,6 @@ static const void *kVTMagicView = &kVTMagicView;
         
         self.needSkipUpdate = YES;
         CGRect originalContentFrame = _contentView.frame;
-        //#warning andi 修改footerView 与 content 之间布局
         CGFloat contentY = _footerHidden ? CGRectGetMaxY(_navigationView.frame)+_contentViewOffset:CGRectGetMaxY(_footerView.frame)+_contentViewOffset;
         CGFloat contentH = size.height - contentY + (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
         _contentView.frame = CGRectMake(0, contentY, size.width, contentH);
@@ -168,20 +175,18 @@ static const void *kVTMagicView = &kVTMagicView;
 
         CGFloat contentH = size.height;// (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
 
-        CGFloat footerY = _footerHidden? contentH :contentH- _footerHeight;
+        CGFloat footerY = _footerHidden? contentH-bottomY :contentH- _footerHeight-bottomY;
         _footerView.frame = CGRectMake(0,footerY, size.width, _footerHeight);
 
-        CGFloat navigationY = _footerHidden ? footerY-_navigationHeight-bottomY : footerY-_navigationHeight;
-        CGFloat navigationH = _navigationHeight + (_footerHidden ? bottomY : 0);
-
+        CGFloat navigationY = footerY-_navigationHeight ;//_footerHidden ? footerY-_navigationHeight-bottomY : footerY-_navigationHeight;
+        CGFloat navigationH = _navigationHeight;// + (_footerHidden ? bottomY : 0);
         _navigationView.frame = CGRectMake(0,navigationY, size.width, navigationH);
         
         _headerView.frame = CGRectMake(0, navigationY-_headerHeight, size.width, _headerHeight);
-        
+    
         CGFloat separatorY = CGRectGetHeight(_navigationView.frame) - _separatorHeight;
         _separatorView.frame = CGRectMake(0, separatorY, size.width, _separatorHeight);
      
-        
         CGRect originalMenuFrame = _menuBar.frame;
 //        CGFloat menuBarY = _headerHidden ? contentH : 0;
         CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
@@ -202,7 +207,86 @@ static const void *kVTMagicView = &kVTMagicView;
         CGFloat headerH = _headerHidden ? 0 : _headerHeight;
         CGFloat footerH = _footerHidden ? 0 : _footerHeight;
  
-        _contentView.frame = CGRectMake(0, topY, size.width, contentH - (navigationH + headerH + footerH + _contentViewOffset+topY));
+        _contentView.frame = CGRectMake(0, topY, size.width, contentH - (navigationH + headerH + footerH + _contentViewOffset + topY + bottomY));
+        if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
+            [_contentView resetPageFrames];
+        }
+    }else if (self.positionStyle==VTPositionStyleLeft){
+        CGFloat headerY = _headerHidden ? -_headerHeight : topY;
+        CGFloat Hheight = _headerHidden ? 0 : _headerHeight;
+        CGFloat FHeight = _footerHidden ? 0 : _footerHeight;
+        CGFloat navigationW = _navigationWidth;
+        _headerView.frame = CGRectMake(0, headerY, navigationW, _headerHeight);
+        
+        CGFloat navigationY = _headerHidden ? topY : CGRectGetMaxY(_headerView.frame);
+        CGFloat navigationH = size.height - Hheight- FHeight - topY;
+        _navigationView.frame = CGRectMake(0, navigationY, navigationW, navigationH);
+        
+        CGFloat separatorX = CGRectGetWidth(_navigationView.frame) - _separatorWidth;
+        _separatorView.frame = CGRectMake(separatorX, 0, _separatorWidth, _separatorHeight);
+
+        CGFloat footerY = CGRectGetMaxY(_navigationView.frame);
+        _footerView.frame = CGRectMake(0,footerY, navigationW, _footerHeight);
+        
+        CGRect originalMenuFrame = _menuBar.frame;
+        CGFloat menuBarY =  0;
+//        CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
+//        CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
+//        CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
+        _menuBar.frame = CGRectMake(0, menuBarY, navigationW, navigationH);
+        if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
+            [_menuBar resetItemFrames];
+            [self updateMenuBarState];
+        }
+        
+        CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
+        _sliderView.frame = sliderFrame;
+        
+        self.needSkipUpdate = YES;
+        CGRect originalContentFrame = _contentView.frame;
+        CGFloat contentY = 0;
+        CGFloat contentX = CGRectGetWidth(_navigationView.frame)+_contentViewOffset;
+        CGFloat contentH = size.height -  (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
+        _contentView.frame = CGRectMake(contentX, contentY, size.width-contentX, contentH);
+        if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
+            [_contentView resetPageFrames];
+        }
+    }else if (self.positionStyle==VTPositionStyleRight){
+        CGFloat headerY = _headerHidden ? -_headerHeight : topY;
+        CGFloat Hheight = _headerHidden ? 0 : _headerHeight;
+        CGFloat FHeight = _footerHidden ? 0 : _footerHeight;
+        CGFloat navigationW = _navigationWidth;
+        _headerView.frame = CGRectMake(size.width-navigationW, headerY, navigationW, _headerHeight);
+        
+        CGFloat navigationY = _headerHidden ? topY : CGRectGetMaxY(_headerView.frame);
+        CGFloat navigationH = size.height - Hheight- FHeight - topY;
+        _navigationView.frame = CGRectMake(size.width-navigationW, navigationY, navigationW, navigationH);
+        
+        _separatorView.frame = CGRectMake(0, 0, _separatorWidth, _separatorHeight);
+        //#warning andi添加footerView 布局
+        CGFloat footerY = CGRectGetMaxY(_navigationView.frame);
+        _footerView.frame = CGRectMake(size.width-navigationW,footerY, navigationW, _footerHeight);
+        
+        CGRect originalMenuFrame = _menuBar.frame;
+        CGFloat menuBarY =  0;
+//        CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
+//        CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
+//        CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
+        _menuBar.frame = CGRectMake(0, menuBarY, navigationW, navigationH);
+        if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
+            [_menuBar resetItemFrames];
+            [self updateMenuBarState];
+        }
+        
+        CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
+        _sliderView.frame = sliderFrame;
+        
+        self.needSkipUpdate = YES;
+        CGRect originalContentFrame = _contentView.frame;
+        CGFloat contentY = 0;
+        CGFloat contentX = CGRectGetWidth(_navigationView.frame)-_contentViewOffset;
+        CGFloat contentH = size.height -  (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
+        _contentView.frame = CGRectMake(0, contentY, size.width-contentX, contentH);
         if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
             [_contentView resetPageFrames];
         }
@@ -215,34 +299,15 @@ static const void *kVTMagicView = &kVTMagicView;
 }
 
 - (void)updateFrameForLeftNavigationItem {
-    CGFloat topY = _againstStatusBar ? VTSTATUSBAR_HEIGHT : 0;
-    CGFloat menuBarY = _headerHidden ? topY : 0;
     CGRect leftFrame = _leftNavigatoinItem.bounds;
-    if (self.positionStyle==VTPositionStyleDefault){
-        // CGFloat offset = CGRectGetHeight(leftFrame)/2;
-         leftFrame.origin.y=menuBarY;
-     //    leftFrame.origin.y = CGRectGetMidY(_navigationView.bounds) - offset;
-    }else if (self.positionStyle==VTPositionStyleBottom){
-        leftFrame.origin.y=0;
-    }
+    leftFrame.origin.y=0;
     leftFrame.size.height=_navigationHeight;
-//    if (_againstStatusBar && _headerHidden) leftFrame.origin.y += 10;
     _leftNavigatoinItem.frame = leftFrame;
 }
 
 - (void)updateFrameForRightNavigationItem {
-    CGFloat topY = _againstStatusBar ? VTSTATUSBAR_HEIGHT : 0;
-    CGFloat menuBarY = _headerHidden ? topY : 0;
     CGRect rightFrame = _rightNavigatoinItem.bounds;
-//    CGFloat offset = CGRectGetHeight(rightFrame)/2;
     rightFrame.origin.x = _navigationView.frame.size.width - rightFrame.size.width;
-//    rightFrame.origin.y = CGRectGetMidY(_navigationView.bounds) - offset;
-//    if (_againstStatusBar && _headerHidden) rightFrame.origin.y += 10;
-    if (self.positionStyle==VTPositionStyleDefault){
-        rightFrame.origin.y=menuBarY;
-    }else{
-        rightFrame.origin.y=0;
-    }
     rightFrame.size.height=_navigationHeight;
     _rightNavigatoinItem.frame = rightFrame;
 }
@@ -411,8 +476,13 @@ static const void *kVTMagicView = &kVTMagicView;
     [_contentView creatViewControllerAtPage:pageIndex];
     [self subviewWillAppearAtPage:pageIndex];
     self.needSkipUpdate = YES;
-    CGFloat offset = _contentView.frame.size.width * pageIndex;
-    _contentView.contentOffset = CGPointMake(offset, 0);
+    if (self.positionStyle==VTPositionStyleLeft||self.positionStyle==VTPositionStyleRight){
+        CGFloat offset = _contentView.frame.size.height * pageIndex;
+        _contentView.contentOffset = CGPointMake(0, offset);
+    }else{
+        CGFloat offset = _contentView.frame.size.width * pageIndex;
+        _contentView.contentOffset = CGPointMake(offset, 0);
+    }
     self.needSkipUpdate = NO;
     
     _previousIndex = _currentPage;
@@ -433,7 +503,13 @@ static const void *kVTMagicView = &kVTMagicView;
     
     _switching = YES;
     NSInteger disIndex = _currentPage;
-    CGFloat contentWidth = CGRectGetWidth(_contentView.frame);
+    CGFloat contentWidth = 0;
+    CGFloat contentHeight = 0;
+    if (_positionStyle==VTPositionStyleLeft||_positionStyle==VTPositionStyleRight){
+        contentHeight = CGRectGetHeight(_contentView.frame);
+    }else{
+        contentWidth = CGRectGetWidth(_contentView.frame);
+    }
     BOOL isNotAdjacent = abs((int)(_currentPage - pageIndex)) > 1;
     if (isNotAdjacent) {// 当前按钮与选中按钮不相邻时
         self.needSkipUpdate = YES;
@@ -442,8 +518,13 @@ static const void *kVTMagicView = &kVTMagicView;
         [self subviewWillAppearAtPage:pageIndex];
         [self viewControllerDidDisappear:disIndex];
         [_magicController setCurrentViewController:nil];
-        NSInteger tempIndex = pageIndex + (_currentPage < pageIndex ? -1 : 1);
-        _contentView.contentOffset = CGPointMake(contentWidth * tempIndex, 0);
+        if (_positionStyle==VTPositionStyleLeft||_positionStyle==VTPositionStyleRight){
+            NSInteger tempIndex = pageIndex + (_currentPage < pageIndex ? -1 : 1);
+            _contentView.contentOffset = CGPointMake(0, contentHeight * tempIndex);
+        }else{
+            NSInteger tempIndex = pageIndex + (_currentPage < pageIndex ? -1 : 1);
+            _contentView.contentOffset = CGPointMake(contentWidth * tempIndex, 0);
+        }
         _isViewWillAppear = NO;
     } else {
         [self viewControllerWillDisappear:disIndex];
@@ -454,15 +535,19 @@ static const void *kVTMagicView = &kVTMagicView;
     _previousIndex = disIndex;
     _menuBar.currentIndex = pageIndex;
     [UIView animateWithDuration:0.25 animations:^{
-        [_menuBar updateSelectedItem:YES];
+        [self.menuBar updateSelectedItem:YES];
         [self updateMenuBarState];
-        _contentView.contentOffset = CGPointMake(contentWidth * pageIndex, 0);
+        if (self.positionStyle==VTPositionStyleLeft||self.positionStyle==VTPositionStyleRight){
+            self.contentView.contentOffset = CGPointMake(0, contentHeight * pageIndex);
+        }else{
+            self.contentView.contentOffset = CGPointMake(contentWidth * pageIndex, 0);
+        }
     } completion:^(BOOL finished) {
-        [self displayPageHasChanged:_currentPage disIndex:disIndex];
-        if (!isNotAdjacent && _currentPage != disIndex) {
+        [self displayPageHasChanged:self.currentPage disIndex:disIndex];
+        if (!isNotAdjacent &&self.currentPage != disIndex) {
             [self viewControllerDidDisappear:disIndex];
         }
-        if (pageIndex == _currentPage) {
+        if (pageIndex ==self.currentPage) {
             [self viewControllerDidAppear:pageIndex];
         }
         self.needSkipUpdate = NO;
@@ -473,13 +558,21 @@ static const void *kVTMagicView = &kVTMagicView;
 - (void)updateMenuBarState {
     __block CGFloat itemMinX = 0;
     __block CGFloat itemMaxX = 0;
+    __block CGFloat itemMinY = 0;
+    __block CGFloat itemMaxY = 0;
     __block CGRect itemFrame = CGRectZero;
+    __weak typeof(self) weakSelf = self;
     void (^updateBlock) (NSInteger) = ^(NSInteger itemIndex) {
         if (itemIndex < 0) itemIndex = 0;
-        if (_menuTitles.count <= itemIndex) itemIndex = _menuTitles.count - 1;
-        itemFrame = [_menuBar itemFrameAtIndex:itemIndex];
-        itemMinX = itemFrame.origin.x;
-        itemMaxX = CGRectGetMaxX(itemFrame);
+        if (weakSelf.menuTitles.count <= itemIndex) itemIndex = weakSelf.menuTitles.count - 1;
+        itemFrame = [weakSelf.menuBar itemFrameAtIndex:itemIndex];
+        if (weakSelf.positionStyle==VTPositionStyleLeft||self.positionStyle==VTPositionStyleRight){
+            itemMinY = itemFrame.origin.y;
+            itemMaxY = CGRectGetMaxY(itemFrame);
+        }else{
+            itemMinX = itemFrame.origin.x;
+            itemMaxX = CGRectGetMaxX(itemFrame);
+        }
     };
     
     // update slider frame
@@ -488,59 +581,112 @@ static const void *kVTMagicView = &kVTMagicView;
     _sliderView.frame = sliderFrame;
     
     // update contentOffset
-    CGFloat menuWidth = _menuBar.frame.size.width;
-    CGFloat offsetX = _menuBar.contentOffset.x;
-    CGFloat menuOffsetX = offsetX;
-    if (itemMaxX < menuOffsetX) {// 位于屏幕左侧
-        updateBlock(_currentPage - _previewItems);
-        offsetX = itemMinX - menuWidth;
-        offsetX = offsetX < 0 ?: 0;
-    } else if (menuOffsetX + menuWidth < itemMinX) {// 位于屏幕右侧
-        updateBlock(_currentPage + _previewItems);
-        offsetX = itemMaxX - menuWidth;
-    } else {
-        NSInteger itemIndex = _currentPage;
-        BOOL needAddition = _previousIndex <= _currentPage;
-        if (menuWidth + menuOffsetX <= itemMaxX) needAddition = YES;
-        if (itemMinX < menuOffsetX) needAddition = NO;
-        itemIndex += needAddition ? _previewItems : -_previewItems;
-        updateBlock(itemIndex);
-    }
-    
-    if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
-        CGFloat diffX = (CGRectGetMaxX(itemFrame) - menuWidth);
-        menuOffsetX = (diffX < 0 || menuOffsetX > diffX) ? menuOffsetX : diffX;
-    }
-    
-    if (menuWidth + menuOffsetX <= itemMaxX) {
-        offsetX = itemMaxX - menuWidth;
-    } else if (itemMinX < menuOffsetX) {
-        offsetX = itemMinX;
-    }
-    
-    if (0 == _currentPage) {
-        offsetX = 0;
-    } else if (_menuTitles.count - 1 == _currentPage) {
-        if (CGRectGetWidth(_menuBar.frame) < _menuBar.contentSize.width) {
-            offsetX = _menuBar.contentSize.width - CGRectGetWidth(_menuBar.frame);
+    if (_positionStyle==VTPositionStyleLeft||self.positionStyle==VTPositionStyleRight){
+        CGFloat menuHeight = _menuBar.frame.size.height;
+        CGFloat offsetY = _menuBar.contentOffset.y;
+        CGFloat menuOffsetY = offsetY;
+        if (itemMaxY < menuOffsetY) {// 位于屏幕下
+            updateBlock(_currentPage - _previewItems);
+            offsetY = itemMinY - menuHeight;
+            offsetY = offsetY < 0 ?: 0;
+        } else if (menuOffsetY + menuHeight < itemMinY) {// 位于屏幕右侧
+            updateBlock(_currentPage + _previewItems);
+            offsetY = itemMaxY - menuHeight;
+        } else {
+            NSInteger itemIndex = _currentPage;
+            BOOL needAddition = _previousIndex <= _currentPage;
+            if (menuHeight + menuOffsetY <= itemMaxY) needAddition = YES;
+            if (itemMinY < menuOffsetY) needAddition = NO;
+            itemIndex += needAddition ? _previewItems : -_previewItems;
+            updateBlock(itemIndex);
         }
-    }
-    
-    if (_displayCentered) {
-        CGRect currentFrme = [_menuBar itemFrameAtIndex:_currentPage];
-        CGFloat itemPoint = CGRectGetMidX(currentFrme);
-        offsetX = itemPoint - CGRectGetWidth(self.bounds)/2;
-        CGFloat menuWidth = CGRectGetWidth(_menuBar.frame);
-        CGFloat maxOffset = _menuBar.contentSize.width - menuWidth;
-        //#warning andi添加修复 使用leftItem时 无法居中的问题
-        CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
-        offsetX = offsetX+leftItemWidth;
         
-        offsetX = maxOffset < offsetX ? maxOffset : offsetX;
-        offsetX = offsetX < 0 ? 0 : offsetX;
+        if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+            CGFloat diffY = (CGRectGetMaxY(itemFrame) - menuHeight);
+            menuOffsetY = (diffY < 0 || menuOffsetY > diffY) ? menuOffsetY : diffY;
+        }
+        
+        if (menuHeight + menuOffsetY <= itemMaxY) {
+            offsetY = itemMaxY - menuHeight;
+        } else if (itemMinY < menuOffsetY) {
+            offsetY = itemMinY;
+        }
+        
+        if (0 == _currentPage) {
+            offsetY = 0;
+        } else if (_menuTitles.count - 1 == _currentPage) {
+            if (CGRectGetHeight(_menuBar.frame) < _menuBar.contentSize.height) {
+                offsetY = _menuBar.contentSize.height - CGRectGetHeight(_menuBar.frame);
+            }
+        }
+        
+        if (_displayCentered) {
+            CGRect currentFrme = [_menuBar itemFrameAtIndex:_currentPage];
+            CGFloat itemPoint = CGRectGetMidY(currentFrme);
+            offsetY = itemPoint - CGRectGetHeight(self.bounds)/2;
+            CGFloat menuHeight = CGRectGetHeight(_menuBar.frame);
+            CGFloat maxOffset = _menuBar.contentSize.height - menuHeight;
+            offsetY = maxOffset < offsetY ? maxOffset : offsetY;
+            offsetY = offsetY < 0 ? 0 : offsetY;
+        }
+        
+        _menuBar.contentOffset = CGPointMake(0, offsetY);
+        
+    }else{
+        CGFloat menuWidth = _menuBar.frame.size.width;
+        CGFloat offsetX = _menuBar.contentOffset.x;
+        CGFloat menuOffsetX = offsetX;
+        if (itemMaxX < menuOffsetX) {// 位于屏幕左侧
+            updateBlock(_currentPage - _previewItems);
+            offsetX = itemMinX - menuWidth;
+            offsetX = offsetX < 0 ?: 0;
+        } else if (menuOffsetX + menuWidth < itemMinX) {// 位于屏幕右侧
+            updateBlock(_currentPage + _previewItems);
+            offsetX = itemMaxX - menuWidth;
+        } else {
+            NSInteger itemIndex = _currentPage;
+            BOOL needAddition = _previousIndex <= _currentPage;
+            if (menuWidth + menuOffsetX <= itemMaxX) needAddition = YES;
+            if (itemMinX < menuOffsetX) needAddition = NO;
+            itemIndex += needAddition ? _previewItems : -_previewItems;
+            updateBlock(itemIndex);
+        }
+        
+        if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+            CGFloat diffX = (CGRectGetMaxX(itemFrame) - menuWidth);
+            menuOffsetX = (diffX < 0 || menuOffsetX > diffX) ? menuOffsetX : diffX;
+        }
+        
+        if (menuWidth + menuOffsetX <= itemMaxX) {
+            offsetX = itemMaxX - menuWidth;
+        } else if (itemMinX < menuOffsetX) {
+            offsetX = itemMinX;
+        }
+        
+        if (0 == _currentPage) {
+            offsetX = 0;
+        } else if (_menuTitles.count - 1 == _currentPage) {
+            if (CGRectGetWidth(_menuBar.frame) < _menuBar.contentSize.width) {
+                offsetX = _menuBar.contentSize.width - CGRectGetWidth(_menuBar.frame);
+            }
+        }
+        
+        if (_displayCentered) {
+            CGRect currentFrme = [_menuBar itemFrameAtIndex:_currentPage];
+            CGFloat itemPoint = CGRectGetMidX(currentFrme);
+            offsetX = itemPoint - CGRectGetWidth(self.bounds)/2;
+            CGFloat menuWidth = CGRectGetWidth(_menuBar.frame);
+            CGFloat maxOffset = _menuBar.contentSize.width - menuWidth;
+            //#warning andi添加修复 使用leftItem时 无法居中的问题
+            CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
+            offsetX = offsetX+leftItemWidth;
+            
+            offsetX = maxOffset < offsetX ? maxOffset : offsetX;
+            offsetX = offsetX < 0 ? 0 : offsetX;
+        }
+        
+        _menuBar.contentOffset = CGPointMake(offsetX, 0);
     }
-    
-    _menuBar.contentOffset = CGPointMake(offsetX, 0);
 }
 
 #pragma mark - UIPanGestureRecognizer for webView
@@ -666,8 +812,13 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     if (self.isDeselected || (VTColorIsZero(_normalVTColor) && VTColorIsZero(_selectedVTColor))) {
         return;
     }
-    
-    CGFloat scale = _contentView.contentOffset.x/_contentView.frame.size.width - _currentPage;
+    CGFloat scale = 0;
+    if (self.positionStyle==VTPositionStyleLeft||self.positionStyle==VTPositionStyleRight){
+        scale = _contentView.contentOffset.y/_contentView.frame.size.height - _currentPage;
+    }else{
+        scale = _contentView.contentOffset.x/_contentView.frame.size.width - _currentPage;
+    }
+   
     CGFloat absScale = ABS(scale);
     UIColor *nextColor = [UIColor vtm_compositeColor:_normalVTColor anoColor:_selectedVTColor scale:absScale];
     UIColor *selectedColor = [UIColor vtm_compositeColor:_selectedVTColor anoColor:_normalVTColor scale:absScale];
@@ -679,59 +830,115 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     CGRect nextFrame  = [_menuBar sliderFrameAtIndex:_nextPageIndex];
     CGRect currentFrame = [_menuBar sliderFrameAtIndex:_currentPage];
     CGRect sliderFrame = _sliderView.frame;
-    CGFloat nextWidth = nextFrame.size.width;
-    CGFloat currentWidth = currentFrame.size.width;
-    sliderFrame.size.width = currentWidth - (currentWidth - nextWidth) * absScale;
-    
+    if (self.positionStyle==VTPositionStyleLeft||self.positionStyle==VTPositionStyleRight){
+        CGFloat nextHeight = nextFrame.size.height;
+        CGFloat currentHeight = currentFrame.size.height;
+        sliderFrame.size.height = currentHeight - (currentHeight - nextHeight) * absScale;
+    }else{
+        CGFloat nextWidth = nextFrame.size.width;
+        CGFloat currentWidth = currentFrame.size.width;
+        sliderFrame.size.width = currentWidth - (currentWidth - nextWidth) * absScale;
+    }
+
     if ([_delegate respondsToSelector:@selector(magicView:scale:currentFrame:nextFrame:sliderView:)]) {
         [_delegate magicView:self scale:scale currentFrame:currentFrame nextFrame:nextFrame sliderView:_sliderView];
     }else{
         if(_sliderStyle==VTSliderStyleDefaultZoom){
-            CGFloat distance = fabs(CGRectGetMidX(nextFrame) - CGRectGetMidX(currentFrame));
-            CGFloat fromX = CGRectGetMidX(currentFrame) - sliderFrame.size.width/2.0f;
-            CGFloat toX = CGRectGetMidX(nextFrame) - sliderFrame.size.width/2.0f;
-            CGFloat progress =scale;
-            if (progress > 0) {//向右移动
-                //前半段0~0.5，x不变 w变大
-                if (progress <= 0.5) {
-                    //让过程变成0~1
-                    CGFloat newProgress = 2*fabs(progress);
-                    CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
-                    sliderFrame.size.width = newWidth;
-                    sliderFrame.origin.x = fromX;
-                    _sliderView.frame = sliderFrame;
-                }else if (progress >= 0.5) { //后半段0.5~1，x变大 w变小
-                    //让过程变成1~0
-                    CGFloat newProgress = 2*(1-fabs(progress));
-                    CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
-                    CGFloat newX = toX - newProgress*distance;
-                    sliderFrame.size.width = newWidth;
-                    sliderFrame.origin.x = newX;
-                    _sliderView.frame = sliderFrame;
+            if (_positionStyle==VTPositionStyleLeft||_positionStyle==VTPositionStyleRight){
+                CGFloat distance = fabs(CGRectGetMidY(nextFrame) - CGRectGetMidY(currentFrame));
+                CGFloat fromY = CGRectGetMidY(currentFrame) - sliderFrame.size.height/2.0f;
+                CGFloat toY = CGRectGetMidY(nextFrame) - sliderFrame.size.height/2.0f;
+                CGFloat progress =scale;
+                if (progress > 0) {//向右移动
+                    //前半段0~0.5，x不变 w变大
+                    if (progress <= 0.5) {
+                        //让过程变成0~1
+                        CGFloat newProgress = 2*fabs(progress);
+                        CGFloat newHeight = sliderFrame.size.height + newProgress*distance;
+                        sliderFrame.size.height = newHeight;
+                        sliderFrame.origin.y = fromY;
+                        _sliderView.frame = sliderFrame;
+                    }else if (progress >= 0.5) { //后半段0.5~1，x变大 w变小
+                        //让过程变成1~0
+                        CGFloat newProgress = 2*(1-fabs(progress));
+                        CGFloat newHeight = sliderFrame.size.height + newProgress*distance;
+                        CGFloat newY = toY - newProgress*distance;
+                        sliderFrame.size.height = newHeight;
+                        sliderFrame.origin.y = newY;
+                        _sliderView.frame = sliderFrame;
+                    }
+                }else {//向左移动
+                    //前半段0~-0.5，x变小 w变大
+                    if (progress >= -0.5) {
+                        //让过程变成0~1
+                        CGFloat newProgress = 2*fabs(progress);
+                        CGFloat newHeight = sliderFrame.size.height + newProgress*distance;
+                        CGFloat newY = fromY - newProgress*distance;
+                        sliderFrame.size.height = newHeight;
+                        sliderFrame.origin.y = newY;
+                        _sliderView.frame = sliderFrame;
+                    }else if (progress <= -0.5) { //后半段-0.5~-1，x变大 w变小
+                        //让过程变成1~0
+                        CGFloat newProgress = 2*(1-fabs(progress));
+                        CGFloat newHeight = sliderFrame.size.height + newProgress*distance;
+                        sliderFrame.size.height = newHeight;
+                        sliderFrame.origin.y = toY;
+                        _sliderView.frame = sliderFrame;
+                    }
                 }
-            }else {//向左移动
-                //前半段0~-0.5，x变小 w变大
-                if (progress >= -0.5) {
-                    //让过程变成0~1
-                    CGFloat newProgress = 2*fabs(progress);
-                    CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
-                    CGFloat newX = fromX - newProgress*distance;
-                    sliderFrame.size.width = newWidth;
-                    sliderFrame.origin.x = newX;
-                    _sliderView.frame = sliderFrame;
-                }else if (progress <= -0.5) { //后半段-0.5~-1，x变大 w变小
-                    //让过程变成1~0
-                    CGFloat newProgress = 2*(1-fabs(progress));
-                    CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
-                    sliderFrame.size.width = newWidth;
-                    sliderFrame.origin.x = toX;
-                    _sliderView.frame = sliderFrame;
+            }else{
+                CGFloat distance = fabs(CGRectGetMidX(nextFrame) - CGRectGetMidX(currentFrame));
+                CGFloat fromX = CGRectGetMidX(currentFrame) - sliderFrame.size.width/2.0f;
+                CGFloat toX = CGRectGetMidX(nextFrame) - sliderFrame.size.width/2.0f;
+                CGFloat progress =scale;
+                if (progress > 0) {//向右移动
+                    //前半段0~0.5，x不变 w变大
+                    if (progress <= 0.5) {
+                        //让过程变成0~1
+                        CGFloat newProgress = 2*fabs(progress);
+                        CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
+                        sliderFrame.size.width = newWidth;
+                        sliderFrame.origin.x = fromX;
+                        _sliderView.frame = sliderFrame;
+                    }else if (progress >= 0.5) { //后半段0.5~1，x变大 w变小
+                        //让过程变成1~0
+                        CGFloat newProgress = 2*(1-fabs(progress));
+                        CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
+                        CGFloat newX = toX - newProgress*distance;
+                        sliderFrame.size.width = newWidth;
+                        sliderFrame.origin.x = newX;
+                        _sliderView.frame = sliderFrame;
+                    }
+                }else {//向左移动
+                    //前半段0~-0.5，x变小 w变大
+                    if (progress >= -0.5) {
+                        //让过程变成0~1
+                        CGFloat newProgress = 2*fabs(progress);
+                        CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
+                        CGFloat newX = fromX - newProgress*distance;
+                        sliderFrame.size.width = newWidth;
+                        sliderFrame.origin.x = newX;
+                        _sliderView.frame = sliderFrame;
+                    }else if (progress <= -0.5) { //后半段-0.5~-1，x变大 w变小
+                        //让过程变成1~0
+                        CGFloat newProgress = 2*(1-fabs(progress));
+                        CGFloat newWidth = sliderFrame.size.width + newProgress*distance;
+                        sliderFrame.size.width = newWidth;
+                        sliderFrame.origin.x = toX;
+                        _sliderView.frame = sliderFrame;
+                    }
                 }
             }
         }else{
-            CGFloat offset = ABS(currentFrame.origin.x - nextFrame.origin.x) * scale;
-            sliderFrame.origin.x = currentFrame.origin.x + offset;
-            _sliderView.frame = sliderFrame;
+            if (_positionStyle==VTPositionStyleLeft||_positionStyle == VTPositionStyleRight){
+                CGFloat offset = ABS(currentFrame.origin.y - nextFrame.origin.y) * scale;
+                sliderFrame.origin.y = currentFrame.origin.y + offset;
+                _sliderView.frame = sliderFrame;
+            }else{
+                CGFloat offset = ABS(currentFrame.origin.x - nextFrame.origin.x) * scale;
+                sliderFrame.origin.x = currentFrame.origin.x + offset;
+                _sliderView.frame = sliderFrame;
+            }
         }
     }
    
@@ -855,25 +1062,44 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if ([_delegate respondsToSelector:@selector(magicView:scrollViewDidScroll:)]) {
-        [_delegate magicView:self scrollViewDidScroll:scrollView];
+    if ([scrollView isEqual:_contentView]){
+        if ([_delegate respondsToSelector:@selector(magicView:scrollViewDidScroll:)]) {
+            [_delegate magicView:self scrollViewDidScroll:scrollView];
+        }
     }
+    
     if (![scrollView isEqual:_contentView] || _needSkipUpdate || CGRectIsEmpty(self.frame)) {
         return;
     }
     
     NSInteger newIndex;
     NSInteger tempIndex;
-    CGFloat offsetX = scrollView.contentOffset.x;
-    CGFloat scrollWidth = scrollView.frame.size.width;
-    BOOL isSwipeToLeft = scrollWidth * _currentPage < offsetX;
-    if (isSwipeToLeft) { // 向左滑动
-        newIndex = floorf(offsetX/scrollWidth);
-        tempIndex = (int)((offsetX + scrollWidth - 0.1)/scrollWidth);
-    } else {
-        newIndex = ceilf(offsetX/scrollWidth);
-        tempIndex = (int)(offsetX/scrollWidth);
+    BOOL isSwipeToTop = NO;
+    BOOL isSwipeToLeft = NO;
+    if (self.positionStyle==VTPositionStyleLeft||self.positionStyle==VTPositionStyleRight){
+        CGFloat offsetY = scrollView.contentOffset.y;
+        CGFloat scrollHeight = scrollView.frame.size.height;
+        isSwipeToTop = scrollHeight * _currentPage < offsetY;
+        if (isSwipeToTop) { // 向上滑动
+            newIndex = floorf(offsetY/scrollHeight);
+            tempIndex = (int)((offsetY + scrollHeight - 0.1)/scrollHeight);
+        } else {
+            newIndex = ceilf(offsetY/scrollHeight);
+            tempIndex = (int)(offsetY/scrollHeight);
+        }
+    }else{
+        CGFloat offsetX = scrollView.contentOffset.x;
+        CGFloat scrollWidth = scrollView.frame.size.width;
+        isSwipeToLeft = scrollWidth * _currentPage < offsetX;
+        if (isSwipeToLeft) { // 向左滑动
+            newIndex = floorf(offsetX/scrollWidth);
+            tempIndex = (int)((offsetX + scrollWidth - 0.1)/scrollWidth);
+        } else {
+            newIndex = ceilf(offsetX/scrollWidth);
+            tempIndex = (int)(offsetX/scrollWidth);
+        }
     }
+ 
     
     if (!_needSkipUpdate && newIndex != _currentPage) {
         self.currentPage = newIndex;
@@ -890,8 +1116,14 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     if (_nextPageIndex != tempIndex) _isViewWillAppear = NO;
     if (!_isViewWillAppear && newIndex != tempIndex) {
         _isViewWillAppear = YES;
-        NSInteger nextPageIndex = newIndex + (isSwipeToLeft ? 1 : -1);
-        [self subviewWillAppearAtPage:nextPageIndex];
+        if (self.positionStyle==VTPositionStyleLeft||self.positionStyle==VTPositionStyleRight){
+            NSInteger nextPageIndex = newIndex + (isSwipeToTop ? 1 : -1);
+            [self subviewWillAppearAtPage:nextPageIndex];
+        }else{
+            NSInteger nextPageIndex = newIndex + (isSwipeToLeft ? 1 : -1);
+            [self subviewWillAppearAtPage:nextPageIndex];
+        }
+ 
     }
     
     if (tempIndex == _currentPage) { // 重置_nextPageIndex
@@ -922,11 +1154,16 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     if (![scrollView isEqual:_contentView]) {
         return;
     }
-    
     if (VTSwitchEventClick == _switchEvent) {
-        CGFloat contentWidth = CGRectGetWidth(_contentView.frame);
-        CGPoint offset = CGPointMake(contentWidth * _currentPage, 0);
-        [_contentView setContentOffset:offset animated:YES];
+        if (self.positionStyle==VTPositionStyleLeft||self.positionStyle==VTPositionStyleRight){
+            CGFloat contentHeight = CGRectGetHeight(_contentView.frame);
+            CGPoint offset = CGPointMake(contentHeight * _currentPage, 0);
+            [_contentView setContentOffset:offset animated:YES];
+        }else{
+            CGFloat contentWidth = CGRectGetWidth(_contentView.frame);
+            CGPoint offset = CGPointMake(contentWidth * _currentPage, 0);
+            [_contentView setContentOffset:offset animated:YES];
+        }
     }
     if (VTSwitchStyleDefault == _switchStyle && !_isPanValid) {
         [self updateMenuBarWhenSwitchEnd];
@@ -1078,6 +1315,12 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     [_navigationView sendSubviewToBack:navigationSubview];
 }
 
+- (void)setNavigationView:(UIView *)navigationView{
+    [_navigationView removeFromSuperview];
+    _navigationView=navigationView;
+    [self addSubview:navigationView];
+}
+
 - (VTMenuBar *)menuBar {
     if (!_menuBar) {
         _menuBar = [[VTMenuBar alloc] init];
@@ -1118,20 +1361,24 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 
 - (void)setLeftNavigatoinItem:(UIView *)leftNavigatoinItem {
     _leftNavigatoinItem = leftNavigatoinItem;
-    [_navigationView addSubview:leftNavigatoinItem];
-    [_navigationView bringSubviewToFront:_separatorView];
-    [_navigationView bringSubviewToFront:_menuBar];
-    leftNavigatoinItem.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
-    [self updateFrameForLeftNavigationItem];
+    if (self.positionStyle==VTPositionStyleDefault||self.positionStyle==VTPositionStyleBottom){
+        [_navigationView addSubview:leftNavigatoinItem];
+        [_navigationView bringSubviewToFront:_separatorView];
+        [_navigationView bringSubviewToFront:_menuBar];
+        leftNavigatoinItem.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+        [self updateFrameForLeftNavigationItem];
+    }
 }
 
 - (void)setRightNavigatoinItem:(UIView *)rightNavigatoinItem {
     _rightNavigatoinItem = rightNavigatoinItem;
-    [_navigationView addSubview:rightNavigatoinItem];
-    [_navigationView bringSubviewToFront:_separatorView];
-    [_navigationView bringSubviewToFront:_menuBar];
-    rightNavigatoinItem.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-    [self updateFrameForRightNavigationItem];
+    if (self.positionStyle==VTPositionStyleDefault||self.positionStyle==VTPositionStyleBottom){
+        [_navigationView addSubview:rightNavigatoinItem];
+        [_navigationView bringSubviewToFront:_separatorView];
+        [_navigationView bringSubviewToFront:_menuBar];
+        rightNavigatoinItem.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        [self updateFrameForRightNavigationItem];
+    }
 }
 
 - (NSArray<UIViewController *> *)viewControllers {
@@ -1178,6 +1425,16 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
         _bubbleRadius=0;
     }
     self.bubbleRadius = _bubbleRadius;
+}
+
+- (void)setPositionStyle:(VTPositionStyle)positionStyle{
+    _positionStyle=positionStyle;
+    _menuBar.positionStyle=positionStyle;
+    _contentView.positionStyle=positionStyle;
+    if(positionStyle==VTPositionStyleLeft||positionStyle==VTPositionStyleRight){
+        _separatorWidth = 0.5;
+        _separatorHeight = self.frame.size.height;
+    }
 }
 
 - (void)setCurrentPage:(NSInteger)currentPage {
@@ -1336,6 +1593,10 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     [_menuBar setBubbleInset:bubbleInset];
 }
 
+- (void)setBubbleSize:(CGSize)bubbleSize{
+    [_menuBar setBubbleSize:bubbleSize];
+}
+
 - (UIEdgeInsets)bubbleInset {
     return [_menuBar bubbleInset];
 }
@@ -1364,6 +1625,11 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 - (void)setItemWidth:(CGFloat)itemWidth {
     _itemWidth = itemWidth;
     _menuBar.itemWidth = itemWidth;
+}
+
+- (void)setItemHeight:(CGFloat)itemHeight{
+    _itemHeight=itemHeight;
+    _menuBar.itemHeight = itemHeight;
 }
 
 - (void)setNormalFont:(UIFont *)normalFont {

@@ -15,22 +15,40 @@
 @property (nonatomic, strong)  NSArray *menuList;
 
 @property (nonatomic, strong)  UIButton *button4;
+@property (nonatomic, assign)  CGFloat barHeight;
+@property (nonatomic, strong)  UIView *tagView;
+@property (nonatomic, strong)  UIButton *leftButton;
 @end
 
 @implementation VTHomeViewController
 
 #pragma mark - Lifecycle
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    NSLog(@"widthSubviews:%.2f",self.view.frame.size.width);
+    self.leftButton.frame = CGRectMake(20, self.barHeight, 44, 44);
+    self.tagView.frame =CGRectMake(80, self.barHeight,self.view.frame.size.width-160 , 44);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor =[UIColor whiteColor];
     self.edgesForExtendedLayout = UIRectEdgeAll;
+    
+
+#if TARGET_OS_MACCATALYST
+    self.barHeight = 44;
+#else
+    self.barHeight = kStatusBarHeight;
+#endif
+    
     //    self.magicView.bounces = YES;
     //    self.magicView.headerHidden = NO;
     //    self.magicView.itemSpacing = 20.f;
     //    self.magicView.switchEnabled = YES;
     //    self.magicView.separatorHidden = NO;
     //    self.magicView.acturalSpacing = 10;
-    self.magicView.headerHeight = kStatusBarHeight+40;
+    self.magicView.headerHeight = self.barHeight+40;
     self.magicView.navigationHeight = 44;
  
     self.magicView.displayCentered = YES;
@@ -58,6 +76,8 @@
         [self createFooterView];
         [self configSeparatorView];
     }else if (self.type==VTDemoTypeHideNav){
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.magicView.againstStatusBar = NO;
         self.magicView.navigationView.hidden=YES;
         self.magicView.navigationHeight = 0;
     }else if(self.type==VTDemoTypeBottom){
@@ -80,21 +100,20 @@
     }else if(self.type==VTDemoTypeAlphaNav){
 //        self.magicView.againstStatusBar = YES;
         self.magicView.navigationColor = [UIColor clearColor];
-        self.magicView.contentViewOffset = -(kStatusBarHeight+60+44);
+        self.magicView.contentViewOffset = -(self.barHeight+60+44);
         self.magicView.separatorHidden=YES;
         self.magicView.sliderHidden = YES;
-        self.magicView.itemScale = 1.5;
+        self.magicView.itemScale = 1.2;
         self.magicView.headerHidden=NO;
-        self.magicView.headerHeight = kStatusBarHeight+60;
+        self.magicView.headerHeight = self.barHeight+60;
         self.magicView.headerView.backgroundColor = [UIColor clearColor];
         self.magicView.navigationHeight = 44;
-        UIButton *leftButton=[self createleftButton];
-        leftButton.frame = CGRectMake(20, kStatusBarHeight, 44, 44);
-        [self.magicView.headerView addSubview:leftButton];
-        
-        UIView *tagView=[[UIView alloc]initWithFrame:CGRectMake(80, kStatusBarHeight, self.view.frame.size.width-160 , 44)];
-        tagView.backgroundColor=[[UIColor whiteColor]colorWithAlphaComponent:0.4];
-        [self.magicView.headerView addSubview:tagView];
+        self.leftButton=[self createleftButton];
+        [self.magicView.headerView addSubview:self.leftButton];
+    
+        self.tagView=[[UIView alloc]init];
+        self.tagView.backgroundColor=[[UIColor whiteColor]colorWithAlphaComponent:0.4];
+        [self.magicView.headerView addSubview:self.tagView];
     }
     
     [self addNotification];
@@ -400,7 +419,7 @@
     }else if(self.magicView.layoutStyle == VTLayoutStyleCenter){
         self.magicView.layoutStyle = VTLayoutStyleDefault;
     }else if(self.magicView.layoutStyle == VTLayoutStyleDefault){
-        self.magicView.layoutStyle = VTLayoutStyleRight;
+        self.magicView.layoutStyle = VTLayoutStyleLast;
     }else{
         self.magicView.layoutStyle = VTLayoutStyleDivide;
     }

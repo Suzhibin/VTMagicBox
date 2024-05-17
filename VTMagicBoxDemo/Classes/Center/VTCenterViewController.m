@@ -36,7 +36,7 @@
     if(self.type==VTDemoTypeCenter){
         self.magicController.magicView.layoutStyle = VTLayoutStyleCenter;
     }else if(self.type==VTDemoTypeRight){
-        self.magicController.magicView.layoutStyle = VTLayoutStyleRight;
+        self.magicController.magicView.layoutStyle = VTLayoutStyleLast;
     }else if(self.type==VTDemoTypeSegmentedControl){
         self.magicController.magicView.layoutStyle = VTLayoutStyleCenter;
         [self.magicController.magicView setNavigationSubview:self.sbackgroundView];
@@ -51,7 +51,7 @@
 }
 - (UIView *)sbackgroundView{
     if(!_sbackgroundView){
-        _sbackgroundView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-80, VTSTATUSBAR_HEIGHT+5, 160, self.sHeight)];
+        _sbackgroundView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-80, 5, 160, self.sHeight)];
         _sbackgroundView.layer.borderWidth = 1;
         _sbackgroundView.layer.borderColor = [UIColor redColor].CGColor;
         _sbackgroundView.layer.masksToBounds = YES;

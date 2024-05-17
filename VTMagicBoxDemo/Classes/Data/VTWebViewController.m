@@ -10,7 +10,7 @@
 #import <VTMagicBox/VTMagic.h>
 #import <WebKit/WebKit.h>
 
-@interface VTWebViewController()<UIGestureRecognizerDelegate, UIWebViewDelegate>
+@interface VTWebViewController()<UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;

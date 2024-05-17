@@ -104,7 +104,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGFloat)magicView:(VTMagicView *)magicView sliderWidthAtIndex:(NSUInteger)itemIndex;
 
 /**
- *  视图控制器左右滑动时触发， 无视 _contentView是否正确 、跳页切换，frame是否空等情况
+ *  contentView视图控制器左右滑动时触发， 无视 跳页切换，frame是否空等情况
  *
  *  @param magicView self
  *  @param scrollView 内容视图
@@ -196,11 +196,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  顶部导航栏左侧视图项
+ *  @warning VTPositionStyleDefault VTPositionStyleBottom 有效
  */
 @property (nonatomic, strong, nullable) UIView *leftNavigatoinItem;
 
 /**
  *  顶部导航栏右侧视图项
+ *  @warning VTPositionStyleDefault VTPositionStyleBottom 有效
  */
 @property (nonatomic, strong, nullable) UIView *rightNavigatoinItem;
 
@@ -224,16 +226,25 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)setNavigationSubview:(UIView *)navigationSubview;
 
+/**
+ *  自定义navigationView视图，使用后会清除自带导航菜单。
+ *  新导航可调用 switchToPage: animated 方法进行内容视图的切换
+ *  内容视图可以与自定义视图 使用 magicView: viewDidAppear:方法进行绑定
+ */
+- (void)setNavigationView:(UIView *)navigationView;
+
 #pragma mark - bool configurations
 /****************************************bool configurations****************************************/
 
 /**
  *  是否允许页面左右滑动，默认YES
+ *  @warning 该属性在VTPositionStyleLeft,VTPositionStyleRight样式下 为是否允许页面上下滑动
  */
 @property (nonatomic, assign, getter=isScrollEnabled) BOOL scrollEnabled;
 
 /**
  *  是否允许导航菜单左右滑动，默认YES
+ *  @warning 该属性在VTPositionStyleLeft,VTPositionStyleRight样式下 为是否允许页面上下滑动
  */
 @property (nonatomic, assign, getter=isMenuScrollEnabled) BOOL menuScrollEnabled;
 
@@ -264,7 +275,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly, getter=isDeselected) BOOL deselected;
 
 /**
- *  顶部导航栏是否紧贴系统状态栏，即是否需要为状态栏留出区域，默认NO
+ *  导航栏是否紧贴系统状态栏，即是否需要为状态栏留出区域，默认NO
  */
 @property (nonatomic, assign, getter=isAgainstStatusBar) BOOL againstStatusBar;
 
@@ -326,13 +337,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) BOOL needExtendBottom VT_DEPRECATED_IN("1.2.5");
 
-
 #pragma mark - color & size configurations
 /**************************************color & size**************************************/
 
 /**
  *  内容容器相对导航底部的偏移量，默认0，上偏为负
- *
+ * @warning 该属性在VTPositionStyleLeft,VTPositionStyleRight样式下 为内容容器相对导航右侧的偏移量，默认0，左偏为负
  */
 @property (nonatomic, assign) CGFloat contentViewOffset;
 
@@ -348,8 +358,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  顶部导航条的高度，默认是44
+ *  @warning 该属性在VTPositionStyleLeft,VTPositionStyleRight样式下无效
  */
 @property (nonatomic, assign) CGFloat navigationHeight;
+
+/**
+ *  顶部导航条的宽度，默认是屏幕宽度
+ *  @warning 该属性在VTPositionStyleLeft,VTPositionStyleRight样式下有效
+ */
+@property (nonatomic, assign) CGFloat navigationWidth;
 
 /**
  *  顶部导航栏底部分割线颜色
@@ -360,6 +377,12 @@ NS_ASSUME_NONNULL_BEGIN
  *  导航栏分割线高度，默认0.5个点
  */
 @property (nonatomic, assign) CGFloat separatorHeight;
+
+/**
+ *  导航栏分割线宽度，默认屏幕宽度
+ *  @warning 该属性在VTPositionStyleLeft,VTPositionStyleRight样式下宽度为0.5
+ */
+@property (nonatomic, assign) CGFloat separatorWidth;
 
 /**
  *  顶部导航栏滑块颜色
@@ -398,8 +421,14 @@ NS_ASSUME_NONNULL_BEGIN
  *  气泡相对menuItem文本的edgeInsets，默认(2, 5, 2, 5)
  *
  *  @warning 该属性用于VTSliderStyleBubble样式下
+ *  @warning bubbleSize有效时，该属性无效
  */
 @property (nonatomic, assign) UIEdgeInsets bubbleInset;
+
+/**
+ *  气泡相对menuItem大小，默认不设置,固定宽高，优先级高于bubbleInset
+ */
+@property (nonatomic, assign) CGSize bubbleSize;
 
 /**
  *  滑块的圆角半径，默认10
@@ -443,6 +472,13 @@ NS_ASSUME_NONNULL_BEGIN
  *  @warning 该属性在VTLayoutStyleDivide样式下无效
  */
 @property (nonatomic, assign) CGFloat itemWidth;
+
+/**
+ *  自定义item高度，默认44，当设置改属性时，itemSpacing的设置无效
+ *
+ *  @warning 该属性在VTPositionStyleLeft,VTPositionStyleRight样式下有效
+ */
+@property (nonatomic, assign) CGFloat itemHeight;
 
 /**
  *  默认字体大小
@@ -560,7 +596,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)handlePanGesture:(UIPanGestureRecognizer *)recognizer;
 
 /**
- *  C可通过属性deselected获取当前状态
+ *  取消菜单item的选中状态，可通过属性deselected获取当前状态
  *  取消选中后须调用方法reselectMenuItem以恢复
  */
 - (void)deselectMenuItem;

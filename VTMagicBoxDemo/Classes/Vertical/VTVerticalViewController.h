@@ -1,15 +1,15 @@
 //
-//  VTScrollController.h
+//  VTVerticalViewController.h
 //  VTMagicBoxDemo
 //
-//  Created by Suzhibin on 2023/12/28.
+//  Created by Suzhibin on 2024/5/16.
 //
 
 #import "BaseViewController.h"
 #import "VTSectionModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface VTScrollController : BaseViewController
+@interface VTVerticalViewController : BaseViewController
 @property (nonatomic, assign) VTDemoType type;
 @end
 

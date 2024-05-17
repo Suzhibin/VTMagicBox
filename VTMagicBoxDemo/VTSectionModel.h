@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, VTDemoType){
     VTDemoTypeNormal,//正常
@@ -18,6 +19,8 @@ typedef NS_ENUM(NSInteger, VTDemoType){
     VTDemoTypeAlphaNav,//导航透明
     VTDemoTypeBottom,//居底部
     VTDemoTypeBottomDivide,//居底部平分
+    VTDemoTypeVerticalLeft,
+    VTDemoTypeVerticalRight,
     VTDemoTypeSliderItmeLine,//常规线
     VTDemoTypeSliderLine,//常规线
     VTDemoTypeSliderBubble,//气泡
@@ -52,13 +55,15 @@ typedef NS_ENUM(NSInteger, VTDemoType){
     VTDemoTypeFooter,//尾部布局
     VTDemoTypeWebView,//Web
     VTDemoTypeFirstFixed,//第一个menu固定左侧
-    VTDemoTypeBindList,//与列表绑定
+    VTDemoTypeBindListLeft,//左侧与列表绑定
+    VTDemoTypeBindListNormal,//与列表绑定
     VTDemoTypeSegmentedControl,//SegmentedControl
     VTDemoTypeOneController,//复用子视图
     VTDemoTypeAllController,//加载所有子视图
     VTDemoTypeSwift,
     VTDemoTypeShow,//展示厅 自动展示部分功能
     VTDemoTypeScroll,//滑动监听
+    VTDemoTypeCustomMenuBar,
 };
 
 @interface VTTableItem : NSObject

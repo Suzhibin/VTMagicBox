@@ -6,7 +6,7 @@
 //
 
 #import "ViewController.h"
-
+#import <VTMagicBox/VTMenuBar.h>
 @interface ViewController ()
 
 @end
@@ -19,8 +19,7 @@
     UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
     icon.image = [UIImage imageNamed:@"image_7"];
     [self.view addSubview:icon];
-    
-}
 
+}
 
 @end

@@ -8,7 +8,7 @@
 #import "VTSliderCustomAnimationController.h"
 #import "VTGridViewController.h"
 @interface VTSliderCustomAnimationController ()
-@property (nonatomic, strong)  NSArray *menuList;
+
 @end
 
 @implementation VTSliderCustomAnimationController
@@ -23,48 +23,6 @@
     self.magicView.sliderHeight=6;
     self.magicView.sliderColor = [UIColor redColor];
     [self generateTestData];
-    [self.magicView reloadData];
-}
-#pragma mark - functional methods
-- (void)generateTestData {
-    NSMutableArray *menuList = [[NSMutableArray alloc] initWithCapacity:5];
-    for (int index = 0; index < 20; index++) {
-        NSString *title = [NSString stringWithFormat:@"省份%d", index];
-        MenuInfo *menu = [MenuInfo menuInfoWithTitle:title];
-        [menuList addObject:menu];
-    }
-    _menuList = menuList;
-}
-#pragma mark - VTMagicViewDataSource
-- (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
-    NSMutableArray *titleList = [NSMutableArray array];
-    for (MenuInfo *menu in _menuList) {
-        [titleList addObject:menu.title];
-    }
-    return titleList;
-}
-
-- (UIButton *)magicView:(VTMagicView *)magicView menuItemAtIndex:(NSUInteger)itemIndex {
-    static NSString *itemIdentifier = @"itemIdentifier";
-    UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
-    if (!menuItem) {
-        menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
-        [menuItem setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];
-        menuItem.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
-    }
-    return menuItem;
-}
-
-- (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex {
-    MenuInfo *menuInfo = _menuList[pageIndex];
-    static NSString *gridId = @"grid.identifier";
-    VTGridViewController *viewController = [magicView dequeueReusablePageWithIdentifier:gridId];
-    if (!viewController) {
-        viewController = [[VTGridViewController alloc] init];
-    }
-    viewController.menuInfo = menuInfo;
-    return viewController;
 }
 
 #pragma mark - VTMagicViewDelegate
@@ -96,8 +54,5 @@
         }
     }
 }
-
-
-
 
 @end

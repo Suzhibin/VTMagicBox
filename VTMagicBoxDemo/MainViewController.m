@@ -24,6 +24,8 @@
 #import "VTShowController.h"
 #import "VTScrollController.h"
 #import "VTSliderCustomAnimationController.h"
+#import "VTVerticalViewController.h"
+#import "VTCustomMenuBarViewController.h"
 @interface MainViewController ()
 @property (nonatomic, strong) NSArray <VTSectionModel *>*list;
 @end
@@ -111,9 +113,10 @@
         VTDataViewController*dataVC = [[VTDataViewController alloc] init];
         dataVC.title=item.title;
         [self.navigationController pushViewController:dataVC animated:YES];
-    }else if(item.type==VTDemoTypeBindList){
+    }else if(item.type==VTDemoTypeBindListNormal||item.type==VTDemoTypeBindListLeft){
         VTBindListViewController*bindListVC = [[VTBindListViewController alloc] init];
         bindListVC.title=item.title;
+        bindListVC.type=item.type;
         [self.navigationController pushViewController:bindListVC animated:YES];
     }else if(item.type==VTDemoTypeMenuMTAtt){
         VTMTAttViewController*mtattVC = [[VTMTAttViewController alloc] init];
@@ -148,6 +151,15 @@
         customAnimationVC.title=item.title;
         customAnimationVC.type=item.type;
         [self.navigationController pushViewController:customAnimationVC animated:YES];
+    }else if (item.type==VTDemoTypeVerticalLeft||item.type==VTDemoTypeVerticalRight){
+        VTVerticalViewController*vc=[[VTVerticalViewController alloc]init];
+        vc.title=item.title;
+        vc.type=item.type;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (item.type==VTDemoTypeCustomMenuBar){
+        VTCustomMenuBarViewController*vc=[[VTCustomMenuBarViewController alloc]init];
+        vc.title=item.title;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 
 }
@@ -162,13 +174,16 @@
 - (NSArray <VTTableItem *>*)createLayoutItems {
     return @[
             [VTTableItem itemWithTitle:@"常规" descr:@"Header可显示/隐藏" type:VTDemoTypeNormal],
-             [VTTableItem itemWithTitle:@"居中" descr:@"右侧按钮可以切换page" type:VTDemoTypeCenter],
-             [VTTableItem itemWithTitle:@"平分" descr:@"定位到指定页面,右侧按钮调 滑块选中状态" type:VTDemoTypeDivide],
-             [VTTableItem itemWithTitle:@"居右" descr:@"居右布局" type:VTDemoTypeRight],
+             [VTTableItem itemWithTitle:@"菜单居中" descr:@"右侧按钮可以切换page" type:VTDemoTypeCenter],
+             [VTTableItem itemWithTitle:@"菜单平分" descr:@"定位到指定页面,右侧按钮调 滑块选中状态" type:VTDemoTypeDivide],
+             [VTTableItem itemWithTitle:@"菜单居右" descr:@"菜单居右布局" type:VTDemoTypeRight],
              [VTTableItem itemWithTitle:@"隐藏菜单" descr:@"招聘app职位详情常用，左右切换" type:VTDemoTypeHideNav],
              [VTTableItem itemWithTitle:@"菜单透明" descr:@"内容页面在菜单后" type:VTDemoTypeAlphaNav],
-             [VTTableItem itemWithTitle:@"居底部" descr:@"菜单在底部。常规位置所有设置通用" type:VTDemoTypeBottom],
-             [VTTableItem itemWithTitle:@"居底部代替tabbar" descr:@"可平分、居中、居左、居右。常规位置所有设置通用" type:VTDemoTypeBottomDivide],
+             [VTTableItem itemWithTitle:@"导航居底部" descr:@"导航在底部。常规位置所有设置通用" type:VTDemoTypeBottom],
+             [VTTableItem itemWithTitle:@"导航居底部代替tabbar" descr:@"可平分、居中、居左、居右。常规位置所有设置通用" type:VTDemoTypeBottomDivide],
+            [VTTableItem itemWithTitle:@"导航居左侧" descr:@"导航在底部左侧" type:VTDemoTypeVerticalLeft],
+            [VTTableItem itemWithTitle:@"导航居右侧" descr:@"导航在底部右侧" type:VTDemoTypeVerticalRight],
+            
     ];
 }
 
@@ -220,7 +235,9 @@
             [VTTableItem itemWithTitle:@"滑动监听" descr:@"使用监听代理，可以监听视图控制器 滑动事件" type:VTDemoTypeScroll],
             [VTTableItem itemWithTitle:@"WebView" descr:@"描述" type:VTDemoTypeWebView],
             [VTTableItem itemWithTitle:@"第一个menu固定左侧" descr:@"leftNavigatoinItem，navigationInset,同时定位到指定页面" type:VTDemoTypeFirstFixed],
-            [VTTableItem itemWithTitle:@"与列表绑定" descr:@"电商分类常用，使用时不需要创建子页面" type:VTDemoTypeBindList],
+            [VTTableItem itemWithTitle:@"自定义导航" descr:@"不使用自带导航，使用自己封装或第三方。 自定义导航与和内容控制器结合" type:VTDemoTypeCustomMenuBar],
+            [VTTableItem itemWithTitle:@"导航正常布局与列表绑定" descr:@"电商分类常用，使用时不需要创建子页面" type:VTDemoTypeBindListNormal],
+            [VTTableItem itemWithTitle:@"导航左侧布局与列表绑定" descr:@"电商分类常用，使用时不需要创建子页面" type:VTDemoTypeBindListLeft],
             [VTTableItem itemWithTitle:@"子页面复用,响应事件" descr:@"子页面复用，父视图通知子视图响应事件" type:VTDemoTypeOneController],
             [VTTableItem itemWithTitle:@"子页面不复用，响应事件" descr:@"所有子页面都是单独创建的，父视图通知子视图响应事件" type:VTDemoTypeAllController],
             [VTTableItem itemWithTitle:@"Swift" descr:@"Swift 使用VTMagic" type:VTDemoTypeSwift],

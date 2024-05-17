@@ -17,8 +17,8 @@ typedef NS_ENUM(NSUInteger, VTLayoutStyle) {
     VTLayoutStyleDivide,
     /** 导航栏居中布局，间距由itemSpacing决定 */
     VTLayoutStyleCenter,
-    /** 导航栏右侧布局，间距由itemSpacing决定 */
-    VTLayoutStyleRight,
+    /** 导航栏末尾布局，间距由itemSpacing决定 */
+    VTLayoutStyleLast,
 };
 
 /** 页面滑动切换样式 */
@@ -49,7 +49,7 @@ typedef NS_ENUM(NSUInteger, VTSliderStyle) {
     VTSliderStyleDefault,
     /** 气泡样式，该样式下需结合bubbleInset和bubbleRadius使用 */
     VTSliderStyleBubble,
-    /** 显示下划线 动画缩放*/
+    /** 显示下划线 动画缩放。 滑动有效，点击无效果*/
     VTSliderStyleDefaultZoom,
 };
 
@@ -81,6 +81,10 @@ typedef NS_ENUM(NSUInteger, VTPositionStyle) {
     VTPositionStyleDefault,
     /** 导航布局到底部 */
     VTPositionStyleBottom,
+    /** 导航布局到左侧 */
+    VTPositionStyleLeft,
+    /** 导航布局到右侧 */
+    VTPositionStyleRight,
 };
 
 #endif /* VTEnumType_h */

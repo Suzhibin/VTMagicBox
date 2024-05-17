@@ -10,10 +10,7 @@
 #import "VTRelateViewController.h"
 #import "MenuInfo.h"
 #import "VTBindSectionListrFooterView.h"
-@interface VTBindListViewController ()<VTMagicViewDataSource, VTMagicViewDelegate,UITableViewDelegate,UITableViewDataSource>
-
-@property (nonatomic, strong) VTMagicController *magicController;
-@property (nonatomic, strong) NSMutableArray *menuList;
+@interface VTBindListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray <NSValue *> *sectionRectArray;
@@ -32,29 +29,26 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.edgesForExtendedLayout = UIRectEdgeNone;//从导航下方布局
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self addChildViewController:self.magicController];
-    [self.view addSubview:_magicController.view];
-    [self.view setNeedsUpdateConstraints];
-    _menuList = [[NSMutableArray alloc]init];
+    if(self.type == VTDemoTypeBindListLeft){
+        self.magicView.positionStyle = VTPositionStyleLeft;
+        self.tableView.frame = CGRectMake(100, 0, self.view.frame.size.width-100, self.view.frame.size.height);
+    }else{
+        self.magicView.positionStyle = VTPositionStyleDefault;
+        self.magicView.navigationHeight = 40.f;
+    }
+    
+    self.magicView.navigationColor = [UIColor whiteColor];
+    self.magicView.sliderColor = RGBCOLOR(169, 37, 37);
+    self.magicView.switchStyle = VTSwitchStyleStiff;
+    self.magicView.needPreloading=NO;
+    self.magicView.sliderExtension = 2.f;
+    self.magicView.displayCentered = YES;
+
     [self.view addSubview:self.tableView];
     self.sectionRectArray=[[NSMutableArray alloc]init];
     
-    for (int i = 0; i<15; i++) {
-        MenuInfo *info=[[MenuInfo alloc]init];
-        info.title=[NSString stringWithFormat:@"菜单%d",i];
-        NSMutableArray *listArr = [NSMutableArray array];
-        for (int j = 0; j <= 10; j ++) {
-            [listArr  addObject:[NSString stringWithFormat:@"%@ 具体内容",info.title]];
-        }
-        info.listArr =listArr;
-        [_menuList addObject:info];
-    }
-  
-    [_magicController.magicView reloadMenuTitles];
-    
     [self lastSectionContentInset];//最后一个Section  ContentInset调整
+    [self generateTestData];
 }
 - (void)lastSectionContentInset{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -68,35 +62,25 @@
         MenuInfo *menu  = [self.menuList lastObject];
         CGRect lastCellRect = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow: menu.listArr.count - 1 inSection:self.menuList.count - 1]];
         CGFloat lastSectionHeight = CGRectGetMaxY(lastCellRect) - CGRectGetMinY(lastHeaderRect);
-        CGFloat value = self.view.bounds.size.height+self.magicController.magicView.navigationHeight- lastSectionHeight;
-        if (value > 0) {
-            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, value, 0);
+        if(self.type == VTDemoTypeBindListLeft){
+            CGFloat value = self.view.bounds.size.height+self.magicView.navigationWidth- lastSectionHeight;
+            if (value > 0) {
+                self.tableView.contentInset = UIEdgeInsetsMake(0, 0, value, 0);
+            }
+        }else{
+            CGFloat value = self.view.bounds.size.height+self.magicView.navigationHeight- lastSectionHeight;
+            if (value > 0) {
+                self.tableView.contentInset = UIEdgeInsetsMake(0, 0, value, 0);
+            }
         }
+       
     });
 }
 #pragma mark - VTMagicViewDataSource
-- (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
-    NSMutableArray *titleList = [NSMutableArray array];
-    for (MenuInfo *menu in _menuList) {
-        [titleList addObject:menu.title];
-    }
-    return titleList;
-}
-
-- (UIButton *)magicView:(VTMagicView *)magicView menuItemAtIndex:(NSUInteger)itemIndex {
-    static NSString *itemIdentifier = @"itemIdentifier";
-    UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
-    if (!menuItem) {
-        menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
-        [menuItem setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];
-        menuItem.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
-    }
-    return menuItem;
-}
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex{
     return nil;
 }
+#pragma mark - VTMagicViewDelegate
 - (void)magicView:(VTMagicView *)magicView didSelectItemAtIndex:(NSUInteger)itemIndex{
     NSLog(@"点击:%ld",itemIndex);
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:itemIndex] atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -111,7 +95,7 @@
     BOOL dircetionUp = (point.y >= 0);    /// 滑动方向
     NSIndexPath *firstIndexPath = dircetionUp?[self.tableView indexPathsForVisibleRows].lastObject:[self.tableView indexPathsForVisibleRows].firstObject;
     firstIndexPath = [self.tableView indexPathsForVisibleRows].firstObject;
-    [self.magicController.magicView switchToPage:firstIndexPath.section animated:YES];
+    [self.magicView switchToPage:firstIndexPath.section animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -151,7 +135,7 @@
 }
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.magicController.magicView.navigationHeight, self.view.frame.size.width, self.view.frame.size.height-self.magicController.magicView.navigationHeight) style:UITableViewStyleGrouped];
+        _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.magicView.navigationHeight, self.view.frame.size.width, self.view.frame.size.height-self.magicView.navigationHeight) style:UITableViewStyleGrouped];
         _tableView.delegate=self;
         _tableView.dataSource=self;
         _tableView.tableFooterView=[UIView new];
@@ -173,37 +157,6 @@
     }
     return _tableView;
 }
-#pragma mark - accessor methods
-- (VTMagicController *)magicController {
-    if (!_magicController) {
-        _magicController = [[VTMagicController alloc] init];
-        _magicController.view.translatesAutoresizingMaskIntoConstraints = NO;
-        _magicController.magicView.navigationColor = [UIColor whiteColor];
-        _magicController.magicView.sliderColor = RGBCOLOR(169, 37, 37);
-        _magicController.magicView.switchStyle = VTSwitchStyleStiff;
-        _magicController.magicView.layoutStyle = VTLayoutStyleDefault;
-        _magicController.magicView.needPreloading=NO;
-        _magicController.magicView.navigationHeight = 40.f;
-        _magicController.magicView.sliderExtension = 2.f;
-        _magicController.magicView.dataSource = self;
-        _magicController.magicView.delegate = self;
-        _magicController.magicView.displayCentered = YES;
-    }
-    return _magicController;
-}
 
-- (void)updateViewConstraints {
-    UIView *magicView = _magicController.view;
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[magicView]-0-|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(magicView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[magicView]-0-|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(magicView)]];
-    
-    [super updateViewConstraints];
-}
 
 @end

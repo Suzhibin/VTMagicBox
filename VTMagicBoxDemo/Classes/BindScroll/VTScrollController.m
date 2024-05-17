@@ -9,9 +9,10 @@
 #import "VTGridViewController.h"
 #import "VTScrollView.h"
 @interface VTScrollController ()
-@property (nonatomic, strong)  NSArray *menuList;
 @property (nonatomic, strong)VTScrollView *headerView;
 @property (nonatomic, strong)VTScrollView *footerView;
+@property (nonatomic, strong)NSArray *headerImages;
+@property (nonatomic, strong)NSArray *footerImages;
 @end
 
 @implementation VTScrollController
@@ -19,52 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.headerImages = @[@"image_0",@"image_1",@"image_2",@"image_3",@"image_4"];
+    self.footerImages = @[@"image_5",@"image_6",@"image_7",@"image_8",@"image_9"];
     self.magicView.layoutStyle=VTLayoutStyleDivide;
     [self createScrollView];
-    [self generateTestData];
+    [self generateTestDataArrCount:self.headerImages.count];
     [self.magicView reloadData];
-}
-#pragma mark - functional methods
-- (void)generateTestData {
-    NSMutableArray *menuList = [[NSMutableArray alloc] initWithCapacity:5];
-    for (int index = 0; index < 5; index++) {
-        NSString *title = [NSString stringWithFormat:@"省份%d", index];
-        MenuInfo *menu = [MenuInfo menuInfoWithTitle:title];
-        [menuList addObject:menu];
-    }
-    _menuList = menuList;
-}
-#pragma mark - VTMagicViewDataSource
-- (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
-    NSMutableArray *titleList = [NSMutableArray array];
-    for (MenuInfo *menu in _menuList) {
-        [titleList addObject:menu.title];
-    }
-    return titleList;
-}
-
-- (UIButton *)magicView:(VTMagicView *)magicView menuItemAtIndex:(NSUInteger)itemIndex {
-    static NSString *itemIdentifier = @"itemIdentifier";
-    UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
-    if (!menuItem) {
-        menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
-        [menuItem setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
-        [menuItem setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];
-        menuItem.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
-    }
-    return menuItem;
-}
-
-- (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex {
-    MenuInfo *menuInfo = _menuList[pageIndex];
-    static NSString *gridId = @"grid.identifier";
-    VTGridViewController *viewController = [magicView dequeueReusablePageWithIdentifier:gridId];
-    if (!viewController) {
-        viewController = [[VTGridViewController alloc] init];
-    }
-    viewController.menuInfo = menuInfo;
-    return viewController;
 }
 
 #pragma mark - VTMagicViewDelegate
@@ -78,14 +39,14 @@
     self.magicView.headerHidden=NO;
     self.magicView.headerHeight=120;
     VTScrollView *headerView=[[VTScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 120)];
-    headerView.images=@[@"image_0",@"image_1",@"image_2",@"image_3",@"image_4"];//等于menuList个数
+    headerView.images=self.headerImages;
     [self.magicView.headerView addSubview:headerView];
     self.headerView=headerView;
     
     self.magicView.footerHidden=NO;
     self.magicView.footerHeight=80;
     VTScrollView *footerView=[[VTScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 80)];
-    footerView.images=@[@"image_5",@"image_6",@"image_7",@"image_8",@"image_9"];//等于menuList个数
+    footerView.images=self.footerImages;
     [self.magicView.footerView addSubview:footerView];
     self.footerView=footerView;
 

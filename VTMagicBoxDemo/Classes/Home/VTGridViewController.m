@@ -41,6 +41,9 @@ static NSString *reuseIdentifier = @"grid.reuse.identifier";
     self.collectionView.backgroundColor = RGBCOLOR(239, 239, 239);
     self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, VTTABBAR_HEIGHT, 0);
     [self.collectionView registerClass:[VTGridViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    if (@available(iOS 11.0, *)) {
+        self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
