@@ -30,10 +30,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if(self.type == VTDemoTypeBindListLeft){
-        self.magicView.positionStyle = VTPositionStyleLeft;
+        self.magicView.navPosition = VTNavPositionLeft;
         self.tableView.frame = CGRectMake(100, 0, self.view.frame.size.width-100, self.view.frame.size.height);
     }else{
-        self.magicView.positionStyle = VTPositionStyleDefault;
+        self.magicView.navPosition = VTNavPositionDefault;
         self.magicView.navigationHeight = 40.f;
     }
     

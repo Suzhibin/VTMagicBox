@@ -164,7 +164,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  导航栏位置 默认在上
  */
-@property (nonatomic, assign) VTPositionStyle positionStyle;
+@property (nonatomic, assign) VTNavPosition navPosition;
 
 /**
  *  导航菜单item的预览数，默认为1

@@ -76,15 +76,15 @@ typedef NS_ENUM(NSUInteger, VTAppearanceState) {
 };
 
 /** 导航位置 */
-typedef NS_ENUM(NSUInteger, VTPositionStyle) {
+typedef NS_ENUM(NSUInteger, VTNavPosition) {
     /** 默认*/
-    VTPositionStyleDefault,
+    VTNavPositionDefault,
     /** 导航布局到底部 */
-    VTPositionStyleBottom,
+    VTNavPositionBottom,
     /** 导航布局到左侧 */
-    VTPositionStyleLeft,
+    VTNavPositionLeft,
     /** 导航布局到右侧 */
-    VTPositionStyleRight,
+    VTNavPositionRight,
 };
 
 #endif /* VTEnumType_h */

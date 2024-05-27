@@ -26,9 +26,9 @@
 
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
     if(self.type == VTDemoTypeVerticalRight){
-        self.magicView.positionStyle = VTPositionStyleRight;
+        self.magicView.navPosition = VTNavPositionRight;
     }else{
-        self.magicView.positionStyle = VTPositionStyleLeft;
+        self.magicView.navPosition = VTNavPositionLeft;
     }
     self.magicView.navigationWidth = 80;
     self.magicView.separatorHidden = YES;
@@ -38,6 +38,10 @@
     self.magicView.bubbleSize = CGSizeMake(60, 30);
 
     [self generateTestData];
+    
+    self.magicView.headerHidden = NO;
+    
+    self.magicView.footerHidden = NO;
 }
 
 

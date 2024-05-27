@@ -81,7 +81,7 @@
         self.magicView.navigationView.hidden=YES;
         self.magicView.navigationHeight = 0;
     }else if(self.type==VTDemoTypeBottom){
-        self.magicView.positionStyle=VTPositionStyleBottom;
+        self.magicView.navPosition=VTNavPositionBottom;
         self.magicView.againstSafeAreaBottom =YES;
         self.magicView.headerHeight = 40;
 //        self.magicView.headerHidden = NO;
@@ -93,7 +93,7 @@
         [self configSeparatorView];
     }else if(self.type==VTDemoTypeBottomDivide){
         self.magicView.layoutStyle = VTLayoutStyleDivide;
-        self.magicView.positionStyle=VTPositionStyleBottom;
+        self.magicView.navPosition=VTNavPositionBottom;
         self.magicView.againstSafeAreaBottom =YES;
         self.magicView.sliderWidth=20;
         [self createRightNavBtn];
