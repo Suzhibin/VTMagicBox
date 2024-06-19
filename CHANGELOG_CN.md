@@ -2,11 +2,21 @@
 所有关于这个项目的重要修改都会记录在这个文件中。
 
 --- 
+## 2.0.2
+发布于2024年5月17日，周五
+### 更新
+- 增加MAC Catalyst 支持
+- 菜单居右侧布局`VTLayoutStyleRight 改为 VTLayoutStyleLast
+- againstSafeAreaBottom删除，功能由againstStatusBar兼容
+- 增加菜单自定义或使用第三方 方法setNavigationView 改为 setMenuView
+- 菜单自定义或使用第三方 和 自带布局 兼容优化
+##
+
 ## 2.0.1
 发布于2024年5月17日，周五
 ### 更新
 - 增加导航居左，居右布局`VTPositionStyleLeft`，`VTPositionStyleRight`的导航竖屏模式
-- 增加导航自定义或使用第三方 setMenuView：
+- 增加菜单自定义或使用第三方 setNavigationView：
 - 增加`navigationWidth`在 导航竖屏模式下有效
 - 增加`bubbleSize`设置气泡绝对大小。 适配导航竖屏模式
 - 增加 separatorWidth 分割线宽度设置。 适配导航竖屏模式
