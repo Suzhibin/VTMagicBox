@@ -2,8 +2,8 @@
 所有关于这个项目的重要修改都会记录在这个文件中。
 
 --- 
-## 2.0.2
-发布于2024年5月17日，周五
+## [2.0.2](https://github.com/Suzhibin/VTMagicBox/releases/tag/2.0.2)
+发布于2024年6月19日，周三
 ### 更新
 - 增加MAC Catalyst 支持
 - 菜单居右侧布局`VTLayoutStyleRight 改为 VTLayoutStyleLast
@@ -12,7 +12,7 @@
 - 菜单自定义或使用第三方 和 自带布局 兼容优化
 ##
 
-## 2.0.1
+## [2.0.1](https://github.com/Suzhibin/VTMagicBox/releases/tag/2.0.1)
 发布于2024年5月17日，周五
 ### 更新
 - 增加导航居左，居右布局`VTPositionStyleLeft`，`VTPositionStyleRight`的导航竖屏模式
@@ -24,7 +24,7 @@
 ##
 
 
-## 2.0.0
+## [2.0.0](https://github.com/Suzhibin/VTMagicBox/releases/tag/2.0.0)
 发布于2023年6月1日，周四
 ### 更新
 - VTMagicBox是VTMagic的一个分支
