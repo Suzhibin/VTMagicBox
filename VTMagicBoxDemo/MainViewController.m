@@ -128,7 +128,7 @@
         allVC.title=item.title;
         allVC.type=item.type;
         [self.navigationController pushViewController:allVC animated:YES];
-    }else if(item.type==VTDemoTypeMenuScreening){
+    }else if(item.type==VTDemoTypeMenuScreening||item.type==VTDemoTypeMenuBar){
         VTScreeningViewController *screeningVC= [[VTScreeningViewController alloc]init];
         screeningVC.title=item.title;
         [self.navigationController pushViewController:screeningVC animated:YES];
@@ -232,6 +232,7 @@
     return @[
             [VTTableItem itemWithTitle:@"Header使用" descr:@"可添加自定义view" type:VTDemoTypeHeader],
             [VTTableItem itemWithTitle:@"Footer使用" descr:@"可添加筛选按钮和自定义view，可调节子页面距离导航的距离" type:VTDemoTypeFooter],
+            [VTTableItem itemWithTitle:@"VTMenuBar单独使用" descr:@"VTMenuBar为View级别,可单独使用" type:VTDemoTypeMenuBar],
             [VTTableItem itemWithTitle:@"滑动监听" descr:@"使用监听代理，可以监听视图控制器 滑动事件" type:VTDemoTypeScroll],
             [VTTableItem itemWithTitle:@"WebView" descr:@"描述" type:VTDemoTypeWebView],
             [VTTableItem itemWithTitle:@"第一个menu固定左侧" descr:@"leftNavigatoinItem，navigationInset,同时定位到指定页面" type:VTDemoTypeFirstFixed],

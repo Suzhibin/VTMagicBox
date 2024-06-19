@@ -8,9 +8,10 @@
 
 #import "VTScreeningViewController.h"
 #import "UIButton+ZBKit.h"
-@interface VTScreeningViewController ()<VTMagicViewDataSource, VTMagicViewDelegate>
+#import <VTMagicBox/VTMenuBar.h>
+@interface VTScreeningViewController ()<VTMenuBarDatasource,VTMenuBarDelegate,UIScrollViewDelegate>
 
-@property (nonatomic, strong) VTMagicController *magicController;
+@property (nonatomic, strong) VTMenuBar *menuBar;
 @property (nonatomic, strong) NSArray *menuList;
 @property (nonatomic, assign) NSInteger index;
 @end
@@ -22,24 +23,19 @@
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = UIRectEdgeNone;//从导航下方布局
     self.view.backgroundColor = [UIColor whiteColor];
-    [self addChildViewController:self.magicController];
-    [self.view addSubview:self.magicController.view];
-    [self.view setNeedsUpdateConstraints];
 
-    [self.magicController.magicView deselectMenuItem];//取消菜单item的选中状态
-    
-    self.menuList = [NSArray arrayWithObjects:@"筛选1", @"筛选2",@"筛选3",@"筛选3",@"排序", nil];
-    [self.magicController.magicView reloadMenuTitles];
+    [self.view addSubview:self.menuBar];
+    [self.menuBar deselectMenuItem];
+    self.menuBar.layoutStyle = VTLayoutStyleDivide;
+    self.menuList = [NSArray arrayWithObjects:@"筛选1", @"筛选2",@"筛选3",@"筛选4",@"排序", nil];
+    self.menuBar.menuTitles =  self.menuList;
+    [self.menuBar reloadData];
 }
 
-
-#pragma mark - VTMagicViewDataSource
-- (NSArray<NSString *> *)menuTitlesForMagicView:(VTMagicView *)magicView {
-    return self.menuList;
-}
-- (UIButton *)magicView:(VTMagicView *)magicView menuItemAtIndex:(NSUInteger)itemIndex {
+#pragma mark - VTMenuBarDatasource
+- (UIButton *)menuBar:(VTMenuBar *)menuBar menuItemAtIndex:(NSUInteger)itemIndex{
     static NSString *itemIdentifier = @"itemIdentifier";
-    UIButton *menuItem = [magicView dequeueReusableItemWithIdentifier:itemIdentifier];
+    UIButton *menuItem = [menuBar dequeueReusableItemWithIdentifier:itemIdentifier];
     if (!menuItem) {
         menuItem = [UIButton buttonWithType:UIButtonTypeCustom];
         [menuItem setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -48,16 +44,18 @@
         [menuItem setImage:[UIImage imageNamed:@"grayArrow"] forState:UIControlStateNormal];
         [menuItem setImage:[UIImage imageNamed:@"orangeArrow"] forState:UIControlStateSelected];
     }
+    [menuItem setTitle:_menuList[itemIndex] forState:UIControlStateNormal];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [menuItem layoutButtonWithEdgeInsetsStyle:ZBUIButtonEdgeInsetsStyleRight space:2];
     });
-  
+    
     return menuItem;
 }
-- (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex{
-    return nil;
-}
-- (void)magicView:(VTMagicView *)magicView didSelectItemAtIndex:(NSUInteger)itemIndex{
+#pragma mark - VTMenuBarDelegate
+- (void)menuBar:(VTMenuBar *)menuBar didSelectItemAtIndex:(NSUInteger)itemIndex{
+    self.menuBar.currentIndex = itemIndex;
+    [self.menuBar updateSelectedItem:YES];
+    
     NSString *title=[self.menuList objectAtIndex:itemIndex];
     [self deselectMenuItemAtIndex:itemIndex];
     NSLog(@"点击:%ld",itemIndex);
@@ -77,40 +75,27 @@
 }
 #pragma mark - 菜单按钮 选中/取消选中
 - (void)deselectMenuItemAtIndex:(NSUInteger)itemIndex{
-    if (self.magicController.magicView.isDeselected) {
-        [self.magicController.magicView reselectMenuItem];
+    if (self.menuBar.isDeselected) {
+        [self.menuBar reselectMenuItem];
     }else{
         if(self.index==itemIndex){
-            [self.magicController.magicView deselectMenuItem];
+            [self.menuBar deselectMenuItem];
             //可隐藏或删除筛选视图
         }
     }
 }
-- (VTMagicController *)magicController {
-    if (!_magicController) {
-        _magicController = [[VTMagicController alloc] init];
-        _magicController.view.translatesAutoresizingMaskIntoConstraints = NO;
-        _magicController.magicView.navigationColor = [UIColor whiteColor];
-        _magicController.magicView.switchStyle = VTSwitchStyleDefault;
-        _magicController.magicView.sliderHidden=YES;
-        _magicController.magicView.layoutStyle = VTLayoutStyleDivide;
-        _magicController.magicView.navigationHeight = 44.f;
-        _magicController.magicView.dataSource = self;
-        _magicController.magicView.delegate = self;
+
+- (VTMenuBar *)menuBar {
+    if (!_menuBar) {
+        _menuBar = [[VTMenuBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+        _menuBar.backgroundColor = [UIColor whiteColor];
+        _menuBar.showsHorizontalScrollIndicator = NO;
+        _menuBar.showsVerticalScrollIndicator = NO;
+        _menuBar.clipsToBounds = YES;
+        _menuBar.scrollsToTop = NO;
+        _menuBar.datasource = self;
+        _menuBar.delegate = self;
     }
-    return _magicController;
-}
-- (void)updateViewConstraints {
-    UIView *magicView = _magicController.view;
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[magicView]-0-|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(magicView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[magicView]-0-|"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(magicView)]];
-    
-    [super updateViewConstraints];
+    return _menuBar;
 }
 @end

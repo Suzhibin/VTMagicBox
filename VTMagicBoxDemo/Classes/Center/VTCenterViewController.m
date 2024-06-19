@@ -51,7 +51,7 @@
 }
 - (UIView *)sbackgroundView{
     if(!_sbackgroundView){
-        _sbackgroundView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-80, 5, 160, self.sHeight)];
+        _sbackgroundView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-80, VTSTATUSBAR_HEIGHT+5, 160, self.sHeight)];
         _sbackgroundView.layer.borderWidth = 1;
         _sbackgroundView.layer.borderColor = [UIColor redColor].CGColor;
         _sbackgroundView.layer.masksToBounds = YES;

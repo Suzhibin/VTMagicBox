@@ -138,8 +138,8 @@ static const void *kVTMagicView = &kVTMagicView;
         CGFloat headerY = _headerHidden ? -_headerHeight : topY;
         _headerView.frame = CGRectMake(0, headerY, size.width, _headerHeight);
         
-        CGFloat navigationY = _headerHidden ? topY : CGRectGetMaxY(_headerView.frame);
-        CGFloat navigationH = _navigationHeight ;//+ (_headerHidden ? topY : 0);
+        CGFloat navigationY = _headerHidden ? 0 : CGRectGetMaxY(_headerView.frame);
+        CGFloat navigationH = _navigationHeight + (_headerHidden ? topY : 0);
         _navigationView.frame = CGRectMake(0, navigationY, size.width, navigationH);
         
         CGFloat separatorY = CGRectGetHeight(_navigationView.frame) - _separatorHeight;
@@ -149,7 +149,7 @@ static const void *kVTMagicView = &kVTMagicView;
         _footerView.frame = CGRectMake(0,footerY, size.width, _footerHeight);
         
         CGRect originalMenuFrame = _menuBar.frame;
-        CGFloat menuBarY = 0;//_headerHidden ? topY : 0;
+        CGFloat menuBarY = _headerHidden ? topY : 0;
         CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
         CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
         CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
@@ -171,7 +171,7 @@ static const void *kVTMagicView = &kVTMagicView;
             [_contentView resetPageFrames];
         }
     }else if (self.navPosition==VTNavPositionBottom){
-        CGFloat bottomY = _againstSafeAreaBottom ? VTSAFEAREA_BOTTOM_HEIGHT : 0;
+        CGFloat bottomY = _againstStatusBar ? VTSAFEAREA_BOTTOM_HEIGHT : 0;
 
         CGFloat contentH = size.height;// (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
 
@@ -179,7 +179,7 @@ static const void *kVTMagicView = &kVTMagicView;
         _footerView.frame = CGRectMake(0,footerY, size.width, _footerHeight);
 
         CGFloat navigationY = footerY-_navigationHeight ;//_footerHidden ? footerY-_navigationHeight-bottomY : footerY-_navigationHeight;
-        CGFloat navigationH = _navigationHeight;// + (_footerHidden ? bottomY : 0);
+        CGFloat navigationH = _navigationHeight + (_footerHidden ? bottomY : 0);
         _navigationView.frame = CGRectMake(0,navigationY, size.width, navigationH);
         
         _headerView.frame = CGRectMake(0, navigationY-_headerHeight, size.width, _headerHeight);
@@ -188,7 +188,6 @@ static const void *kVTMagicView = &kVTMagicView;
         _separatorView.frame = CGRectMake(0, separatorY, size.width, _separatorHeight);
      
         CGRect originalMenuFrame = _menuBar.frame;
-//        CGFloat menuBarY = _headerHidden ? contentH : 0;
         CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
         CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
         CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
@@ -207,7 +206,7 @@ static const void *kVTMagicView = &kVTMagicView;
         CGFloat headerH = _headerHidden ? 0 : _headerHeight;
         CGFloat footerH = _footerHidden ? 0 : _footerHeight;
  
-        _contentView.frame = CGRectMake(0, topY, size.width, contentH - (navigationH + headerH + footerH + _contentViewOffset + topY + bottomY));
+        _contentView.frame = CGRectMake(0, topY, size.width, contentH - (navigationH + headerH + footerH + _contentViewOffset + topY));
         if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
             [_contentView resetPageFrames];
         }
@@ -218,8 +217,8 @@ static const void *kVTMagicView = &kVTMagicView;
         CGFloat navigationW = _navigationWidth;
         _headerView.frame = CGRectMake(0, headerY, navigationW, _headerHeight);
         
-        CGFloat navigationY = _headerHidden ? topY : CGRectGetMaxY(_headerView.frame);
-        CGFloat navigationH = size.height - Hheight- FHeight - topY;
+        CGFloat navigationY = _headerHidden ? 0 : CGRectGetMaxY(_headerView.frame);
+        CGFloat navigationH = size.height - Hheight- FHeight-topY;
         _navigationView.frame = CGRectMake(0, navigationY, navigationW, navigationH);
         
         CGFloat separatorX = CGRectGetWidth(_navigationView.frame) - _separatorWidth;
@@ -229,11 +228,8 @@ static const void *kVTMagicView = &kVTMagicView;
         _footerView.frame = CGRectMake(0,footerY, navigationW, _footerHeight);
         
         CGRect originalMenuFrame = _menuBar.frame;
-        CGFloat menuBarY =  0;
-//        CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
-//        CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
-//        CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
-        _menuBar.frame = CGRectMake(0, menuBarY, navigationW, navigationH);
+        CGFloat menuBarY = _headerHidden ? topY : 0;
+        _menuBar.frame = CGRectMake(0, menuBarY, navigationW, navigationH-menuBarY);
         if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
             [_menuBar resetItemFrames];
             [self updateMenuBarState];
@@ -258,21 +254,18 @@ static const void *kVTMagicView = &kVTMagicView;
         CGFloat navigationW = _navigationWidth;
         _headerView.frame = CGRectMake(size.width-navigationW, headerY, navigationW, _headerHeight);
         
-        CGFloat navigationY = _headerHidden ? topY : CGRectGetMaxY(_headerView.frame);
-        CGFloat navigationH = size.height - Hheight- FHeight - topY;
+        CGFloat navigationY = _headerHidden ? 0 : CGRectGetMaxY(_headerView.frame);
+        CGFloat navigationH = size.height - Hheight- FHeight;
         _navigationView.frame = CGRectMake(size.width-navigationW, navigationY, navigationW, navigationH);
         
         _separatorView.frame = CGRectMake(0, 0, _separatorWidth, _separatorHeight);
-        //#warning andi添加footerView 布局
+        
         CGFloat footerY = CGRectGetMaxY(_navigationView.frame);
         _footerView.frame = CGRectMake(size.width-navigationW,footerY, navigationW, _footerHeight);
         
         CGRect originalMenuFrame = _menuBar.frame;
-        CGFloat menuBarY =  0;
-//        CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
-//        CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
-//        CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
-        _menuBar.frame = CGRectMake(0, menuBarY, navigationW, navigationH);
+        CGFloat menuBarY = _headerHidden ? topY : 0;
+        _menuBar.frame = CGRectMake(0, menuBarY, navigationW, navigationH-menuBarY);
         if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
             [_menuBar resetItemFrames];
             [self updateMenuBarState];
@@ -300,15 +293,30 @@ static const void *kVTMagicView = &kVTMagicView;
 
 - (void)updateFrameForLeftNavigationItem {
     CGRect leftFrame = _leftNavigatoinItem.bounds;
-    leftFrame.origin.y=0;
-    leftFrame.size.height=_navigationHeight;
+    CGFloat y = 0;
+    if (self.navPosition==VTNavPositionBottom){
+        y = CGRectGetMinY(_navigationView.bounds);
+        leftFrame.origin.y = y ;
+    }else{
+        y = CGRectGetMaxY(_navigationView.bounds);
+        leftFrame.origin.y = y - _navigationHeight;
+    }
+    leftFrame.size.height = _navigationHeight;
     _leftNavigatoinItem.frame = leftFrame;
 }
 
 - (void)updateFrameForRightNavigationItem {
     CGRect rightFrame = _rightNavigatoinItem.bounds;
     rightFrame.origin.x = _navigationView.frame.size.width - rightFrame.size.width;
-    rightFrame.size.height=_navigationHeight;
+    CGFloat y = 0;
+    if (self.navPosition==VTNavPositionBottom){
+        y = CGRectGetMinY(_navigationView.bounds);
+        rightFrame.origin.y = y ;
+    }else{
+        y = CGRectGetMaxY(_navigationView.bounds);
+        rightFrame.origin.y = y - _navigationHeight;
+    }
+    rightFrame.size.height = _navigationHeight;
     _rightNavigatoinItem.frame = rightFrame;
 }
 
@@ -586,11 +594,11 @@ static const void *kVTMagicView = &kVTMagicView;
         CGFloat menuHeight = _menuBar.frame.size.height;
         CGFloat offsetY = _menuBar.contentOffset.y;
         CGFloat menuOffsetY = offsetY;
-        if (itemMaxY < menuOffsetY) {// 位于屏幕下
+        if (itemMaxY < menuOffsetY) {
             updateBlock(_currentPage - _previewItems);
             offsetY = itemMinY - menuHeight;
             offsetY = offsetY < 0 ?: 0;
-        } else if (menuOffsetY + menuHeight < itemMinY) {// 位于屏幕右侧
+        } else if (menuOffsetY + menuHeight < itemMinY) {
             updateBlock(_currentPage + _previewItems);
             offsetY = itemMaxY - menuHeight;
         } else {
@@ -622,9 +630,15 @@ static const void *kVTMagicView = &kVTMagicView;
         }
         
         if (_displayCentered) {
+            CGFloat topY = 0;
+        #if TARGET_OS_MACCATALYST
+            topY = _againstStatusBar ? 36 : 0;
+        #else
+            topY = _againstStatusBar ? VTSTATUSBAR_HEIGHT : 0;
+        #endif
             CGRect currentFrme = [_menuBar itemFrameAtIndex:_currentPage];
             CGFloat itemPoint = CGRectGetMidY(currentFrme);
-            offsetY = itemPoint - CGRectGetHeight(self.bounds)/2;
+            offsetY = itemPoint - CGRectGetHeight(self.bounds)/2+topY;
             CGFloat menuHeight = CGRectGetHeight(_menuBar.frame);
             CGFloat maxOffset = _menuBar.contentSize.height - menuHeight;
             offsetY = maxOffset < offsetY ? maxOffset : offsetY;
@@ -1310,7 +1324,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     }
     return _headerView;
 }
-//#warning andi添加footerView
+
 - (UIView *)footerView {
     if (!_footerView) {
         _footerView = [[UIView alloc] init];
@@ -1370,10 +1384,30 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     [_navigationView sendSubviewToBack:navigationSubview];
 }
 
-- (void)setNavigationView:(UIView *)navigationView{
-    [_navigationView removeFromSuperview];
-    _navigationView=navigationView;
-    [self addSubview:navigationView];
+- (void)setMenuView:(UIView *)view{
+    [_menuBar removeFromSuperview];
+    CGRect viewFrame = view.bounds;
+    CGFloat y = 0;
+    CGFloat topY = 0;
+#if TARGET_OS_MACCATALYST
+    topY = _againstStatusBar ? 36 : 0;
+#else
+    topY = _againstStatusBar ? VTSTATUSBAR_HEIGHT : 0;
+#endif
+     if (_navPosition==VTNavPositionBottom){
+        y = CGRectGetMinY(_navigationView.bounds);
+        viewFrame.origin.y = y;
+    }else if (_navPosition==VTNavPositionLeft){
+        viewFrame.origin.y = topY;
+        viewFrame.size.height = view.frame.size.height - topY;
+    }else if (_navPosition==VTNavPositionRight){
+        viewFrame.origin.y = topY;
+        viewFrame.size.height = view.frame.size.height - topY;
+    }else{
+        viewFrame.origin.y =  _navigationHeight+topY-view.frame.size.height;
+    }
+    view.frame = viewFrame;
+    [_navigationView addSubview:view];
 }
 
 - (VTMenuBar *)menuBar {
@@ -1563,11 +1597,6 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     [self setNeedsLayout];
 }
 
-- (void)setAgainstSafeAreaBottom:(BOOL)againstSafeAreaBottom{
-    _againstSafeAreaBottom = againstSafeAreaBottom;
-    [self setNeedsLayout];
-}
-
 - (void)setHeaderHidden:(BOOL)headerHidden {
     _headerHidden = headerHidden;
     _headerView.hidden = headerHidden;
@@ -1583,7 +1612,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
         self.headerView.hidden = self.headerHidden;
     }];
 }
-//#warning andi添加footerView 是否隐藏方法
+
 - (void)setFooterHidden:(BOOL)footerHidden{
     _footerHidden=footerHidden;
     _footerView.hidden=footerHidden;

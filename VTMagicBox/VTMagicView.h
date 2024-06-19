@@ -227,11 +227,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setNavigationSubview:(UIView *)navigationSubview;
 
 /**
- *  自定义navigationView视图，使用后会清除自带导航菜单。
+ *  自定义MenuBar视图，使用后会清除自带导航菜单。
  *  新导航可调用 switchToPage: animated 方法进行内容视图的切换
  *  内容视图可以与自定义视图 使用 magicView: viewDidAppear:方法进行绑定
  */
-- (void)setNavigationView:(UIView *)navigationView;
+- (void)setMenuView:(UIView *)view;
 
 #pragma mark - bool configurations
 /****************************************bool configurations****************************************/
@@ -275,14 +275,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly, getter=isDeselected) BOOL deselected;
 
 /**
- *  导航栏是否紧贴系统状态栏，即是否需要为状态栏留出区域，默认NO
+ *  顶部导航栏是否紧贴系统状态栏(导航位置为VTNavPositionDefault、VTNavPositionLeft、VTNavPositionRight)，即是否需要为状态栏留出区域，默认NO
+ *  导航栏位于底部时(导航位置为VTNavPositionBottom)是否紧贴底部，即是否需要为底部留出安全区域，默认NO
  */
 @property (nonatomic, assign, getter=isAgainstStatusBar) BOOL againstStatusBar;
-
-/**
- *  导航栏位于底部时是否紧贴底部，即是否需要为底部留出安全区域，默认NO
- */
-@property (nonatomic, assign, getter=isAgainstSafeAreaBottom) BOOL againstSafeAreaBottom;
 
 /**
  *  是否隐藏头部组件，默认YES
@@ -443,7 +439,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat headerHeight;
 
 /**
- *  尾部组件的高度默认44
+ *  尾部组件的高度默认64
  */
 @property (nonatomic, assign) CGFloat footerHeight;
 

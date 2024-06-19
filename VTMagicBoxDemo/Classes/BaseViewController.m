@@ -90,16 +90,7 @@
     [self generateTestDataArrCount:24];
 }
 - (void)generateTestDataArrCount:(NSInteger)arrCount{
-//    NSString *title = @"推荐";
     NSMutableArray *menuList = [[NSMutableArray alloc] initWithCapacity:25];
-//    MenuInfo *menu =[MenuInfo menuInfoWithTitle:title];
-//    menu.color=[self randomColor];
-//    NSMutableArray *listArr = [NSMutableArray array];
-//    for (int j = 0; j <= 10; j ++) {
-//        [listArr  addObject:[NSString stringWithFormat:@"%@ 具体内容",menu.title]];
-//    }
-//    menu.listArr =listArr;
-//    [menuList addObject:menu];
     NSString *title;
     for (int index = 0; index < arrCount; index++) {
         if(index==0){

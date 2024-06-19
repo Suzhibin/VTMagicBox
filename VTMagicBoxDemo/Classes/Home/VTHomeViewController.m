@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong)  UIButton *button4;
 @property (nonatomic, assign)  CGFloat barHeight;
-@property (nonatomic, strong)  UIView *tagView;
+@property (nonatomic, strong)  UIView *searchView;
 @property (nonatomic, strong)  UIButton *leftButton;
 @end
 
@@ -27,7 +27,7 @@
     [super viewDidLayoutSubviews];
     NSLog(@"widthSubviews:%.2f",self.view.frame.size.width);
     self.leftButton.frame = CGRectMake(20, self.barHeight, 44, 44);
-    self.tagView.frame =CGRectMake(80, self.barHeight,self.view.frame.size.width-160 , 44);
+    self.searchView.frame =CGRectMake(80, self.barHeight,self.view.frame.size.width-160 , 44);
 }
 
 - (void)viewDidLoad {
@@ -48,8 +48,8 @@
     //    self.magicView.switchEnabled = YES;
     //    self.magicView.separatorHidden = NO;
     //    self.magicView.acturalSpacing = 10;
-    self.magicView.headerHeight = self.barHeight+40;
-    self.magicView.navigationHeight = 44;
+//    self.magicView.headerHeight = self.barHeight+40;
+//    self.magicView.navigationHeight = 44;
  
     self.magicView.displayCentered = YES;
     //    self.magicView.sliderExtension = 5.0;
@@ -64,7 +64,8 @@
     }
     if(self.type==VTDemoTypeNormal){
         self.magicView.againstStatusBar = YES;
-        self.magicView.headerView.backgroundColor=[UIColor greenColor];
+//        self.magicView.headerHidden = NO;
+//        self.magicView.headerView.backgroundColor=[UIColor greenColor];
        [self configSeparatorView];
     }else if (self.type==VTDemoTypeHeader){
         self.magicView.againstStatusBar = NO;
@@ -82,7 +83,7 @@
         self.magicView.navigationHeight = 0;
     }else if(self.type==VTDemoTypeBottom){
         self.magicView.navPosition=VTNavPositionBottom;
-        self.magicView.againstSafeAreaBottom =YES;
+        self.magicView.againstStatusBar =YES;
         self.magicView.headerHeight = 40;
 //        self.magicView.headerHidden = NO;
         self.magicView.headerView.backgroundColor=[UIColor greenColor];
@@ -91,14 +92,17 @@
         self.magicView.footerView.backgroundColor=[UIColor orangeColor];
         self.magicView.sliderWidth=20;
         [self configSeparatorView];
+        self.magicView.navigationView.backgroundColor = [UIColor redColor];
+        UIImageView *navImage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.magicView.navigationHeight+kSafeBottomHeight)];
+        navImage.image=[UIImage imageNamed:@"bg"];
+        [self.magicView setNavigationSubview:navImage];
     }else if(self.type==VTDemoTypeBottomDivide){
         self.magicView.layoutStyle = VTLayoutStyleDivide;
         self.magicView.navPosition=VTNavPositionBottom;
-        self.magicView.againstSafeAreaBottom =YES;
+        self.magicView.againstStatusBar =YES;
         self.magicView.sliderWidth=20;
         [self createRightNavBtn];
     }else if(self.type==VTDemoTypeAlphaNav){
-//        self.magicView.againstStatusBar = YES;
         self.magicView.navigationColor = [UIColor clearColor];
         self.magicView.contentViewOffset = -(self.barHeight+60+44);
         self.magicView.separatorHidden=YES;
@@ -111,9 +115,9 @@
         self.leftButton=[self createleftButton];
         [self.magicView.headerView addSubview:self.leftButton];
     
-        self.tagView=[[UIView alloc]init];
-        self.tagView.backgroundColor=[[UIColor whiteColor]colorWithAlphaComponent:0.4];
-        [self.magicView.headerView addSubview:self.tagView];
+        self.searchView=[[UIView alloc]init];
+        self.searchView.backgroundColor=[[UIColor whiteColor]colorWithAlphaComponent:0.4];
+        [self.magicView.headerView addSubview:self.searchView];
     }
     
     [self addNotification];
@@ -125,7 +129,7 @@
     NSLog(@"subscribeAction");
     // against status bar or not
     if(self.type==VTDemoTypeBottom){
-        self.magicView.againstSafeAreaBottom = !self.magicView.againstSafeAreaBottom;
+        self.magicView.againstStatusBar = !self.magicView.againstStatusBar;
         [self.magicView setFooterHidden:!self.magicView.isFooterHidden duration:0.35];
         [self.magicView setHeaderHidden:!self.magicView.isHeaderHidden duration:0.35];
     }else  if(self.type==VTDemoTypeFooter){
@@ -208,6 +212,8 @@
         if (!viewController) {
             viewController = [[ViewController alloc] init];
         }
+        NSLog(@"pageIndex:%ld",pageIndex);
+        viewController.index = pageIndex;
         return viewController;
         
     }else{

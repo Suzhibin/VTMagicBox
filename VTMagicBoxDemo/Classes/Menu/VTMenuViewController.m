@@ -80,6 +80,14 @@
     NSInteger index = arc4random() %12;
     self.navImage.image=[UIImage imageNamed:[NSString stringWithFormat:@"image_%ld",index]];
 }
+- (void)buttonAction2:(UIButton *)sender{
+    if(self.magicView.navPosition==VTNavPositionBottom){
+        self.magicView.navPosition=VTNavPositionDefault;
+    }else{
+        self.magicView.navPosition=VTNavPositionBottom;
+    }
+    [self.magicView reloadData];
+}
 - (void)createFooterView{
     self.magicView.footerHeight = 44;
     self.magicView.footerHidden=NO;
@@ -90,6 +98,14 @@
     [button1 setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateNormal];
     button1.titleLabel.font = [UIFont systemFontOfSize:15];
     [self.magicView.footerView addSubview:button1];
+    
+    UIButton *button2 = [[UIButton alloc] initWithFrame:CGRectMake(150, 6, 100, 30)];
+    [button2 addTarget:self action:@selector(buttonAction2:) forControlEvents:UIControlEventTouchUpInside];
+    [button2 setTitle:@"底部布局" forState:UIControlStateNormal];
+    [button2 setTitleColor:RGBACOLOR(169, 37, 37, 0.6) forState:UIControlStateSelected];
+    [button2 setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateNormal];
+    button2.titleLabel.font = [UIFont systemFontOfSize:15];
+    [self.magicView.footerView addSubview:button2];
 }
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -189,7 +205,16 @@
     NSLog(@"subscribeAction");
     // against status bar or not
 //    self.magicView.againstStatusBar = !self.magicView.againstStatusBar;
-    [self.magicView setHeaderHidden:!self.magicView.isHeaderHidden duration:0.35];
+  
+    if(self.type==VTDemoTypeMenuNavigationImage){
+        if(self.magicView.navPosition==VTNavPositionBottom){
+            [self.magicView setFooterHidden:!self.magicView.isFooterHidden duration:0.35];
+        }else{
+            [self.magicView setHeaderHidden:!self.magicView.isHeaderHidden duration:0.35];
+        }
+    }else{
+        [self.magicView setHeaderHidden:!self.magicView.isHeaderHidden duration:0.35];
+    }
 }
 
 #pragma mark - functional methods

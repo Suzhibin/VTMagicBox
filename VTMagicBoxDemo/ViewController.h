@@ -9,6 +9,6 @@
 
 @interface ViewController : UIViewController
 
-
+@property(nonatomic,assign)NSInteger index;
 @end
 

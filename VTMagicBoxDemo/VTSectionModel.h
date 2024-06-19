@@ -53,6 +53,7 @@ typedef NS_ENUM(NSInteger, VTDemoType){
     VTDemoTypeMenuGIf,//某个栏目带gif
     VTDemoTypeHeader,//头部布局
     VTDemoTypeFooter,//尾部布局
+    VTDemoTypeMenuBar,//使用VTMenuBar
     VTDemoTypeWebView,//Web
     VTDemoTypeFirstFixed,//第一个menu固定左侧
     VTDemoTypeBindListLeft,//左侧与列表绑定

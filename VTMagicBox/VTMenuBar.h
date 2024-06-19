@@ -125,7 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  自定义item高度，默认44，当设置改属性时，itemSpacing的设置无效
  *
- *  @warning 该属性在VTPositionStyleLeft样式下有效
+ *  @warning 该属性在VTPositionStyleLeft,VTNavPositionRight样式下有效
  */
 @property (nonatomic, assign) CGFloat itemHeight;
 

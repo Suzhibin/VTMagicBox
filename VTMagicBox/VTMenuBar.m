@@ -321,7 +321,7 @@ static NSInteger const kVTMenuBarTag = 1000;
         [_frameList addObject:[NSValue valueWithCGRect:frame]];
     }
 }
-// 居右侧布局下重置frame
+// 居尾部布局下重置frame
 - (void)resetFramesForLast{
     [self resetFramesForDefault];
     CGFloat itemOffset = 0;

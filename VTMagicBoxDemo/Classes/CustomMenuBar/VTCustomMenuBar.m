@@ -107,7 +107,7 @@
         _collectionView.delegate = self;
 //        _collectionView.scrollEnabled = NO;
         _collectionView.allowsSelection = YES;
-        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.backgroundColor = [UIColor clearColor];
         _collectionView.showsHorizontalScrollIndicator = NO;
         [_collectionView registerClass:[VTCustomMenuBarCell class] forCellWithReuseIdentifier:NSStringFromClass([VTCustomMenuBarCell class])];
     }

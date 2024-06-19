@@ -31,7 +31,6 @@
     VTNavigationController *nc=[[VTNavigationController alloc]initWithRootViewController:mainVC];
     self.window.rootViewController =nc;
 #else
-//    VTCustomMenuBarViewController *mainVC=[[VTCustomMenuBarViewController alloc]init];
     MainViewController *mainVC=[[MainViewController alloc]init];
     VTNavigationController *nc=[[VTNavigationController alloc]initWithRootViewController:mainVC];
     self.window.rootViewController =nc;

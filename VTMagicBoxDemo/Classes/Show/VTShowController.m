@@ -16,21 +16,21 @@
 @implementation VTShowController
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
-- (void)viewDidDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [self stopTimer];
 }
 - (void)dealloc {
-   
+    NSLog(@"释放%s",__func__);
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.magicView.displayCentered = YES;
     self.magicView.againstStatusBar = YES;
-    self.magicView.againstSafeAreaBottom = YES;
+//    self.magicView.againstSafeAreaBottom = YES;
     //    self.edgesForExtendedLayout = UIRectEdgeAll;
     self.view.backgroundColor = [UIColor whiteColor];
     self.magicView.separatorColor = [UIColor brownColor];
@@ -56,8 +56,8 @@
     
     self.methods=@[NSStringFromSelector(@selector(action0)), NSStringFromSelector(@selector(action1)), NSStringFromSelector(@selector(action2)), NSStringFromSelector(@selector(action3)), NSStringFromSelector(@selector(action4)), NSStringFromSelector(@selector(action5)), NSStringFromSelector(@selector(action6)), NSStringFromSelector(@selector(action7)), NSStringFromSelector(@selector(action8)), NSStringFromSelector(@selector(action9)), NSStringFromSelector(@selector(action10)), NSStringFromSelector(@selector(action11)), NSStringFromSelector(@selector(action12)), NSStringFromSelector(@selector(action13)),NSStringFromSelector(@selector(action14)),NSStringFromSelector(@selector(action15))];
     self.infoLabel.text=@"准备展示～～";
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerUpdate) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timerUpdate) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     
 };
 - (void)timerUpdate{
@@ -136,13 +136,14 @@
         self.magicView.againstStatusBar = YES;
     }else{
         self.magicView.navPosition=VTNavPositionBottom;
-        self.magicView.againstSafeAreaBottom = YES;
+        self.magicView.againstStatusBar = YES;
     }
     if(self.magicView.navPosition==VTNavPositionBottom){
         self.infoLabel.text=@"导航位置底部";
     }else{
         self.infoLabel.text=@"导航位置正常";
     }
+    self.magicView.navigationInset=UIEdgeInsetsMake(0, 0, 0, 0);
     [self.magicView reloadData];
 }
 - (void)action4{
