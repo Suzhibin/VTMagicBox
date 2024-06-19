@@ -27,6 +27,8 @@
 - 增加`contentHorizontalAlignment`调整菜单按钮对齐，应对设计师的考验
 ##
 
+### 以上为VTMagicBox 更新内容
+### 以下为VTMagic 更新内容
 
 ## [1.2.4](https://github.com/tianzhuo112/VTMagic/releases/tag/1.2.4)
 发布于2016年八月10日，周三
