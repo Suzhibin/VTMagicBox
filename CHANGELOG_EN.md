@@ -20,7 +20,7 @@ Released on Thursday, May 17, 2024
 - Added `navigationWidth` to navigation in portrait mode
 - Added `bubbleSize` to set absolute bubble size. Adapted to navigation portrait mode
 - Added `separatorWidth` separatorWidth setting. Adapted to navigation portrait mode
-- Increases itemHeight menu height. Adapted to navigation portrait mode
+- Increases `itemHeight` menu height. Adapted to navigation portrait mode
 ##
 
 ## [2.0.0](https://github.com/Suzhibin/VTMagicBox/releases/tag/2.0.0) (01/06/2023)
