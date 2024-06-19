@@ -15,11 +15,11 @@ Released on Thursday, May 17, 2024
 ## [2.0.1](https://github.com/Suzhibin/VTMagicBox/releases/tag/2.0.1) (17/05/2024)
 Released on Thursday, May 17, 2024
 ### changed
-- Added navigation portrait mode of left and right layout 'VTPositionStyleLeft', 'VTPositionStyleRight'
+- Added navigation portrait mode of left and right layout `VTPositionStyleLeft`, `VTPositionStyleRight`
 - Add menu customization or use third party `setNavigationView`
-- Added 'navigationWidth' to navigation in portrait mode
-- Added 'bubbleSize' to set absolute bubble size. Adapted to navigation portrait mode
-- Added separatorWidth separatorWidth setting. Adapted to navigation portrait mode
+- Added `navigationWidth` to navigation in portrait mode
+- Added `bubbleSize` to set absolute bubble size. Adapted to navigation portrait mode
+- Added `separatorWidth` separatorWidth setting. Adapted to navigation portrait mode
 - Increases itemHeight menu height. Adapted to navigation portrait mode
 ##
 
