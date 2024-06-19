@@ -6,9 +6,9 @@
 发布于2024年6月19日，周三
 ### 更新
 - 增加MAC Catalyst 支持
-- 菜单居右侧布局`VTLayoutStyleRight 改为 VTLayoutStyleLast
-- againstSafeAreaBottom删除，功能由againstStatusBar兼容
-- 增加菜单自定义或使用第三方 方法setNavigationView 改为 setMenuView
+- 菜单居右侧布局`VTLayoutStyleRight` 改为 `VTLayoutStyleLast`
+- `againstSafeAreaBottom`删除，功能由`againstStatusBar`兼容
+- 增加菜单自定义或使用第三方 方法`setNavigationView` 改为 `setMenuView`
 - 菜单自定义或使用第三方 和 自带布局 兼容优化
 ##
 
