@@ -6,9 +6,9 @@ All notable changes to this project will be documented in this file.
 Released on Thursday, May 17, 2024
 ### changed
 - Added MAC Catalyst support
-- Menu on the right side of the layout 'VTLayoutStyleRight' changed to VTLayoutStyleLast
-- againstSafeAreaBottom Deletes the againstStatusBar function
-- Add menu customization or use the third party method setNavigationView to change to setMenuView
+- Menu on the right side of the layout 'VTLayoutStyleRight' changed to `VTLayoutStyleLast`
+- `againstSafeAreaBottom` Deletes the `againstStatusBar` function
+- Add menu customization or use the third party method `setNavigationView` to change to `setMenuView`
 - Menu customization or compatible optimization using third party and built-in layout
 ##
 
@@ -16,7 +16,7 @@ Released on Thursday, May 17, 2024
 Released on Thursday, May 17, 2024
 ### changed
 - Added navigation portrait mode of left and right layout 'VTPositionStyleLeft', 'VTPositionStyleRight'
-- Add menu customization or use third party setNavigationView:
+- Add menu customization or use third party `setNavigationView`
 - Added 'navigationWidth' to navigation in portrait mode
 - Added 'bubbleSize' to set absolute bubble size. Adapted to navigation portrait mode
 - Added separatorWidth separatorWidth setting. Adapted to navigation portrait mode
