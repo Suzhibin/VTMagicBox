@@ -2,8 +2,28 @@
 All notable changes to this project will be documented in this file.
 
 --- 
-## 2.0.0
-    (01/06/2023)
+## [2.0.2](https://github.com/Suzhibin/VTMagicBox/releases/tag/2.0.2) (19/06/2024)
+The film opens on Thursday, May 17, 2024
+### changed
+- Added MAC Catalyst support
+- Menu on the right side of the layout 'VTLayoutStyleRight' changed to VTLayoutStyleLast
+- againstSafeAreaBottom Deletes the againstStatusBar function
+- Add menu customization or use the third party method setNavigationView to change to setMenuView
+- Menu customization or compatible optimization using third party and built-in layout
+##
+
+## [2.0.1](https://github.com/Suzhibin/VTMagicBox/releases/tag/2.0.1) (17/05/2024)
+The film opens on Thursday, May 17, 2024
+### changed
+- Added navigation portrait mode of left and right layout 'VTPositionStyleLeft', 'VTPositionStyleRight'
+- Add menu customization or use third party setNavigationView:
+- Added 'navigationWidth' to navigation in portrait mode
+- Added 'bubbleSize' to set absolute bubble size. Adapted to navigation portrait mode
+- Added separatorWidth separatorWidth setting. Adapted to navigation portrait mode
+- Increases itemHeight menu height. Adapted to navigation portrait mode
+##
+
+## [2.0.0](https://github.com/Suzhibin/VTMagicBox/releases/tag/2.0.0) (01/06/2023)
 Released on Thursday, June 1st, 2023
 ### changed
 - VTMagicBox is a fork of VTMagic
