@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 --- 
 ## [2.0.2](https://github.com/Suzhibin/VTMagicBox/releases/tag/2.0.2) (19/06/2024)
-The film opens on Thursday, May 17, 2024
+Released on Thursday, May 17, 2024
 ### changed
 - Added MAC Catalyst support
 - Menu on the right side of the layout 'VTLayoutStyleRight' changed to VTLayoutStyleLast
@@ -13,7 +13,7 @@ The film opens on Thursday, May 17, 2024
 ##
 
 ## [2.0.1](https://github.com/Suzhibin/VTMagicBox/releases/tag/2.0.1) (17/05/2024)
-The film opens on Thursday, May 17, 2024
+Released on Thursday, May 17, 2024
 ### changed
 - Added navigation portrait mode of left and right layout 'VTPositionStyleLeft', 'VTPositionStyleRight'
 - Add menu customization or use third party setNavigationView:
