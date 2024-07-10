@@ -218,7 +218,7 @@ static const void *kVTMagicView = &kVTMagicView;
         _headerView.frame = CGRectMake(0, headerY, navigationW, _headerHeight);
         
         CGFloat navigationY = _headerHidden ? 0 : CGRectGetMaxY(_headerView.frame);
-        CGFloat navigationH = size.height - Hheight- FHeight-topY;
+        CGFloat navigationH = size.height - Hheight- FHeight;
         _navigationView.frame = CGRectMake(0, navigationY, navigationW, navigationH);
         
         CGFloat separatorX = CGRectGetWidth(_navigationView.frame) - _separatorWidth;
