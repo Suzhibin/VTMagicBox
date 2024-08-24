@@ -34,7 +34,7 @@ VTMagicBox is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile, and then import <VTMagicBox/VTMagic.h>:
 
 ```ruby
-pod 'VTMagicBox', :git => 'https://github.com/Suzhibin/VTMagicBox.git'
+pod 'VTMagicBox'
 ```
 
 ### Manually
