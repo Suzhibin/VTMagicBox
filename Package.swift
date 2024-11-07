@@ -18,7 +18,7 @@ let package = Package(
         .target(
             name: "VTMagicBox",
             path: "VTMagicBox",
-            publicHeadersPath: "")
+            publicHeadersPath: "../VTMagicBox")
     
     ]
 )
