@@ -18,7 +18,9 @@ let package = Package(
         .target(
             name: "VTMagicBox",
             path: "VTMagicBox",
-            publicHeadersPath: "../VTMagicBox")
+            publicHeadersPath: "./VTMagicBox")
     
-    ]
+    ],
+    // 支持的Swift版本
+    swiftLanguageVersions: [.v5]
 )
