@@ -275,10 +275,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly, getter=isDeselected) BOOL deselected;
 
 /**
- *  顶部导航栏是否紧贴系统状态栏(导航位置为VTNavPositionDefault、VTNavPositionLeft、VTNavPositionRight)，即是否需要为状态栏留出区域，默认NO
- *  导航栏位于底部时(导航位置为VTNavPositionBottom)是否紧贴底部，即是否需要为底部留出安全区域，默认NO
+ *  顶部导航栏是否紧贴系统状态栏即是否需要为状态栏留出区域，默认NO
  */
 @property (nonatomic, assign, getter=isAgainstStatusBar) BOOL againstStatusBar;
+
+/**
+    导航栏位于底部 VTNavPositionBottom样式下
+    是否需要为底部留出安全区域，默认NO
+ */
+@property (nonatomic, assign, getter=isSafeBottomBar) BOOL safeBottomBar;
 
 /**
  *  是否隐藏头部组件，默认YES

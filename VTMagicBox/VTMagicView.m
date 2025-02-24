@@ -171,7 +171,7 @@ static const void *kVTMagicView = &kVTMagicView;
             [_contentView resetPageFrames];
         }
     }else if (self.navPosition==VTNavPositionBottom){
-        CGFloat bottomY = _againstStatusBar ? VTSAFEAREA_BOTTOM_HEIGHT : 0;
+        CGFloat bottomY = _safeBottomBar ? VTSAFEAREA_BOTTOM_HEIGHT : 0;
 
         CGFloat contentH = size.height;// (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
 
@@ -1594,6 +1594,11 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 
 - (void)setAgainstStatusBar:(BOOL)againstStatusBar {
     _againstStatusBar = againstStatusBar;
+    [self setNeedsLayout];
+}
+
+- (void)setSafeBottomBar:(BOOL)safeBottomBar{
+    _safeBottomBar = safeBottomBar;
     [self setNeedsLayout];
 }
 
