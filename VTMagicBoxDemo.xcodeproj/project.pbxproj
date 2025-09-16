@@ -1,0 +1,882 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		44035DFDD42AA66513423CD2 /* Pods_VTMagicBoxDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6290868EE3386FDC7B52C138 /* Pods_VTMagicBoxDemo.framework */; };
+		9F05BD792AEBBBCF00D0F5BA /* VTShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F05BD782AEBBBCF00D0F5BA /* VTShowController.m */; };
+		9F502CF32BF60B5A002073D1 /* VTVerticalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F502CF22BF60B5A002073D1 /* VTVerticalViewController.m */; };
+		9F77720C2A28705500560144 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77720B2A28705500560144 /* AppDelegate.m */; };
+		9F77720F2A28705500560144 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77720E2A28705500560144 /* SceneDelegate.m */; };
+		9F7772122A28705500560144 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772112A28705500560144 /* ViewController.m */; };
+		9F7772152A28705500560144 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7772132A28705500560144 /* Main.storyboard */; };
+		9F7772172A28705700560144 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F7772162A28705700560144 /* Assets.xcassets */; };
+		9F77721A2A28705700560144 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7772182A28705700560144 /* LaunchScreen.storyboard */; };
+		9F77721D2A28705700560144 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77721C2A28705700560144 /* main.m */; };
+		9F77726D2A28710D00560144 /* VTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772242A28710D00560144 /* VTNavigationController.m */; };
+		9F77726E2A28710D00560144 /* VTSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772252A28710D00560144 /* VTSectionModel.m */; };
+		9F77726F2A28710D00560144 /* UIButton+ZBKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772282A28710D00560144 /* UIButton+ZBKit.m */; };
+		9F7772702A28710D00560144 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77722B2A28710D00560144 /* MainViewController.m */; };
+		9F7772712A28710D00560144 /* VTHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77722F2A28710D00560144 /* VTHomeViewController.m */; };
+		9F7772722A28710D00560144 /* VTRecomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772302A28710D00560144 /* VTRecomViewController.m */; };
+		9F7772732A28710D00560144 /* VTRecomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772342A28710D00560144 /* VTRecomCell.m */; };
+		9F7772742A28710D00560144 /* VTGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772372A28710D00560144 /* VTGridViewCell.m */; };
+		9F7772752A28710D00560144 /* VTGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772382A28710D00560144 /* VTGridViewController.m */; };
+		9F7772762A28710D00560144 /* VTBindSectionListrFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77723C2A28710D00560144 /* VTBindSectionListrFooterView.m */; };
+		9F7772772A28710D00560144 /* VTBindListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77723D2A28710D00560144 /* VTBindListViewController.m */; };
+		9F7772782A28710D00560144 /* VTMTAttViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772412A28710D00560144 /* VTMTAttViewController.m */; };
+		9F7772792A28710D00560144 /* VTCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772442A28710D00560144 /* VTCenterViewController.m */; };
+		9F77727A2A28710D00560144 /* VTDivideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772462A28710D00560144 /* VTDivideViewController.m */; };
+		9F77727B2A28710D00560144 /* VTSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77724A2A28710D00560144 /* VTSliderViewController.m */; };
+		9F77727C2A28710D00560144 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77724E2A28710D00560144 /* DataManager.m */; };
+		9F77727D2A28710D00560144 /* MenuInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77724F2A28710D00560144 /* MenuInfo.m */; };
+		9F77727E2A28710D00560144 /* VTBubbleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772522A28710D00560144 /* VTBubbleViewController.m */; };
+		9F77727F2A28710D00560144 /* VTRelateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772542A28710D00560144 /* VTRelateViewController.m */; };
+		9F7772802A28710D00560144 /* VTChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772562A28710D00560144 /* VTChatViewController.m */; };
+		9F7772812A28710D00560144 /* VTDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772572A28710D00560144 /* VTDetailViewController.m */; };
+		9F7772822A28710D00560144 /* VTMTAttMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77725B2A28710D00560144 /* VTMTAttMenuItem.m */; };
+		9F7772832A28710D00560144 /* VTMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77725C2A28710D00560144 /* VTMenuItem.m */; };
+		9F7772842A28710D00560144 /* VTMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772612A28710D00560144 /* VTMenuViewController.m */; };
+		9F7772852A28710D00560144 /* VTLoadAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772632A28710D00560144 /* VTLoadAllViewController.m */; };
+		9F7772862A28710D00560144 /* VTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772662A28710D00560144 /* VTWebViewController.m */; };
+		9F7772872A28710D00560144 /* VTDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772672A28710D00560144 /* VTDataViewController.m */; };
+		9F7772882A28710D00560144 /* VTScreeningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77726C2A28710D00560144 /* VTScreeningViewController.m */; };
+		9F77728E2A2884F500560144 /* SwiftExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F77728D2A2884F500560144 /* SwiftExampleViewController.swift */; };
+		9F7A9F4E2BF71FF500688238 /* VTCustomMenuBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7A9F4D2BF71FF500688238 /* VTCustomMenuBar.m */; };
+		9F7A9F512BF740C200688238 /* VTCustomMenuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7A9F502BF740C200688238 /* VTCustomMenuBarViewController.m */; };
+		9F7A9F542BF746A200688238 /* VTCustomMenuBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7A9F532BF746A200688238 /* VTCustomMenuBarCell.m */; };
+		9F7A9F572BF7473900688238 /* VTCustomMenuBarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7A9F562BF7473900688238 /* VTCustomMenuBarModel.m */; };
+		9F7E339A2AD6A411007A97AF /* newsMenulive_n.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9F7E33992AD6A411007A97AF /* newsMenulive_n.gif */; };
+		9F7E948A2BEDE520003842B5 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7E94892BEDE520003842B5 /* BaseViewController.m */; };
+		9F9CAC2F2B3D65CD00744C82 /* VTScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CAC2E2B3D65CD00744C82 /* VTScrollController.m */; };
+		9F9CAC322B3D660D00744C82 /* VTScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CAC312B3D660D00744C82 /* VTScrollView.m */; };
+		9FB8346A2B46A47D00517B7C /* VTSliderCustomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB834692B46A47D00517B7C /* VTSliderCustomAnimationController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4932BD542EEA853D48219C6E /* Pods-VTMagicBoxDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VTMagicBoxDemo.release.xcconfig"; path = "Target Support Files/Pods-VTMagicBoxDemo/Pods-VTMagicBoxDemo.release.xcconfig"; sourceTree = "<group>"; };
+		4B9D721EB55F49F0A5C622B3 /* Pods-VTMagicBoxDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VTMagicBoxDemo.debug.xcconfig"; path = "Target Support Files/Pods-VTMagicBoxDemo/Pods-VTMagicBoxDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		6290868EE3386FDC7B52C138 /* Pods_VTMagicBoxDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VTMagicBoxDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F05BD772AEBBBCF00D0F5BA /* VTShowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTShowController.h; sourceTree = "<group>"; };
+		9F05BD782AEBBBCF00D0F5BA /* VTShowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTShowController.m; sourceTree = "<group>"; };
+		9F502CF12BF60B5A002073D1 /* VTVerticalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTVerticalViewController.h; sourceTree = "<group>"; };
+		9F502CF22BF60B5A002073D1 /* VTVerticalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTVerticalViewController.m; sourceTree = "<group>"; };
+		9F7772072A28705500560144 /* VTMagicBoxDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VTMagicBoxDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F77720A2A28705500560144 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9F77720B2A28705500560144 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9F77720D2A28705500560144 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		9F77720E2A28705500560144 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		9F7772102A28705500560144 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9F7772112A28705500560144 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9F7772142A28705500560144 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9F7772162A28705700560144 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9F7772192A28705700560144 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9F77721B2A28705700560144 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F77721C2A28705700560144 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9F7772232A28710D00560144 /* VTSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTSectionModel.h; sourceTree = "<group>"; };
+		9F7772242A28710D00560144 /* VTNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTNavigationController.m; sourceTree = "<group>"; };
+		9F7772252A28710D00560144 /* VTSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTSectionModel.m; sourceTree = "<group>"; };
+		9F7772272A28710D00560144 /* UIButton+ZBKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ZBKit.h"; sourceTree = "<group>"; };
+		9F7772282A28710D00560144 /* UIButton+ZBKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ZBKit.m"; sourceTree = "<group>"; };
+		9F7772292A28710D00560144 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		9F77722A2A28710D00560144 /* VTNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTNavigationController.h; sourceTree = "<group>"; };
+		9F77722B2A28710D00560144 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		9F77722C2A28710D00560144 /* VTMagicBox.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTMagicBox.pch; sourceTree = "<group>"; };
+		9F77722F2A28710D00560144 /* VTHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTHomeViewController.m; sourceTree = "<group>"; };
+		9F7772302A28710D00560144 /* VTRecomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTRecomViewController.m; sourceTree = "<group>"; };
+		9F7772312A28710D00560144 /* VTGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTGridViewController.h; sourceTree = "<group>"; };
+		9F7772322A28710D00560144 /* VTHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTHomeViewController.h; sourceTree = "<group>"; };
+		9F7772342A28710D00560144 /* VTRecomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTRecomCell.m; sourceTree = "<group>"; };
+		9F7772352A28710D00560144 /* VTGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTGridViewCell.h; sourceTree = "<group>"; };
+		9F7772362A28710D00560144 /* VTRecomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTRecomCell.h; sourceTree = "<group>"; };
+		9F7772372A28710D00560144 /* VTGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTGridViewCell.m; sourceTree = "<group>"; };
+		9F7772382A28710D00560144 /* VTGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTGridViewController.m; sourceTree = "<group>"; };
+		9F7772392A28710D00560144 /* VTRecomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTRecomViewController.h; sourceTree = "<group>"; };
+		9F77723B2A28710D00560144 /* VTBindListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBindListViewController.h; sourceTree = "<group>"; };
+		9F77723C2A28710D00560144 /* VTBindSectionListrFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBindSectionListrFooterView.m; sourceTree = "<group>"; };
+		9F77723D2A28710D00560144 /* VTBindListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBindListViewController.m; sourceTree = "<group>"; };
+		9F77723E2A28710D00560144 /* VTBindSectionListrFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBindSectionListrFooterView.h; sourceTree = "<group>"; };
+		9F7772402A28710D00560144 /* VTMTAttViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTMTAttViewController.h; sourceTree = "<group>"; };
+		9F7772412A28710D00560144 /* VTMTAttViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTMTAttViewController.m; sourceTree = "<group>"; };
+		9F7772432A28710D00560144 /* VTCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTCenterViewController.h; sourceTree = "<group>"; };
+		9F7772442A28710D00560144 /* VTCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTCenterViewController.m; sourceTree = "<group>"; };
+		9F7772462A28710D00560144 /* VTDivideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDivideViewController.m; sourceTree = "<group>"; };
+		9F7772472A28710D00560144 /* VTDivideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDivideViewController.h; sourceTree = "<group>"; };
+		9F7772492A28710D00560144 /* VTSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTSliderViewController.h; sourceTree = "<group>"; };
+		9F77724A2A28710D00560144 /* VTSliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTSliderViewController.m; sourceTree = "<group>"; };
+		9F77724C2A28710D00560144 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		9F77724D2A28710D00560144 /* MenuInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuInfo.h; sourceTree = "<group>"; };
+		9F77724E2A28710D00560144 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		9F77724F2A28710D00560144 /* MenuInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuInfo.m; sourceTree = "<group>"; };
+		9F7772512A28710D00560144 /* VTBubbleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBubbleViewController.h; sourceTree = "<group>"; };
+		9F7772522A28710D00560144 /* VTBubbleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBubbleViewController.m; sourceTree = "<group>"; };
+		9F7772542A28710D00560144 /* VTRelateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTRelateViewController.m; sourceTree = "<group>"; };
+		9F7772552A28710D00560144 /* VTDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDetailViewController.h; sourceTree = "<group>"; };
+		9F7772562A28710D00560144 /* VTChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTChatViewController.m; sourceTree = "<group>"; };
+		9F7772572A28710D00560144 /* VTDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDetailViewController.m; sourceTree = "<group>"; };
+		9F7772582A28710D00560144 /* VTRelateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTRelateViewController.h; sourceTree = "<group>"; };
+		9F7772592A28710D00560144 /* VTChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTChatViewController.h; sourceTree = "<group>"; };
+		9F77725B2A28710D00560144 /* VTMTAttMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTMTAttMenuItem.m; sourceTree = "<group>"; };
+		9F77725C2A28710D00560144 /* VTMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTMenuItem.m; sourceTree = "<group>"; };
+		9F77725D2A28710D00560144 /* VTMTAttMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTMTAttMenuItem.h; sourceTree = "<group>"; };
+		9F77725E2A28710D00560144 /* VTMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTMenuItem.h; sourceTree = "<group>"; };
+		9F7772602A28710D00560144 /* VTMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTMenuViewController.h; sourceTree = "<group>"; };
+		9F7772612A28710D00560144 /* VTMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTMenuViewController.m; sourceTree = "<group>"; };
+		9F7772632A28710D00560144 /* VTLoadAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTLoadAllViewController.m; sourceTree = "<group>"; };
+		9F7772642A28710D00560144 /* VTLoadAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTLoadAllViewController.h; sourceTree = "<group>"; };
+		9F7772662A28710D00560144 /* VTWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTWebViewController.m; sourceTree = "<group>"; };
+		9F7772672A28710D00560144 /* VTDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDataViewController.m; sourceTree = "<group>"; };
+		9F7772682A28710D00560144 /* VTWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTWebViewController.h; sourceTree = "<group>"; };
+		9F7772692A28710D00560144 /* VTDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDataViewController.h; sourceTree = "<group>"; };
+		9F77726B2A28710D00560144 /* VTScreeningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTScreeningViewController.h; sourceTree = "<group>"; };
+		9F77726C2A28710D00560144 /* VTScreeningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTScreeningViewController.m; sourceTree = "<group>"; };
+		9F77728C2A2884F400560144 /* VTMagicBoxDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VTMagicBoxDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		9F77728D2A2884F500560144 /* SwiftExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftExampleViewController.swift; sourceTree = "<group>"; };
+		9F78AD712BECEC36008F3C40 /* VTMagicBoxDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VTMagicBoxDemo.entitlements; sourceTree = "<group>"; };
+		9F7A9F4C2BF71FF500688238 /* VTCustomMenuBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTCustomMenuBar.h; sourceTree = "<group>"; };
+		9F7A9F4D2BF71FF500688238 /* VTCustomMenuBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTCustomMenuBar.m; sourceTree = "<group>"; };
+		9F7A9F4F2BF740C200688238 /* VTCustomMenuBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTCustomMenuBarViewController.h; sourceTree = "<group>"; };
+		9F7A9F502BF740C200688238 /* VTCustomMenuBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTCustomMenuBarViewController.m; sourceTree = "<group>"; };
+		9F7A9F522BF746A200688238 /* VTCustomMenuBarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTCustomMenuBarCell.h; sourceTree = "<group>"; };
+		9F7A9F532BF746A200688238 /* VTCustomMenuBarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTCustomMenuBarCell.m; sourceTree = "<group>"; };
+		9F7A9F552BF7473900688238 /* VTCustomMenuBarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTCustomMenuBarModel.h; sourceTree = "<group>"; };
+		9F7A9F562BF7473900688238 /* VTCustomMenuBarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTCustomMenuBarModel.m; sourceTree = "<group>"; };
+		9F7E33992AD6A411007A97AF /* newsMenulive_n.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = newsMenulive_n.gif; sourceTree = "<group>"; };
+		9F7E94882BEDE520003842B5 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		9F7E94892BEDE520003842B5 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		9F9CAC2D2B3D65CD00744C82 /* VTScrollController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTScrollController.h; sourceTree = "<group>"; };
+		9F9CAC2E2B3D65CD00744C82 /* VTScrollController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTScrollController.m; sourceTree = "<group>"; };
+		9F9CAC302B3D660D00744C82 /* VTScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTScrollView.h; sourceTree = "<group>"; };
+		9F9CAC312B3D660D00744C82 /* VTScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTScrollView.m; sourceTree = "<group>"; };
+		9FB834682B46A47D00517B7C /* VTSliderCustomAnimationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTSliderCustomAnimationController.h; sourceTree = "<group>"; };
+		9FB834692B46A47D00517B7C /* VTSliderCustomAnimationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTSliderCustomAnimationController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9F7772042A28705500560144 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44035DFDD42AA66513423CD2 /* Pods_VTMagicBoxDemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		741ABD3FC5236FCC6F3F1F41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6290868EE3386FDC7B52C138 /* Pods_VTMagicBoxDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8711BE92F5F2E6656E919747 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4B9D721EB55F49F0A5C622B3 /* Pods-VTMagicBoxDemo.debug.xcconfig */,
+				4932BD542EEA853D48219C6E /* Pods-VTMagicBoxDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9F05BD762AEBBB9300D0F5BA /* Show */ = {
+			isa = PBXGroup;
+			children = (
+				9F05BD772AEBBBCF00D0F5BA /* VTShowController.h */,
+				9F05BD782AEBBBCF00D0F5BA /* VTShowController.m */,
+			);
+			path = Show;
+			sourceTree = "<group>";
+		};
+		9F7771FE2A28705500560144 = {
+			isa = PBXGroup;
+			children = (
+				9F7772092A28705500560144 /* VTMagicBoxDemo */,
+				9F7772082A28705500560144 /* Products */,
+				8711BE92F5F2E6656E919747 /* Pods */,
+				741ABD3FC5236FCC6F3F1F41 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9F7772082A28705500560144 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9F7772072A28705500560144 /* VTMagicBoxDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9F7772092A28705500560144 /* VTMagicBoxDemo */ = {
+			isa = PBXGroup;
+			children = (
+				9F78AD712BECEC36008F3C40 /* VTMagicBoxDemo.entitlements */,
+				9F7772262A28710D00560144 /* ZBKit */,
+				9F77722D2A28710D00560144 /* Classes */,
+				9F7772292A28710D00560144 /* MainViewController.h */,
+				9F77722B2A28710D00560144 /* MainViewController.m */,
+				9F77722A2A28710D00560144 /* VTNavigationController.h */,
+				9F7772242A28710D00560144 /* VTNavigationController.m */,
+				9F7772232A28710D00560144 /* VTSectionModel.h */,
+				9F7772252A28710D00560144 /* VTSectionModel.m */,
+				9F77720A2A28705500560144 /* AppDelegate.h */,
+				9F77720B2A28705500560144 /* AppDelegate.m */,
+				9F77720D2A28705500560144 /* SceneDelegate.h */,
+				9F77720E2A28705500560144 /* SceneDelegate.m */,
+				9F7772102A28705500560144 /* ViewController.h */,
+				9F7772112A28705500560144 /* ViewController.m */,
+				9F7E33992AD6A411007A97AF /* newsMenulive_n.gif */,
+				9F77722C2A28710D00560144 /* VTMagicBox.pch */,
+				9F7772132A28705500560144 /* Main.storyboard */,
+				9F7772162A28705700560144 /* Assets.xcassets */,
+				9F7772182A28705700560144 /* LaunchScreen.storyboard */,
+				9F77721B2A28705700560144 /* Info.plist */,
+				9F77721C2A28705700560144 /* main.m */,
+			);
+			path = VTMagicBoxDemo;
+			sourceTree = "<group>";
+		};
+		9F7772262A28710D00560144 /* ZBKit */ = {
+			isa = PBXGroup;
+			children = (
+				9F7772272A28710D00560144 /* UIButton+ZBKit.h */,
+				9F7772282A28710D00560144 /* UIButton+ZBKit.m */,
+			);
+			path = ZBKit;
+			sourceTree = "<group>";
+		};
+		9F77722D2A28710D00560144 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9F7A9F472BF708DE00688238 /* Vertical */,
+				9FB8346B2B46A48800517B7C /* SliderAnimation */,
+				9F9CAC262B3D163B00744C82 /* BindScroll */,
+				9F05BD762AEBBB9300D0F5BA /* Show */,
+				9F77728B2A28846200560144 /* Swift */,
+				9F77722E2A28710D00560144 /* Home */,
+				9F77723A2A28710D00560144 /* BindList */,
+				9F77723F2A28710D00560144 /* MTAtt */,
+				9F7772422A28710D00560144 /* Center */,
+				9F7772452A28710D00560144 /* Divide */,
+				9F7772482A28710D00560144 /* Slider */,
+				9F77724B2A28710D00560144 /* Models */,
+				9F7772502A28710D00560144 /* Bubble */,
+				9F7772532A28710D00560144 /* Detail */,
+				9F77725A2A28710D00560144 /* VTMenuItem */,
+				9F77725F2A28710D00560144 /* Menu */,
+				9F7772622A28710D00560144 /* LoadAll */,
+				9F7772652A28710D00560144 /* Data */,
+				9F77726A2A28710D00560144 /* Screening */,
+				9F7E94882BEDE520003842B5 /* BaseViewController.h */,
+				9F7E94892BEDE520003842B5 /* BaseViewController.m */,
+				9F7A9F4B2BF71FD200688238 /* CustomMenuBar */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		9F77722E2A28710D00560144 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				9F7772332A28710D00560144 /* View */,
+				9F7772312A28710D00560144 /* VTGridViewController.h */,
+				9F7772382A28710D00560144 /* VTGridViewController.m */,
+				9F7772322A28710D00560144 /* VTHomeViewController.h */,
+				9F77722F2A28710D00560144 /* VTHomeViewController.m */,
+				9F7772392A28710D00560144 /* VTRecomViewController.h */,
+				9F7772302A28710D00560144 /* VTRecomViewController.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		9F7772332A28710D00560144 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9F7772352A28710D00560144 /* VTGridViewCell.h */,
+				9F7772372A28710D00560144 /* VTGridViewCell.m */,
+				9F7772362A28710D00560144 /* VTRecomCell.h */,
+				9F7772342A28710D00560144 /* VTRecomCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9F77723A2A28710D00560144 /* BindList */ = {
+			isa = PBXGroup;
+			children = (
+				9F77723B2A28710D00560144 /* VTBindListViewController.h */,
+				9F77723D2A28710D00560144 /* VTBindListViewController.m */,
+				9F77723E2A28710D00560144 /* VTBindSectionListrFooterView.h */,
+				9F77723C2A28710D00560144 /* VTBindSectionListrFooterView.m */,
+			);
+			path = BindList;
+			sourceTree = "<group>";
+		};
+		9F77723F2A28710D00560144 /* MTAtt */ = {
+			isa = PBXGroup;
+			children = (
+				9F7772402A28710D00560144 /* VTMTAttViewController.h */,
+				9F7772412A28710D00560144 /* VTMTAttViewController.m */,
+			);
+			path = MTAtt;
+			sourceTree = "<group>";
+		};
+		9F7772422A28710D00560144 /* Center */ = {
+			isa = PBXGroup;
+			children = (
+				9F7772432A28710D00560144 /* VTCenterViewController.h */,
+				9F7772442A28710D00560144 /* VTCenterViewController.m */,
+			);
+			path = Center;
+			sourceTree = "<group>";
+		};
+		9F7772452A28710D00560144 /* Divide */ = {
+			isa = PBXGroup;
+			children = (
+				9F7772472A28710D00560144 /* VTDivideViewController.h */,
+				9F7772462A28710D00560144 /* VTDivideViewController.m */,
+			);
+			path = Divide;
+			sourceTree = "<group>";
+		};
+		9F7772482A28710D00560144 /* Slider */ = {
+			isa = PBXGroup;
+			children = (
+				9F7772492A28710D00560144 /* VTSliderViewController.h */,
+				9F77724A2A28710D00560144 /* VTSliderViewController.m */,
+			);
+			path = Slider;
+			sourceTree = "<group>";
+		};
+		9F77724B2A28710D00560144 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9F77724C2A28710D00560144 /* DataManager.h */,
+				9F77724E2A28710D00560144 /* DataManager.m */,
+				9F77724D2A28710D00560144 /* MenuInfo.h */,
+				9F77724F2A28710D00560144 /* MenuInfo.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9F7772502A28710D00560144 /* Bubble */ = {
+			isa = PBXGroup;
+			children = (
+				9F7772512A28710D00560144 /* VTBubbleViewController.h */,
+				9F7772522A28710D00560144 /* VTBubbleViewController.m */,
+			);
+			path = Bubble;
+			sourceTree = "<group>";
+		};
+		9F7772532A28710D00560144 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				9F7772592A28710D00560144 /* VTChatViewController.h */,
+				9F7772562A28710D00560144 /* VTChatViewController.m */,
+				9F7772552A28710D00560144 /* VTDetailViewController.h */,
+				9F7772572A28710D00560144 /* VTDetailViewController.m */,
+				9F7772582A28710D00560144 /* VTRelateViewController.h */,
+				9F7772542A28710D00560144 /* VTRelateViewController.m */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		9F77725A2A28710D00560144 /* VTMenuItem */ = {
+			isa = PBXGroup;
+			children = (
+				9F77725E2A28710D00560144 /* VTMenuItem.h */,
+				9F77725C2A28710D00560144 /* VTMenuItem.m */,
+				9F77725D2A28710D00560144 /* VTMTAttMenuItem.h */,
+				9F77725B2A28710D00560144 /* VTMTAttMenuItem.m */,
+			);
+			path = VTMenuItem;
+			sourceTree = "<group>";
+		};
+		9F77725F2A28710D00560144 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				9F7772602A28710D00560144 /* VTMenuViewController.h */,
+				9F7772612A28710D00560144 /* VTMenuViewController.m */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		9F7772622A28710D00560144 /* LoadAll */ = {
+			isa = PBXGroup;
+			children = (
+				9F7772642A28710D00560144 /* VTLoadAllViewController.h */,
+				9F7772632A28710D00560144 /* VTLoadAllViewController.m */,
+			);
+			path = LoadAll;
+			sourceTree = "<group>";
+		};
+		9F7772652A28710D00560144 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9F7772692A28710D00560144 /* VTDataViewController.h */,
+				9F7772672A28710D00560144 /* VTDataViewController.m */,
+				9F7772682A28710D00560144 /* VTWebViewController.h */,
+				9F7772662A28710D00560144 /* VTWebViewController.m */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		9F77726A2A28710D00560144 /* Screening */ = {
+			isa = PBXGroup;
+			children = (
+				9F77726B2A28710D00560144 /* VTScreeningViewController.h */,
+				9F77726C2A28710D00560144 /* VTScreeningViewController.m */,
+			);
+			path = Screening;
+			sourceTree = "<group>";
+		};
+		9F77728B2A28846200560144 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				9F77728D2A2884F500560144 /* SwiftExampleViewController.swift */,
+				9F77728C2A2884F400560144 /* VTMagicBoxDemo-Bridging-Header.h */,
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
+		9F7A9F472BF708DE00688238 /* Vertical */ = {
+			isa = PBXGroup;
+			children = (
+				9F502CF12BF60B5A002073D1 /* VTVerticalViewController.h */,
+				9F502CF22BF60B5A002073D1 /* VTVerticalViewController.m */,
+			);
+			path = Vertical;
+			sourceTree = "<group>";
+		};
+		9F7A9F4B2BF71FD200688238 /* CustomMenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				9F7A9F4F2BF740C200688238 /* VTCustomMenuBarViewController.h */,
+				9F7A9F502BF740C200688238 /* VTCustomMenuBarViewController.m */,
+				9F7A9F4C2BF71FF500688238 /* VTCustomMenuBar.h */,
+				9F7A9F4D2BF71FF500688238 /* VTCustomMenuBar.m */,
+				9F7A9F522BF746A200688238 /* VTCustomMenuBarCell.h */,
+				9F7A9F532BF746A200688238 /* VTCustomMenuBarCell.m */,
+				9F7A9F552BF7473900688238 /* VTCustomMenuBarModel.h */,
+				9F7A9F562BF7473900688238 /* VTCustomMenuBarModel.m */,
+			);
+			path = CustomMenuBar;
+			sourceTree = "<group>";
+		};
+		9F9CAC262B3D163B00744C82 /* BindScroll */ = {
+			isa = PBXGroup;
+			children = (
+				9F9CAC2D2B3D65CD00744C82 /* VTScrollController.h */,
+				9F9CAC2E2B3D65CD00744C82 /* VTScrollController.m */,
+				9F9CAC302B3D660D00744C82 /* VTScrollView.h */,
+				9F9CAC312B3D660D00744C82 /* VTScrollView.m */,
+			);
+			path = BindScroll;
+			sourceTree = "<group>";
+		};
+		9FB8346B2B46A48800517B7C /* SliderAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				9FB834682B46A47D00517B7C /* VTSliderCustomAnimationController.h */,
+				9FB834692B46A47D00517B7C /* VTSliderCustomAnimationController.m */,
+			);
+			path = SliderAnimation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9F7772062A28705500560144 /* VTMagicBoxDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F7772202A28705700560144 /* Build configuration list for PBXNativeTarget "VTMagicBoxDemo" */;
+			buildPhases = (
+				5D971B993182FB7EEA567D04 /* [CP] Check Pods Manifest.lock */,
+				9F7772032A28705500560144 /* Sources */,
+				9F7772042A28705500560144 /* Frameworks */,
+				9F7772052A28705500560144 /* Resources */,
+				E9C9A67135436A68D08B2D6C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VTMagicBoxDemo;
+			productName = VTMagicBoxDemo;
+			productReference = 9F7772072A28705500560144 /* VTMagicBoxDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9F7771FF2A28705500560144 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					9F7772062A28705500560144 = {
+						CreatedOnToolsVersion = 14.1;
+						LastSwiftMigration = 1410;
+					};
+				};
+			};
+			buildConfigurationList = 9F7772022A28705500560144 /* Build configuration list for PBXProject "VTMagicBoxDemo" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9F7771FE2A28705500560144;
+			productRefGroup = 9F7772082A28705500560144 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9F7772062A28705500560144 /* VTMagicBoxDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9F7772052A28705500560144 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F77721A2A28705700560144 /* LaunchScreen.storyboard in Resources */,
+				9F7E339A2AD6A411007A97AF /* newsMenulive_n.gif in Resources */,
+				9F7772172A28705700560144 /* Assets.xcassets in Resources */,
+				9F7772152A28705500560144 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5D971B993182FB7EEA567D04 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VTMagicBoxDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9C9A67135436A68D08B2D6C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VTMagicBoxDemo/Pods-VTMagicBoxDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VTMagicBoxDemo/Pods-VTMagicBoxDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VTMagicBoxDemo/Pods-VTMagicBoxDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9F7772032A28705500560144 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F7772122A28705500560144 /* ViewController.m in Sources */,
+				9F77727C2A28710D00560144 /* DataManager.m in Sources */,
+				9F77727E2A28710D00560144 /* VTBubbleViewController.m in Sources */,
+				9F7772842A28710D00560144 /* VTMenuViewController.m in Sources */,
+				9F77727D2A28710D00560144 /* MenuInfo.m in Sources */,
+				9F9CAC322B3D660D00744C82 /* VTScrollView.m in Sources */,
+				9F77726D2A28710D00560144 /* VTNavigationController.m in Sources */,
+				9F7772772A28710D00560144 /* VTBindListViewController.m in Sources */,
+				9F7A9F4E2BF71FF500688238 /* VTCustomMenuBar.m in Sources */,
+				9F7A9F512BF740C200688238 /* VTCustomMenuBarViewController.m in Sources */,
+				9F502CF32BF60B5A002073D1 /* VTVerticalViewController.m in Sources */,
+				9F77727A2A28710D00560144 /* VTDivideViewController.m in Sources */,
+				9F9CAC2F2B3D65CD00744C82 /* VTScrollController.m in Sources */,
+				9F7772792A28710D00560144 /* VTCenterViewController.m in Sources */,
+				9F7772812A28710D00560144 /* VTDetailViewController.m in Sources */,
+				9F7772712A28710D00560144 /* VTHomeViewController.m in Sources */,
+				9F77720C2A28705500560144 /* AppDelegate.m in Sources */,
+				9F7772782A28710D00560144 /* VTMTAttViewController.m in Sources */,
+				9F7772702A28710D00560144 /* MainViewController.m in Sources */,
+				9F77721D2A28705700560144 /* main.m in Sources */,
+				9F7772822A28710D00560144 /* VTMTAttMenuItem.m in Sources */,
+				9F7772872A28710D00560144 /* VTDataViewController.m in Sources */,
+				9F7772852A28710D00560144 /* VTLoadAllViewController.m in Sources */,
+				9FB8346A2B46A47D00517B7C /* VTSliderCustomAnimationController.m in Sources */,
+				9F7E948A2BEDE520003842B5 /* BaseViewController.m in Sources */,
+				9F77720F2A28705500560144 /* SceneDelegate.m in Sources */,
+				9F7772752A28710D00560144 /* VTGridViewController.m in Sources */,
+				9F7772832A28710D00560144 /* VTMenuItem.m in Sources */,
+				9F7772722A28710D00560144 /* VTRecomViewController.m in Sources */,
+				9F77726F2A28710D00560144 /* UIButton+ZBKit.m in Sources */,
+				9F7772732A28710D00560144 /* VTRecomCell.m in Sources */,
+				9F05BD792AEBBBCF00D0F5BA /* VTShowController.m in Sources */,
+				9F7A9F572BF7473900688238 /* VTCustomMenuBarModel.m in Sources */,
+				9F7772802A28710D00560144 /* VTChatViewController.m in Sources */,
+				9F77727B2A28710D00560144 /* VTSliderViewController.m in Sources */,
+				9F7772742A28710D00560144 /* VTGridViewCell.m in Sources */,
+				9F7A9F542BF746A200688238 /* VTCustomMenuBarCell.m in Sources */,
+				9F77728E2A2884F500560144 /* SwiftExampleViewController.swift in Sources */,
+				9F77726E2A28710D00560144 /* VTSectionModel.m in Sources */,
+				9F7772762A28710D00560144 /* VTBindSectionListrFooterView.m in Sources */,
+				9F7772882A28710D00560144 /* VTScreeningViewController.m in Sources */,
+				9F77727F2A28710D00560144 /* VTRelateViewController.m in Sources */,
+				9F7772862A28710D00560144 /* VTWebViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9F7772132A28705500560144 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F7772142A28705500560144 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9F7772182A28705700560144 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F7772192A28705700560144 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9F77721E2A28705700560144 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9F77721F2A28705700560144 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9F7772212A28705700560144 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B9D721EB55F49F0A5C622B3 /* Pods-VTMagicBoxDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = VTMagicBoxDemo/VTMagicBoxDemo.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = E6LU458855;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/VTMagicBoxDemo/VTMagicBox.pch";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VTMagicBoxDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = VTMagicBox;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.VTMagicBoxDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "VTMagicBoxDemo/Classes/Swift/VTMagicBoxDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9F7772222A28705700560144 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4932BD542EEA853D48219C6E /* Pods-VTMagicBoxDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = VTMagicBoxDemo/VTMagicBoxDemo.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = E6LU458855;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/VTMagicBoxDemo/VTMagicBox.pch";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VTMagicBoxDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = VTMagicBox;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.VTMagicBoxDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "VTMagicBoxDemo/Classes/Swift/VTMagicBoxDemo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9F7772022A28705500560144 /* Build configuration list for PBXProject "VTMagicBoxDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F77721E2A28705700560144 /* Debug */,
+				9F77721F2A28705700560144 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F7772202A28705700560144 /* Build configuration list for PBXNativeTarget "VTMagicBoxDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F7772212A28705700560144 /* Debug */,
+				9F7772222A28705700560144 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9F7771FF2A28705500560144 /* Project object */;
+}

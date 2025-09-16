@@ -1,0 +1,15 @@
+//
+//  VTMagicBox.pch
+//  VTMagicBox
+//
+//  Created by Suzhibin on 2023/6/1.
+//
+
+#ifndef VTMagicBox_pch
+#define VTMagicBox_pch
+#import <VTMagicBox/VTMagic.h>
+#import "MenuInfo.h"
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* VTMagicBox_pch */
