@@ -359,7 +359,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  顶部导航条的高度，默认是44
- *  @warning 该属性在VTPositionStyleLeft,VTPositionStyleRight样式下无效
+ *  @warning 该属性在VTNavPositionDefault,VTNavPositionBottom样式下无效
  */
 @property (nonatomic, assign) CGFloat navigationHeight;
 
