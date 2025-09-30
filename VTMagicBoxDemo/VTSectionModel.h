@@ -33,6 +33,7 @@ typedef NS_ENUM(NSInteger, VTDemoType){
     VTDemoTypeSliderRandomColor,//随机颜色
     VTDemoTypeSliderZoom,//滑块横线缩放
     VTDemoTypeSliderDotZoom,//滑块点缩放
+    VTDemoTypeSliderChunkZoom,//滑块方块缩放
     VTDemoTypeSliderPageControl,//pageControl
     VTDemoTypeSliderHideMenu,//隐藏菜单 展示滑块
     VTDemoTypeSliderCustomAnimation,//自定义动画

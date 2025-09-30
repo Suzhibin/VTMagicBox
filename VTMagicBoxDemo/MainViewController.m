@@ -151,7 +151,7 @@
         customAnimationVC.title=item.title;
         customAnimationVC.type=item.type;
         [self.navigationController pushViewController:customAnimationVC animated:YES];
-    }else if (item.type==VTDemoTypeVerticalLeft||item.type==VTDemoTypeVerticalRight){
+    }else if (item.type==VTDemoTypeVerticalLeft||item.type==VTDemoTypeVerticalRight||item.type == VTDemoTypeSliderChunkZoom){
         VTVerticalViewController*vc=[[VTVerticalViewController alloc]init];
         vc.title=item.title;
         vc.type=item.type;
@@ -201,6 +201,7 @@
         [VTTableItem itemWithTitle:@"随机颜色" descr:@"magicView：viewDidAppear代理内设置,右侧按钮调 滑块选中状态、位置" type:VTDemoTypeSliderRandomColor],
         [VTTableItem itemWithTitle:@"横线缩放" descr:@"滑动子页面 横线动画缩放" type:VTDemoTypeSliderZoom],
         [VTTableItem itemWithTitle:@"点缩放" descr:@"滑动子页面 点动画缩放" type:VTDemoTypeSliderDotZoom],
+        [VTTableItem itemWithTitle:@"方块缩放" descr:@"滑动子页面 方块动画缩放" type:VTDemoTypeSliderChunkZoom],
         [VTTableItem itemWithTitle:@"展示指示器" descr:@"指示器替换滑块" type:VTDemoTypeSliderPageControl],
         [VTTableItem itemWithTitle:@"只展示滑块" descr:@"隐藏菜单 只展示滑块" type:VTDemoTypeSliderHideMenu],
         [VTTableItem itemWithTitle:@"自定义滑块动画" descr:@"滑动子页面 使用自定义动画代理，可以自己实现滑块动画" type:VTDemoTypeSliderCustomAnimation],
