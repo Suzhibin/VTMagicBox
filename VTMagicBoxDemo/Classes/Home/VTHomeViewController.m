@@ -139,10 +139,13 @@
         [self.magicView setHeaderHidden:!self.magicView.isHeaderHidden duration:0.35];
     }else  if(self.type==VTDemoTypeFooter){
         [self.magicView setFooterHidden:!self.magicView.isFooterHidden];
-    }else{
+    }else  if(self.type==VTDemoTypeNormal){
+        [self.magicView setHeaderHidden:!self.magicView.isHeaderHidden duration:0.35];
+    }else {
         self.magicView.againstStatusBar = !self.magicView.againstStatusBar;
         [self.magicView setHeaderHidden:!self.magicView.isHeaderHidden duration:0.35];
     }
+        
 
 }
 - (void)viewWillAppear:(BOOL)animated {

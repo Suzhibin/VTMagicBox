@@ -195,7 +195,7 @@
 - (void)subscribeAction {
     NSLog(@"subscribeAction");
     // against status bar or not
-    if (self.type==VTDemoTypeSliderCircle||self.type==VTDemoTypeSliderBubble||self.type==VTDemoTypeSliderSquare){
+    if (self.type==VTDemoTypeSliderCircle||self.type==VTDemoTypeSliderBubble||self.type==VTDemoTypeSliderSquare||self.type==VTDemoTypeSliderBubbleShadow){
         self.insetLeft=self.insetLeft+10;
         self.magicView.navigationInset=UIEdgeInsetsMake(0, self.insetLeft, 0, 0);
     }else{
@@ -236,7 +236,7 @@
 - (void)createNavBtn{
     UIButton *rightNavBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [rightNavBtn addTarget:self action:@selector(subscribeAction) forControlEvents:UIControlEventTouchUpInside];
-    if (self.type==VTDemoTypeSliderCircle||self.type==VTDemoTypeSliderBubble||self.type==VTDemoTypeSliderSquare){
+    if (self.type==VTDemoTypeSliderCircle||self.type==VTDemoTypeSliderBubble||self.type==VTDemoTypeSliderSquare||self.type==VTDemoTypeSliderBubbleShadow){
         [rightNavBtn setTitle:@"导航边距" forState:UIControlStateNormal];
     }else{
         [rightNavBtn setTitle:@"滑块位置" forState:UIControlStateNormal];

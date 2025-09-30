@@ -199,11 +199,11 @@
         [VTTableItem itemWithTitle:@"图片" descr:@"自定义sliderView view为UIImageView,右侧按钮调 滑块选中状态" type:VTDemoTypeSliderImage],
         [VTTableItem itemWithTitle:@"三角" descr:@"自定义sliderView view为UIImageView,右侧按钮调 滑块选中状态,定位到指定页面" type:VTDemoTypeSliderTriangle],
         [VTTableItem itemWithTitle:@"随机颜色" descr:@"magicView：viewDidAppear代理内设置,右侧按钮调 滑块选中状态、位置" type:VTDemoTypeSliderRandomColor],
-        [VTTableItem itemWithTitle:@"横线缩放" descr:@"移动横线动画缩放，在代理内实现动画" type:VTDemoTypeSliderZoom],
-        [VTTableItem itemWithTitle:@"点缩放" descr:@"移动点动画缩放，在代理内实现动画" type:VTDemoTypeSliderDotZoom],
+        [VTTableItem itemWithTitle:@"横线缩放" descr:@"滑动子页面 横线动画缩放" type:VTDemoTypeSliderZoom],
+        [VTTableItem itemWithTitle:@"点缩放" descr:@"滑动子页面 点动画缩放" type:VTDemoTypeSliderDotZoom],
         [VTTableItem itemWithTitle:@"展示指示器" descr:@"指示器替换滑块" type:VTDemoTypeSliderPageControl],
         [VTTableItem itemWithTitle:@"只展示滑块" descr:@"隐藏菜单 只展示滑块" type:VTDemoTypeSliderHideMenu],
-        [VTTableItem itemWithTitle:@"自定义滑块动画" descr:@"使用自定义动画代理，可以自己实现滑块动画" type:VTDemoTypeSliderCustomAnimation],
+        [VTTableItem itemWithTitle:@"自定义滑块动画" descr:@"滑动子页面 使用自定义动画代理，可以自己实现滑块动画" type:VTDemoTypeSliderCustomAnimation],
         
     ];
 }
