@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0652DC7B2E8BCB0900712976 /* VTGKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0652DC7A2E8BCB0900712976 /* VTGKViewController.m */; };
 		44035DFDD42AA66513423CD2 /* Pods_VTMagicBoxDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6290868EE3386FDC7B52C138 /* Pods_VTMagicBoxDemo.framework */; };
 		9F05BD792AEBBBCF00D0F5BA /* VTShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F05BD782AEBBBCF00D0F5BA /* VTShowController.m */; };
 		9F502CF32BF60B5A002073D1 /* VTVerticalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F502CF22BF60B5A002073D1 /* VTVerticalViewController.m */; };
@@ -58,6 +59,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0652DC792E8BCB0900712976 /* VTGKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTGKViewController.h; sourceTree = "<group>"; };
+		0652DC7A2E8BCB0900712976 /* VTGKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTGKViewController.m; sourceTree = "<group>"; };
 		4932BD542EEA853D48219C6E /* Pods-VTMagicBoxDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VTMagicBoxDemo.release.xcconfig"; path = "Target Support Files/Pods-VTMagicBoxDemo/Pods-VTMagicBoxDemo.release.xcconfig"; sourceTree = "<group>"; };
 		4B9D721EB55F49F0A5C622B3 /* Pods-VTMagicBoxDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VTMagicBoxDemo.debug.xcconfig"; path = "Target Support Files/Pods-VTMagicBoxDemo/Pods-VTMagicBoxDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		6290868EE3386FDC7B52C138 /* Pods_VTMagicBoxDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VTMagicBoxDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +171,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0652DC752E8BCAC500712976 /* GKPageScroll */ = {
+			isa = PBXGroup;
+			children = (
+				0652DC792E8BCB0900712976 /* VTGKViewController.h */,
+				0652DC7A2E8BCB0900712976 /* VTGKViewController.m */,
+			);
+			path = GKPageScroll;
+			sourceTree = "<group>";
+		};
 		741ABD3FC5236FCC6F3F1F41 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +265,7 @@
 		9F77722D2A28710D00560144 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0652DC752E8BCAC500712976 /* GKPageScroll */,
 				9F7A9F472BF708DE00688238 /* Vertical */,
 				9FB8346B2B46A48800517B7C /* SliderAnimation */,
 				9F9CAC262B3D163B00744C82 /* BindScroll */,
@@ -636,6 +649,7 @@
 				9F05BD792AEBBBCF00D0F5BA /* VTShowController.m in Sources */,
 				9F7A9F572BF7473900688238 /* VTCustomMenuBarModel.m in Sources */,
 				9F7772802A28710D00560144 /* VTChatViewController.m in Sources */,
+				0652DC7B2E8BCB0900712976 /* VTGKViewController.m in Sources */,
 				9F77727B2A28710D00560144 /* VTSliderViewController.m in Sources */,
 				9F7772742A28710D00560144 /* VTGridViewCell.m in Sources */,
 				9F7A9F542BF746A200688238 /* VTCustomMenuBarCell.m in Sources */,

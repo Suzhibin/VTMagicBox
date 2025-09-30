@@ -9,11 +9,12 @@
 #import "VTRecomViewController.h"
 #import "VTDetailViewController.h"
 #import "VTRecomCell.h"
-
-@interface VTRecomViewController ()
+#import <GKPageScrollView/GKPageScrollView.h>
+@interface VTRecomViewController ()<GKPageListViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *newsList;
 @property (nonatomic, copy)NSString *titleText;
+@property (nonatomic, copy) void(^listScrollViewScrollCallback)(UIScrollView *scrollView);
 @end
 
 @implementation VTRecomViewController
@@ -102,7 +103,9 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 #endif
 }
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    !self.listScrollViewScrollCallback ? : self.listScrollViewScrollCallback(scrollView);
+}
 #pragma mark - VTMagicReuseProtocol
 - (void)vtm_prepareForReuse {
     // reset content offset
@@ -117,5 +120,16 @@
         [_newsList addObject:[NSString stringWithFormat:@"新闻%ld", (long)index]];
     }
 }
+#pragma mark - GKPageListViewDelegate
+- (UIView *)listView {
+    return self.view;
+}
 
+- (UIScrollView *)listScrollView {
+    return self.tableView;
+}
+
+- (void)listViewDidScrollCallback:(void (^)(UIScrollView *))callback {
+    self.listScrollViewScrollCallback = callback;
+}
 @end

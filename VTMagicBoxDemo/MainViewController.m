@@ -26,6 +26,7 @@
 #import "VTSliderCustomAnimationController.h"
 #import "VTVerticalViewController.h"
 #import "VTCustomMenuBarViewController.h"
+#import "VTGKViewController.h"
 @interface MainViewController ()
 @property (nonatomic, strong) NSArray <VTSectionModel *>*list;
 @end
@@ -160,8 +161,11 @@
         VTCustomMenuBarViewController*vc=[[VTCustomMenuBarViewController alloc]init];
         vc.title=item.title;
         [self.navigationController pushViewController:vc animated:YES];
+    }else if (item.type==VTDemoTypeGKPageScroll){
+        VTGKViewController*vc=[[VTGKViewController alloc]init];
+        vc.title=item.title;
+        [self.navigationController pushViewController:vc animated:YES];
     }
-
 }
 
 - (NSArray *)list {
@@ -243,6 +247,7 @@
             [VTTableItem itemWithTitle:@"子页面复用,响应事件" descr:@"子页面复用，父视图通知子视图响应事件" type:VTDemoTypeOneController],
             [VTTableItem itemWithTitle:@"子页面不复用，响应事件" descr:@"所有子页面都是单独创建的，父视图通知子视图响应事件" type:VTDemoTypeAllController],
             [VTTableItem itemWithTitle:@"Swift" descr:@"Swift 使用VTMagic" type:VTDemoTypeSwift],
+            [VTTableItem itemWithTitle:@"GKPageScrollView与TVMagic结合使用" descr:@"大部分主流APP布局" type:VTDemoTypeGKPageScroll],
             [VTTableItem itemWithTitle:@"展示厅" descr:@"自动展示部分功能" type:VTDemoTypeShow],
             
     ];

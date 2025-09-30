@@ -7,6 +7,6 @@ target 'VTMagicBoxDemo' do
 
   # Pods for VTMagicBox
     pod 'VTMagicBox', :path => './'
-
+    pod 'GKPageScrollView'
 
 end

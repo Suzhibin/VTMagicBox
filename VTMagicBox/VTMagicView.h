@@ -14,6 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class VTContentView;
 @class VTMagicView;
 
 /****************************************data source****************************************/
@@ -176,6 +177,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - subviews
 /****************************************subviews****************************************/
+
+/**
+ *  容器视图
+ */
+@property (nonatomic, strong, readonly) VTContentView *contentView;
 
 /**
  *  最顶部的头部组件，默认隐藏

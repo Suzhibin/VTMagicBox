@@ -66,6 +66,7 @@ typedef NS_ENUM(NSInteger, VTDemoType){
     VTDemoTypeShow,//展示厅 自动展示部分功能
     VTDemoTypeScroll,//滑动监听
     VTDemoTypeCustomMenuBar,
+    VTDemoTypeGKPageScroll,
 };
 
 @interface VTTableItem : NSObject
