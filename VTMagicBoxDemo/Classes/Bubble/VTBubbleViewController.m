@@ -35,6 +35,7 @@
         self.magicView.sliderWidth=20;
         self.magicView.sliderColor =[UIColor redColor];
         self.magicView.sliderOffset=-1;
+        self.magicView.menuBounces = NO;
         [self integrateComponents];
     }
 

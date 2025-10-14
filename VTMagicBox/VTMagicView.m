@@ -1583,6 +1583,11 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     _contentView.needPreloading = needPreloading;
 }
 
+- (void)setMenuBounces:(BOOL)menuBounces {
+    _menuBounces = menuBounces;
+    _menuBar.bounces = menuBounces;
+}
+
 - (void)setBounces:(BOOL)bounces {
     _bounces = bounces;
     _contentView.bounces = bounces;

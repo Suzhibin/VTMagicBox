@@ -335,6 +335,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL displayCentered;
 
 /**
+ *  菜单滑到两侧边缘时是否需要反弹效果，默认NO
+ */
+@property (nonatomic, assign) BOOL menuBounces;
+
+/**
  *  页面滑到两侧边缘时是否需要反弹效果，默认NO
  */
 @property (nonatomic, assign) BOOL bounces;
