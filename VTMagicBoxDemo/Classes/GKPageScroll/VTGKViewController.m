@@ -87,6 +87,7 @@
 - (GKPageScrollView *)pageScrollView {
     if (!_pageScrollView) {
         _pageScrollView = [[GKPageScrollView alloc] initWithDelegate:self];
+        _pageScrollView.mainTableView.bounces = false;
         UIScrollView *scrollView = self.magicController.magicView.contentView;
         _pageScrollView.horizontalScrollViewList = @[scrollView];
     }

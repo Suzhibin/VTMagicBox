@@ -25,8 +25,8 @@
 #import "VTScrollController.h"
 #import "VTSliderCustomAnimationController.h"
 #import "VTVerticalViewController.h"
-#import "VTCustomMenuBarViewController.h"
 #import "VTGKViewController.h"
+#import "VTJXCategoryViewController.h"
 @interface MainViewController ()
 @property (nonatomic, strong) NSArray <VTSectionModel *>*list;
 @end
@@ -157,8 +157,8 @@
         vc.title=item.title;
         vc.type=item.type;
         [self.navigationController pushViewController:vc animated:YES];
-    }else if (item.type==VTDemoTypeCustomMenuBar){
-        VTCustomMenuBarViewController*vc=[[VTCustomMenuBarViewController alloc]init];
+    }else if (item.type==VTDemoTypeJXCategoryView){
+        VTJXCategoryViewController*vc=[[VTJXCategoryViewController alloc]init];
         vc.title=item.title;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (item.type==VTDemoTypeGKPageScroll){
@@ -241,7 +241,7 @@
             [VTTableItem itemWithTitle:@"滑动监听" descr:@"使用监听代理，可以监听视图控制器 滑动事件" type:VTDemoTypeScroll],
             [VTTableItem itemWithTitle:@"WebView" descr:@"描述" type:VTDemoTypeWebView],
             [VTTableItem itemWithTitle:@"第一个menu固定左侧" descr:@"leftNavigatoinItem，navigationInset,同时定位到指定页面" type:VTDemoTypeFirstFixed],
-            [VTTableItem itemWithTitle:@"自定义导航" descr:@"不使用自带导航，使用自己封装或第三方。 自定义导航与和内容控制器结合" type:VTDemoTypeCustomMenuBar],
+            [VTTableItem itemWithTitle:@"JXCategoryView等第三方导航" descr:@"不使用自带导航，使用第三方或自己封装。 第三方导航与和内容控制器绑定" type:VTDemoTypeJXCategoryView],
             [VTTableItem itemWithTitle:@"导航正常布局与列表绑定" descr:@"电商分类常用，使用时不需要创建子页面" type:VTDemoTypeBindListNormal],
             [VTTableItem itemWithTitle:@"导航左侧布局与列表绑定" descr:@"电商分类常用，使用时不需要创建子页面" type:VTDemoTypeBindListLeft],
             [VTTableItem itemWithTitle:@"子页面复用,响应事件" descr:@"子页面复用，父视图通知子视图响应事件" type:VTDemoTypeOneController],

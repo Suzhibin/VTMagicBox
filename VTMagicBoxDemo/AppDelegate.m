@@ -9,7 +9,6 @@
 #import "VTNavigationController.h"
 #import "MainViewController.h"
 #import "VTVerticalViewController.h"
-#import "VTCustomMenuBarViewController.h"
 @interface AppDelegate ()
 
 @end

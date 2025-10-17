@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06123FEC2EA21B7D0010D228 /* VTJXCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06123FEB2EA21B7D0010D228 /* VTJXCategoryViewController.m */; };
 		0652DC7B2E8BCB0900712976 /* VTGKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0652DC7A2E8BCB0900712976 /* VTGKViewController.m */; };
 		44035DFDD42AA66513423CD2 /* Pods_VTMagicBoxDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6290868EE3386FDC7B52C138 /* Pods_VTMagicBoxDemo.framework */; };
 		9F05BD792AEBBBCF00D0F5BA /* VTShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F05BD782AEBBBCF00D0F5BA /* VTShowController.m */; };
@@ -47,10 +48,6 @@
 		9F7772872A28710D00560144 /* VTDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7772672A28710D00560144 /* VTDataViewController.m */; };
 		9F7772882A28710D00560144 /* VTScreeningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77726C2A28710D00560144 /* VTScreeningViewController.m */; };
 		9F77728E2A2884F500560144 /* SwiftExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F77728D2A2884F500560144 /* SwiftExampleViewController.swift */; };
-		9F7A9F4E2BF71FF500688238 /* VTCustomMenuBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7A9F4D2BF71FF500688238 /* VTCustomMenuBar.m */; };
-		9F7A9F512BF740C200688238 /* VTCustomMenuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7A9F502BF740C200688238 /* VTCustomMenuBarViewController.m */; };
-		9F7A9F542BF746A200688238 /* VTCustomMenuBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7A9F532BF746A200688238 /* VTCustomMenuBarCell.m */; };
-		9F7A9F572BF7473900688238 /* VTCustomMenuBarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7A9F562BF7473900688238 /* VTCustomMenuBarModel.m */; };
 		9F7E339A2AD6A411007A97AF /* newsMenulive_n.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9F7E33992AD6A411007A97AF /* newsMenulive_n.gif */; };
 		9F7E948A2BEDE520003842B5 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7E94892BEDE520003842B5 /* BaseViewController.m */; };
 		9F9CAC2F2B3D65CD00744C82 /* VTScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9CAC2E2B3D65CD00744C82 /* VTScrollController.m */; };
@@ -59,6 +56,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06123FEA2EA21B7D0010D228 /* VTJXCategoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTJXCategoryViewController.h; sourceTree = "<group>"; };
+		06123FEB2EA21B7D0010D228 /* VTJXCategoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTJXCategoryViewController.m; sourceTree = "<group>"; };
 		0652DC792E8BCB0900712976 /* VTGKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTGKViewController.h; sourceTree = "<group>"; };
 		0652DC7A2E8BCB0900712976 /* VTGKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTGKViewController.m; sourceTree = "<group>"; };
 		4932BD542EEA853D48219C6E /* Pods-VTMagicBoxDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VTMagicBoxDemo.release.xcconfig"; path = "Target Support Files/Pods-VTMagicBoxDemo/Pods-VTMagicBoxDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,14 +139,6 @@
 		9F77728C2A2884F400560144 /* VTMagicBoxDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VTMagicBoxDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		9F77728D2A2884F500560144 /* SwiftExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftExampleViewController.swift; sourceTree = "<group>"; };
 		9F78AD712BECEC36008F3C40 /* VTMagicBoxDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VTMagicBoxDemo.entitlements; sourceTree = "<group>"; };
-		9F7A9F4C2BF71FF500688238 /* VTCustomMenuBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTCustomMenuBar.h; sourceTree = "<group>"; };
-		9F7A9F4D2BF71FF500688238 /* VTCustomMenuBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTCustomMenuBar.m; sourceTree = "<group>"; };
-		9F7A9F4F2BF740C200688238 /* VTCustomMenuBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTCustomMenuBarViewController.h; sourceTree = "<group>"; };
-		9F7A9F502BF740C200688238 /* VTCustomMenuBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTCustomMenuBarViewController.m; sourceTree = "<group>"; };
-		9F7A9F522BF746A200688238 /* VTCustomMenuBarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTCustomMenuBarCell.h; sourceTree = "<group>"; };
-		9F7A9F532BF746A200688238 /* VTCustomMenuBarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTCustomMenuBarCell.m; sourceTree = "<group>"; };
-		9F7A9F552BF7473900688238 /* VTCustomMenuBarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VTCustomMenuBarModel.h; sourceTree = "<group>"; };
-		9F7A9F562BF7473900688238 /* VTCustomMenuBarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VTCustomMenuBarModel.m; sourceTree = "<group>"; };
 		9F7E33992AD6A411007A97AF /* newsMenulive_n.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = newsMenulive_n.gif; sourceTree = "<group>"; };
 		9F7E94882BEDE520003842B5 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		9F7E94892BEDE520003842B5 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
@@ -287,7 +278,7 @@
 				9F77726A2A28710D00560144 /* Screening */,
 				9F7E94882BEDE520003842B5 /* BaseViewController.h */,
 				9F7E94892BEDE520003842B5 /* BaseViewController.m */,
-				9F7A9F4B2BF71FD200688238 /* CustomMenuBar */,
+				9F7A9F4B2BF71FD200688238 /* JXCategoryView */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -464,19 +455,13 @@
 			path = Vertical;
 			sourceTree = "<group>";
 		};
-		9F7A9F4B2BF71FD200688238 /* CustomMenuBar */ = {
+		9F7A9F4B2BF71FD200688238 /* JXCategoryView */ = {
 			isa = PBXGroup;
 			children = (
-				9F7A9F4F2BF740C200688238 /* VTCustomMenuBarViewController.h */,
-				9F7A9F502BF740C200688238 /* VTCustomMenuBarViewController.m */,
-				9F7A9F4C2BF71FF500688238 /* VTCustomMenuBar.h */,
-				9F7A9F4D2BF71FF500688238 /* VTCustomMenuBar.m */,
-				9F7A9F522BF746A200688238 /* VTCustomMenuBarCell.h */,
-				9F7A9F532BF746A200688238 /* VTCustomMenuBarCell.m */,
-				9F7A9F552BF7473900688238 /* VTCustomMenuBarModel.h */,
-				9F7A9F562BF7473900688238 /* VTCustomMenuBarModel.m */,
+				06123FEA2EA21B7D0010D228 /* VTJXCategoryViewController.h */,
+				06123FEB2EA21B7D0010D228 /* VTJXCategoryViewController.m */,
 			);
-			path = CustomMenuBar;
+			path = JXCategoryView;
 			sourceTree = "<group>";
 		};
 		9F9CAC262B3D163B00744C82 /* BindScroll */ = {
@@ -599,9 +584,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VTMagicBoxDemo/Pods-VTMagicBoxDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VTMagicBoxDemo/Pods-VTMagicBoxDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -623,13 +612,12 @@
 				9F9CAC322B3D660D00744C82 /* VTScrollView.m in Sources */,
 				9F77726D2A28710D00560144 /* VTNavigationController.m in Sources */,
 				9F7772772A28710D00560144 /* VTBindListViewController.m in Sources */,
-				9F7A9F4E2BF71FF500688238 /* VTCustomMenuBar.m in Sources */,
-				9F7A9F512BF740C200688238 /* VTCustomMenuBarViewController.m in Sources */,
 				9F502CF32BF60B5A002073D1 /* VTVerticalViewController.m in Sources */,
 				9F77727A2A28710D00560144 /* VTDivideViewController.m in Sources */,
 				9F9CAC2F2B3D65CD00744C82 /* VTScrollController.m in Sources */,
 				9F7772792A28710D00560144 /* VTCenterViewController.m in Sources */,
 				9F7772812A28710D00560144 /* VTDetailViewController.m in Sources */,
+				06123FEC2EA21B7D0010D228 /* VTJXCategoryViewController.m in Sources */,
 				9F7772712A28710D00560144 /* VTHomeViewController.m in Sources */,
 				9F77720C2A28705500560144 /* AppDelegate.m in Sources */,
 				9F7772782A28710D00560144 /* VTMTAttViewController.m in Sources */,
@@ -647,12 +635,10 @@
 				9F77726F2A28710D00560144 /* UIButton+ZBKit.m in Sources */,
 				9F7772732A28710D00560144 /* VTRecomCell.m in Sources */,
 				9F05BD792AEBBBCF00D0F5BA /* VTShowController.m in Sources */,
-				9F7A9F572BF7473900688238 /* VTCustomMenuBarModel.m in Sources */,
 				9F7772802A28710D00560144 /* VTChatViewController.m in Sources */,
 				0652DC7B2E8BCB0900712976 /* VTGKViewController.m in Sources */,
 				9F77727B2A28710D00560144 /* VTSliderViewController.m in Sources */,
 				9F7772742A28710D00560144 /* VTGridViewCell.m in Sources */,
-				9F7A9F542BF746A200688238 /* VTCustomMenuBarCell.m in Sources */,
 				9F77728E2A2884F500560144 /* SwiftExampleViewController.swift in Sources */,
 				9F77726E2A28710D00560144 /* VTSectionModel.m in Sources */,
 				9F7772762A28710D00560144 /* VTBindSectionListrFooterView.m in Sources */,
