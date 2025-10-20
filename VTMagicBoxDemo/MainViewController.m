@@ -241,12 +241,12 @@
             [VTTableItem itemWithTitle:@"滑动监听" descr:@"使用监听代理，可以监听视图控制器 滑动事件" type:VTDemoTypeScroll],
             [VTTableItem itemWithTitle:@"WebView" descr:@"描述" type:VTDemoTypeWebView],
             [VTTableItem itemWithTitle:@"第一个menu固定左侧" descr:@"leftNavigatoinItem，navigationInset,同时定位到指定页面" type:VTDemoTypeFirstFixed],
-            [VTTableItem itemWithTitle:@"JXCategoryView等第三方导航" descr:@"不使用自带导航，使用第三方或自己封装。 第三方导航与和内容控制器绑定" type:VTDemoTypeJXCategoryView],
             [VTTableItem itemWithTitle:@"导航正常布局与列表绑定" descr:@"电商分类常用，使用时不需要创建子页面" type:VTDemoTypeBindListNormal],
             [VTTableItem itemWithTitle:@"导航左侧布局与列表绑定" descr:@"电商分类常用，使用时不需要创建子页面" type:VTDemoTypeBindListLeft],
             [VTTableItem itemWithTitle:@"子页面复用,响应事件" descr:@"子页面复用，父视图通知子视图响应事件" type:VTDemoTypeOneController],
             [VTTableItem itemWithTitle:@"子页面不复用，响应事件" descr:@"所有子页面都是单独创建的，父视图通知子视图响应事件" type:VTDemoTypeAllController],
             [VTTableItem itemWithTitle:@"Swift" descr:@"Swift 使用VTMagic" type:VTDemoTypeSwift],
+            [VTTableItem itemWithTitle:@"JXCategoryView等第三方导航" descr:@"不使用自带导航，使用第三方或自己封装。 第三方导航与和内容控制器绑定" type:VTDemoTypeJXCategoryView],
             [VTTableItem itemWithTitle:@"GKPageScrollView与TVMagic结合使用" descr:@"大部分主流APP布局" type:VTDemoTypeGKPageScroll],
             [VTTableItem itemWithTitle:@"展示厅" descr:@"自动展示部分功能" type:VTDemoTypeShow],
             

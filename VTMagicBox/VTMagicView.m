@@ -1136,14 +1136,12 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if ([scrollView isEqual:_contentView]){
-        if ([_delegate respondsToSelector:@selector(magicView:scrollViewDidScroll:)]) {
-            [_delegate magicView:self scrollViewDidScroll:scrollView];
-        }
-    }
-    
     if (![scrollView isEqual:_contentView] || _needSkipUpdate || CGRectIsEmpty(self.frame)) {
         return;
+    }
+    
+    if ([_delegate respondsToSelector:@selector(magicView:scrollViewDidScroll:)]) {
+        [_delegate magicView:self scrollViewDidScroll:scrollView];
     }
     
     NSInteger newIndex;
