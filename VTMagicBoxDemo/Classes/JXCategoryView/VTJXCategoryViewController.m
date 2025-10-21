@@ -39,7 +39,6 @@
         [titleList addObject:menu.title];
     }
     self.categoryView.titles =titleList;
-    self.categoryView.contentScrollView = self.magicView.contentView; // 移动内容视图 绑定 第三方或自定义菜单
     
     UIImageView *navImage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44+kSafeBottomHeight)];
     navImage.image=[UIImage imageNamed:@"bg"];
@@ -57,9 +56,9 @@
     [self.magicView switchToPage:index animated:YES];//点击绑定内容视图跳转
 }
 #pragma mark - VTMagicViewDelegate
-//- (void)magicView:(VTMagicView *)magicView viewDidAppear:(__kindof UIViewController *)viewController atPage:(NSUInteger)pageIndex {
-//    [self.categoryView selectItemAtIndex:pageIndex];//移动内容视图 绑定 第三方或自定义菜单
-//}
+- (void)magicView:(VTMagicView *)magicView viewDidAppear:(__kindof UIViewController *)viewController atPage:(NSUInteger)pageIndex {
+    [self.categoryView selectItemAtIndex:pageIndex];//移动内容视图 绑定 第三方或自定义菜单
+}
 
 - (void)rightNavBtnAction{
 //    self.magicView.againstStatusBar = !self.magicView.againstStatusBar;
@@ -72,7 +71,6 @@
         _categoryView = [[JXCategoryTitleView alloc]initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, 44)];
         _categoryView.delegate = self;
         _categoryView.indicators = @[self.indicatorView];
-        _categoryView.titleColorGradientEnabled = YES;
     }
     return _categoryView;
 }

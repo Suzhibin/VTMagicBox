@@ -56,7 +56,7 @@ static const void *kVTMagicView = &kVTMagicView;
 @property (nonatomic, strong) UIColor *normalColor; // 顶部item正常的文本颜色
 @property (nonatomic, strong) UIColor *selectedColor; // 顶部item被选中时的文本颜色
 @property (nonatomic, assign) BOOL isPanValid;
-@property (nonatomic, assign) BOOL isCustomMenu; // 使用自定义菜单
+@property (nonatomic, assign) BOOL isHideMenu; // 隐藏默认菜单
 @end
 
 @implementation VTMagicView
@@ -108,6 +108,7 @@ static const void *kVTMagicView = &kVTMagicView;
     _needPreloading = YES;
     _switchAnimated = YES;
     _menuScrollEnabled = YES;
+    _titleColorEnabled = YES;
 }
 
 - (void)dealloc {
@@ -149,20 +150,24 @@ static const void *kVTMagicView = &kVTMagicView;
         CGFloat footerY = CGRectGetMaxY(_navigationView.frame);
         _footerView.frame = CGRectMake(0,footerY, size.width, _footerHeight);
         
-        CGRect originalMenuFrame = _menuBar.frame;
-        CGFloat menuBarY = _headerHidden ? topY : 0;
-        CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
-        CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
-        CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
-        _menuBar.frame = CGRectMake(leftItemWidth, menuBarY, catWidth, _navigationHeight);
-        if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
-            [_menuBar resetItemFrames];
-            [self updateMenuBarState];
+        if (_isHideMenu == false) {
+            CGRect originalMenuFrame = _menuBar.frame;
+            CGFloat menuBarY = _headerHidden ? topY : 0;
+            CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
+            CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
+            CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
+            _menuBar.frame = CGRectMake(leftItemWidth, menuBarY, catWidth, _navigationHeight);
+            if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
+                [_menuBar resetItemFrames];
+                [self updateMenuBarState];
+            }
+            
+            CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
+            _sliderView.frame = sliderFrame;
+        } else {
+            VTLog(@"VTMenuBar hide");
         }
-        
-        CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
-        _sliderView.frame = sliderFrame;
-        
+       
         self.needSkipUpdate = YES;
         CGRect originalContentFrame = _contentView.frame;
         CGFloat contentY = _footerHidden ? CGRectGetMaxY(_navigationView.frame)+_contentViewOffset:CGRectGetMaxY(_footerView.frame)+_contentViewOffset;
@@ -188,18 +193,22 @@ static const void *kVTMagicView = &kVTMagicView;
         CGFloat separatorY = CGRectGetHeight(_navigationView.frame) - _separatorHeight;
         _separatorView.frame = CGRectMake(0, separatorY, size.width, _separatorHeight);
      
-        CGRect originalMenuFrame = _menuBar.frame;
-        CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
-        CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
-        CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
-        _menuBar.frame = CGRectMake(leftItemWidth, 0, catWidth, _navigationHeight);
-        if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
-            [_menuBar resetItemFrames];
-            [self updateMenuBarState];
+        if (_isHideMenu == false) {
+            CGRect originalMenuFrame = _menuBar.frame;
+            CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
+            CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
+            CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
+            _menuBar.frame = CGRectMake(leftItemWidth, 0, catWidth, _navigationHeight);
+            if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
+                [_menuBar resetItemFrames];
+                [self updateMenuBarState];
+            }
+            
+            CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
+            _sliderView.frame = sliderFrame;
+        } else {
+            VTLog(@"VTMenuBar hide");
         }
-        
-        CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
-        _sliderView.frame = sliderFrame;
          
         self.needSkipUpdate = YES;
         CGRect originalContentFrame = _contentView.frame;
@@ -228,17 +237,21 @@ static const void *kVTMagicView = &kVTMagicView;
         CGFloat footerY = CGRectGetMaxY(_navigationView.frame);
         _footerView.frame = CGRectMake(0,footerY, navigationW, _footerHeight);
         
-        CGRect originalMenuFrame = _menuBar.frame;
-        CGFloat menuBarY = _headerHidden ? topY : 0;
-        _menuBar.frame = CGRectMake(0, menuBarY, navigationW, navigationH-menuBarY);
-        if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
-            [_menuBar resetItemFrames];
-            [self updateMenuBarState];
+        if (_isHideMenu == false) {
+            CGRect originalMenuFrame = _menuBar.frame;
+            CGFloat menuBarY = _headerHidden ? topY : 0;
+            _menuBar.frame = CGRectMake(0, menuBarY, navigationW, navigationH-menuBarY);
+            if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
+                [_menuBar resetItemFrames];
+                [self updateMenuBarState];
+            }
+            
+            CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
+            _sliderView.frame = sliderFrame;
+        } else {
+            VTLog(@"VTMenuBar hide");
         }
-        
-        CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
-        _sliderView.frame = sliderFrame;
-        
+      
         self.needSkipUpdate = YES;
         CGRect originalContentFrame = _contentView.frame;
         CGFloat contentY = 0;
@@ -264,17 +277,21 @@ static const void *kVTMagicView = &kVTMagicView;
         CGFloat footerY = CGRectGetMaxY(_navigationView.frame);
         _footerView.frame = CGRectMake(size.width-navigationW,footerY, navigationW, _footerHeight);
         
-        CGRect originalMenuFrame = _menuBar.frame;
-        CGFloat menuBarY = _headerHidden ? topY : 0;
-        _menuBar.frame = CGRectMake(0, menuBarY, navigationW, navigationH-menuBarY);
-        if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
-            [_menuBar resetItemFrames];
-            [self updateMenuBarState];
+        if (_isHideMenu == false) {
+            CGRect originalMenuFrame = _menuBar.frame;
+            CGFloat menuBarY = _headerHidden ? topY : 0;
+            _menuBar.frame = CGRectMake(0, menuBarY, navigationW, navigationH-menuBarY);
+            if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
+                [_menuBar resetItemFrames];
+                [self updateMenuBarState];
+            }
+            
+            CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
+            _sliderView.frame = sliderFrame;
+        } else {
+            VTLog(@"VTMenuBar hide");
         }
-        
-        CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
-        _sliderView.frame = sliderFrame;
-        
+       
         self.needSkipUpdate = YES;
         CGRect originalContentFrame = _contentView.frame;
         CGFloat contentY = 0;
@@ -287,9 +304,11 @@ static const void *kVTMagicView = &kVTMagicView;
     }
     
     self.needSkipUpdate = NO;
-    if (self.isCustomMenu == false) {
+    if (self.isHideMenu == NO) {
         [self updateFrameForLeftNavigationItem];
         [self updateFrameForRightNavigationItem];
+    } else {
+        VTLog(@"VTMenuBar hide");
     }
 }
 
@@ -379,8 +398,10 @@ static const void *kVTMagicView = &kVTMagicView;
     
     if (_magicFlags.dataSourceMenuTitles) {
         _menuTitles = [_dataSource menuTitlesForMagicView:self];
-        _sliderView.hidden = _menuTitles.count ? _sliderHidden : YES;
-        _menuBar.menuTitles = _menuTitles;
+        if (_isHideMenu == false) {
+            _sliderView.hidden = _menuTitles.count ? _sliderHidden : YES;
+            _menuBar.menuTitles = _menuTitles;
+        }
         __unused NSString *title = [_menuTitles firstObject];
         NSAssert(!title || [title isKindOfClass:[NSString class]], @"The class of menu title must be NSString");
     }
@@ -566,143 +587,147 @@ static const void *kVTMagicView = &kVTMagicView;
 }
 
 - (void)updateMenuBarState {
-    __block CGFloat itemMinX = 0;
-    __block CGFloat itemMaxX = 0;
-    __block CGFloat itemMinY = 0;
-    __block CGFloat itemMaxY = 0;
-    __block CGRect itemFrame = CGRectZero;
-    __weak typeof(self) weakSelf = self;
-    void (^updateBlock) (NSInteger) = ^(NSInteger itemIndex) {
-        __strong typeof(self) strongSelf = weakSelf;
-        if (itemIndex < 0) itemIndex = 0;
-        if (strongSelf.menuTitles.count <= itemIndex) itemIndex = strongSelf.menuTitles.count - 1;
-        itemFrame = [strongSelf.menuBar itemFrameAtIndex:itemIndex];
-        if (strongSelf.navPosition == VTNavPositionLeft || strongSelf.navPosition == VTNavPositionRight){
-            itemMinY = itemFrame.origin.y;
-            itemMaxY = CGRectGetMaxY(itemFrame);
-        }else{
-            itemMinX = itemFrame.origin.x;
-            itemMaxX = CGRectGetMaxX(itemFrame);
-        }
-    };
-    
-    // update slider frame
-    updateBlock(_currentPage);
-    CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
-    _sliderView.frame = sliderFrame;
-    
-    // update contentOffset
-    if (_navPosition == VTNavPositionLeft || _navPosition == VTNavPositionRight){
-        CGFloat menuHeight = _menuBar.frame.size.height;
-        CGFloat offsetY = _menuBar.contentOffset.y;
-        CGFloat menuOffsetY = offsetY;
-        if (itemMaxY < menuOffsetY) {
-            updateBlock(_currentPage - _previewItems);
-            offsetY = itemMinY - menuHeight;
-            offsetY = offsetY < 0 ?: 0;
-        } else if (menuOffsetY + menuHeight < itemMinY) {
-            updateBlock(_currentPage + _previewItems);
-            offsetY = itemMaxY - menuHeight;
-        } else {
-            NSInteger itemIndex = _currentPage;
-            BOOL needAddition = _previousIndex <= _currentPage;
-            if (menuHeight + menuOffsetY <= itemMaxY) needAddition = YES;
-            if (itemMinY < menuOffsetY) needAddition = NO;
-            itemIndex += needAddition ? _previewItems : -_previewItems;
-            updateBlock(itemIndex);
-        }
-        
-        if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
-            CGFloat diffY = (CGRectGetMaxY(itemFrame) - menuHeight);
-            menuOffsetY = (diffY < 0 || menuOffsetY > diffY) ? menuOffsetY : diffY;
-        }
-        
-        if (menuHeight + menuOffsetY <= itemMaxY) {
-            offsetY = itemMaxY - menuHeight;
-        } else if (itemMinY < menuOffsetY) {
-            offsetY = itemMinY;
-        }
-        
-        if (0 == _currentPage) {
-            offsetY = 0;
-        } else if (_menuTitles.count - 1 == _currentPage) {
-            if (CGRectGetHeight(_menuBar.frame) < _menuBar.contentSize.height) {
-                offsetY = _menuBar.contentSize.height - CGRectGetHeight(_menuBar.frame);
+    if (_isHideMenu == false) {
+        __block CGFloat itemMinX = 0;
+        __block CGFloat itemMaxX = 0;
+        __block CGFloat itemMinY = 0;
+        __block CGFloat itemMaxY = 0;
+        __block CGRect itemFrame = CGRectZero;
+        __weak typeof(self) weakSelf = self;
+        void (^updateBlock) (NSInteger) = ^(NSInteger itemIndex) {
+            __strong typeof(self) strongSelf = weakSelf;
+            if (itemIndex < 0) itemIndex = 0;
+            if (strongSelf.menuTitles.count <= itemIndex) itemIndex = strongSelf.menuTitles.count - 1;
+            itemFrame = [strongSelf.menuBar itemFrameAtIndex:itemIndex];
+            if (strongSelf.navPosition == VTNavPositionLeft || strongSelf.navPosition == VTNavPositionRight){
+                itemMinY = itemFrame.origin.y;
+                itemMaxY = CGRectGetMaxY(itemFrame);
+            }else{
+                itemMinX = itemFrame.origin.x;
+                itemMaxX = CGRectGetMaxX(itemFrame);
             }
-        }
+        };
         
-        if (_displayCentered) {
-            CGFloat topY = 0;
-        #if TARGET_OS_MACCATALYST
-            topY = _againstStatusBar ? 36 : 0;
-        #else
-            topY = _againstStatusBar ? VTSTATUSBAR_HEIGHT : 0;
-        #endif
-            CGRect currentFrme = [_menuBar itemFrameAtIndex:_currentPage];
-            CGFloat itemPoint = CGRectGetMidY(currentFrme);
-            offsetY = itemPoint - CGRectGetHeight(self.bounds)/2+topY;
-            CGFloat menuHeight = CGRectGetHeight(_menuBar.frame);
-            CGFloat maxOffset = _menuBar.contentSize.height - menuHeight;
-            offsetY = maxOffset < offsetY ? maxOffset : offsetY;
-            offsetY = offsetY < 0 ? 0 : offsetY;
-        }
+        // update slider frame
+        updateBlock(_currentPage);
+        CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
+        _sliderView.frame = sliderFrame;
         
-        _menuBar.contentOffset = CGPointMake(0, offsetY);
-        
-    }else{
-        CGFloat menuWidth = _menuBar.frame.size.width;
-        CGFloat offsetX = _menuBar.contentOffset.x;
-        CGFloat menuOffsetX = offsetX;
-        if (itemMaxX < menuOffsetX) {// 位于屏幕左侧
-            updateBlock(_currentPage - _previewItems);
-            offsetX = itemMinX - menuWidth;
-            offsetX = offsetX < 0 ?: 0;
-        } else if (menuOffsetX + menuWidth < itemMinX) {// 位于屏幕右侧
-            updateBlock(_currentPage + _previewItems);
-            offsetX = itemMaxX - menuWidth;
-        } else {
-            NSInteger itemIndex = _currentPage;
-            BOOL needAddition = _previousIndex <= _currentPage;
-            if (menuWidth + menuOffsetX <= itemMaxX) needAddition = YES;
-            if (itemMinX < menuOffsetX) needAddition = NO;
-            itemIndex += needAddition ? _previewItems : -_previewItems;
-            updateBlock(itemIndex);
-        }
-        
-        if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
-            CGFloat diffX = (CGRectGetMaxX(itemFrame) - menuWidth);
-            menuOffsetX = (diffX < 0 || menuOffsetX > diffX) ? menuOffsetX : diffX;
-        }
-        
-        if (menuWidth + menuOffsetX <= itemMaxX) {
-            offsetX = itemMaxX - menuWidth;
-        } else if (itemMinX < menuOffsetX) {
-            offsetX = itemMinX;
-        }
-        
-        if (0 == _currentPage) {
-            offsetX = 0;
-        } else if (_menuTitles.count - 1 == _currentPage) {
-            if (CGRectGetWidth(_menuBar.frame) < _menuBar.contentSize.width) {
-                offsetX = _menuBar.contentSize.width - CGRectGetWidth(_menuBar.frame);
+        // update contentOffset
+        if (_navPosition == VTNavPositionLeft || _navPosition == VTNavPositionRight){
+            CGFloat menuHeight = _menuBar.frame.size.height;
+            CGFloat offsetY = _menuBar.contentOffset.y;
+            CGFloat menuOffsetY = offsetY;
+            if (itemMaxY < menuOffsetY) {
+                updateBlock(_currentPage - _previewItems);
+                offsetY = itemMinY - menuHeight;
+                offsetY = offsetY < 0 ?: 0;
+            } else if (menuOffsetY + menuHeight < itemMinY) {
+                updateBlock(_currentPage + _previewItems);
+                offsetY = itemMaxY - menuHeight;
+            } else {
+                NSInteger itemIndex = _currentPage;
+                BOOL needAddition = _previousIndex <= _currentPage;
+                if (menuHeight + menuOffsetY <= itemMaxY) needAddition = YES;
+                if (itemMinY < menuOffsetY) needAddition = NO;
+                itemIndex += needAddition ? _previewItems : -_previewItems;
+                updateBlock(itemIndex);
             }
-        }
-        
-        if (_displayCentered) {
-            CGRect currentFrme = [_menuBar itemFrameAtIndex:_currentPage];
-            CGFloat itemPoint = CGRectGetMidX(currentFrme);
-            offsetX = itemPoint - CGRectGetWidth(self.bounds)/2;
-            CGFloat menuWidth = CGRectGetWidth(_menuBar.frame);
-            CGFloat maxOffset = _menuBar.contentSize.width - menuWidth;
-            //#warning andi添加修复 使用leftItem时 无法居中的问题
-            CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
-            offsetX = offsetX+leftItemWidth;
             
-            offsetX = maxOffset < offsetX ? maxOffset : offsetX;
-            offsetX = offsetX < 0 ? 0 : offsetX;
+            if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+                CGFloat diffY = (CGRectGetMaxY(itemFrame) - menuHeight);
+                menuOffsetY = (diffY < 0 || menuOffsetY > diffY) ? menuOffsetY : diffY;
+            }
+            
+            if (menuHeight + menuOffsetY <= itemMaxY) {
+                offsetY = itemMaxY - menuHeight;
+            } else if (itemMinY < menuOffsetY) {
+                offsetY = itemMinY;
+            }
+            
+            if (0 == _currentPage) {
+                offsetY = 0;
+            } else if (_menuTitles.count - 1 == _currentPage) {
+                if (CGRectGetHeight(_menuBar.frame) < _menuBar.contentSize.height) {
+                    offsetY = _menuBar.contentSize.height - CGRectGetHeight(_menuBar.frame);
+                }
+            }
+            
+            if (_displayCentered) {
+                CGFloat topY = 0;
+            #if TARGET_OS_MACCATALYST
+                topY = _againstStatusBar ? 36 : 0;
+            #else
+                topY = _againstStatusBar ? VTSTATUSBAR_HEIGHT : 0;
+            #endif
+                CGRect currentFrme = [_menuBar itemFrameAtIndex:_currentPage];
+                CGFloat itemPoint = CGRectGetMidY(currentFrme);
+                offsetY = itemPoint - CGRectGetHeight(self.bounds)/2+topY;
+                CGFloat menuHeight = CGRectGetHeight(_menuBar.frame);
+                CGFloat maxOffset = _menuBar.contentSize.height - menuHeight;
+                offsetY = maxOffset < offsetY ? maxOffset : offsetY;
+                offsetY = offsetY < 0 ? 0 : offsetY;
+            }
+            
+            _menuBar.contentOffset = CGPointMake(0, offsetY);
+            
+        }else{
+            CGFloat menuWidth = _menuBar.frame.size.width;
+            CGFloat offsetX = _menuBar.contentOffset.x;
+            CGFloat menuOffsetX = offsetX;
+            if (itemMaxX < menuOffsetX) {// 位于屏幕左侧
+                updateBlock(_currentPage - _previewItems);
+                offsetX = itemMinX - menuWidth;
+                offsetX = offsetX < 0 ?: 0;
+            } else if (menuOffsetX + menuWidth < itemMinX) {// 位于屏幕右侧
+                updateBlock(_currentPage + _previewItems);
+                offsetX = itemMaxX - menuWidth;
+            } else {
+                NSInteger itemIndex = _currentPage;
+                BOOL needAddition = _previousIndex <= _currentPage;
+                if (menuWidth + menuOffsetX <= itemMaxX) needAddition = YES;
+                if (itemMinX < menuOffsetX) needAddition = NO;
+                itemIndex += needAddition ? _previewItems : -_previewItems;
+                updateBlock(itemIndex);
+            }
+            
+            if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+                CGFloat diffX = (CGRectGetMaxX(itemFrame) - menuWidth);
+                menuOffsetX = (diffX < 0 || menuOffsetX > diffX) ? menuOffsetX : diffX;
+            }
+            
+            if (menuWidth + menuOffsetX <= itemMaxX) {
+                offsetX = itemMaxX - menuWidth;
+            } else if (itemMinX < menuOffsetX) {
+                offsetX = itemMinX;
+            }
+            
+            if (0 == _currentPage) {
+                offsetX = 0;
+            } else if (_menuTitles.count - 1 == _currentPage) {
+                if (CGRectGetWidth(_menuBar.frame) < _menuBar.contentSize.width) {
+                    offsetX = _menuBar.contentSize.width - CGRectGetWidth(_menuBar.frame);
+                }
+            }
+            
+            if (_displayCentered) {
+                CGRect currentFrme = [_menuBar itemFrameAtIndex:_currentPage];
+                CGFloat itemPoint = CGRectGetMidX(currentFrme);
+                offsetX = itemPoint - CGRectGetWidth(self.bounds)/2;
+                CGFloat menuWidth = CGRectGetWidth(_menuBar.frame);
+                CGFloat maxOffset = _menuBar.contentSize.width - menuWidth;
+                //#warning andi添加修复 使用leftItem时 无法居中的问题
+                CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
+                offsetX = offsetX+leftItemWidth;
+                
+                offsetX = maxOffset < offsetX ? maxOffset : offsetX;
+                offsetX = offsetX < 0 ? 0 : offsetX;
+            }
+            
+            _menuBar.contentOffset = CGPointMake(offsetX, 0);
         }
-        
-        _menuBar.contentOffset = CGPointMake(offsetX, 0);
+    } else {
+        VTLog(@"VTMenuBar hide");
     }
 }
 
@@ -891,12 +916,14 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     }
    
     CGFloat absScale = ABS(scale);
-    UIColor *nextColor = [UIColor vtm_compositeColor:_normalVTColor anoColor:_selectedVTColor scale:absScale];
-    UIColor *selectedColor = [UIColor vtm_compositeColor:_selectedVTColor anoColor:_normalVTColor scale:absScale];
     UIButton *currentItem = [_menuBar itemAtIndex:_currentPage];
-    [currentItem setTitleColor:selectedColor forState:UIControlStateSelected];
     UIButton *nextItem = [_menuBar itemAtIndex:_nextPageIndex];
-    [nextItem setTitleColor:nextColor forState:UIControlStateNormal];
+    if (_titleColorEnabled == YES){
+        UIColor *nextColor = [UIColor vtm_compositeColor:_normalVTColor anoColor:_selectedVTColor scale:absScale];
+        UIColor *selectedColor = [UIColor vtm_compositeColor:_selectedVTColor anoColor:_normalVTColor scale:absScale];
+        [currentItem setTitleColor:selectedColor forState:UIControlStateSelected];
+        [nextItem setTitleColor:nextColor forState:UIControlStateNormal];
+    }
     
     CGRect nextFrame  = [_menuBar sliderFrameAtIndex:_nextPageIndex];
     CGRect currentFrame = [_menuBar sliderFrameAtIndex:_currentPage];
@@ -1210,7 +1237,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
         _nextPageIndex = _currentPage;
     }
     
-    if (!_needSkipUpdate && VTSwitchStyleDefault == _switchStyle) {
+    if (!_needSkipUpdate && VTSwitchStyleDefault == _switchStyle && _isHideMenu == NO) {
         [self graduallyChangeColor];
     }
 }
@@ -1244,19 +1271,23 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 }
 
 - (void)updateMenuBarWhenSwitchEnd {
-    _menuBar.needSkipLayout = NO;
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.menuBar updateSelectedItem:YES];
-        [self updateMenuBarState];
-    }];
+    if (_isHideMenu == NO) {
+        _menuBar.needSkipLayout = NO;
+        [UIView animateWithDuration:0.25 animations:^{
+            [self.menuBar updateSelectedItem:YES];
+            [self updateMenuBarState];
+        }];
+    }
 }
 
 - (void)updateItemStateForDefaultStyle {
-    UIButton *seletedItem = [_menuBar selectedItem];
-    UIButton *menuItem = [_menuBar itemAtIndex:_currentPage];
-    [menuItem setTitleColor:_normalColor forState:UIControlStateNormal];
-    [seletedItem setTitleColor:_selectedColor forState:UIControlStateSelected];
-    [_menuBar updateSelectedItem:NO];
+    if (_isHideMenu == NO) {
+        UIButton *seletedItem = [_menuBar selectedItem];
+        UIButton *menuItem = [_menuBar itemAtIndex:_currentPage];
+        [menuItem setTitleColor:_normalColor forState:UIControlStateNormal];
+        [seletedItem setTitleColor:_selectedColor forState:UIControlStateSelected];
+        [_menuBar updateSelectedItem:NO];
+    }
 }
 
 #pragma mark - 视图即将显示
@@ -1390,7 +1421,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 
 - (void)setMenuView:(UIView *)view{
     [_menuBar removeFromSuperview];
-    _isCustomMenu = YES;
+    _isHideMenu = YES;
     CGRect viewFrame = view.bounds;
     CGFloat y = 0;
     CGFloat topY = 0;
@@ -1455,27 +1486,35 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 
 - (void)setLeftNavigatoinItem:(UIView *)leftNavigatoinItem {
     _leftNavigatoinItem = leftNavigatoinItem;
-    if (self.navPosition == VTNavPositionDefault || self.navPosition == VTNavPositionBottom){
-        if (self.isCustomMenu == false) {
+    if (_navPosition == VTNavPositionDefault || _navPosition == VTNavPositionBottom){
+        if (_isHideMenu == NO) {
             [_navigationView addSubview:leftNavigatoinItem];
             [_navigationView bringSubviewToFront:_separatorView];
             [_navigationView bringSubviewToFront:_menuBar];
             leftNavigatoinItem.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
             [self updateFrameForLeftNavigationItem];
+        } else {
+            VTLog(@"VTMenuBar hide");
         }
+    } else {
+        VTLog(@"VTNavPosition not supported");
     }
 }
 
 - (void)setRightNavigatoinItem:(UIView *)rightNavigatoinItem {
     _rightNavigatoinItem = rightNavigatoinItem;
-    if (self.navPosition == VTNavPositionDefault || self.navPosition == VTNavPositionBottom){
-        if (self.isCustomMenu == false) {
+    if (_navPosition == VTNavPositionDefault || _navPosition == VTNavPositionBottom){
+        if (_isHideMenu == NO) {
             [_navigationView addSubview:rightNavigatoinItem];
             [_navigationView bringSubviewToFront:_separatorView];
             [_navigationView bringSubviewToFront:_menuBar];
             rightNavigatoinItem.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
             [self updateFrameForRightNavigationItem];
+        } else {
+            VTLog(@"VTMenuBar hide");
         }
+    } else {
+        VTLog(@"VTNavPosition not supported");
     }
 }
 
@@ -1667,6 +1706,24 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 - (void)setSliderColor:(UIColor *)sliderColor {
     _sliderColor = sliderColor;
     _sliderView.backgroundColor = sliderColor;
+}
+
+- (void)setNavigationHeight:(CGFloat)navigationHeight {
+    _navigationHeight = navigationHeight;
+    if (_navPosition == VTNavPositionDefault || _navPosition == VTNavPositionBottom){
+        if (_navigationHeight <= 0) {
+            _isHideMenu = YES;
+        }
+    }
+}
+
+-  (void)setNavigationWidth:(CGFloat)navigationWidth {
+    _navigationWidth = navigationWidth;
+    if (_navPosition == VTNavPositionLeft || _navPosition == VTNavPositionRight){
+        if (_navigationWidth <= 0) {
+            _isHideMenu = YES;
+        }
+    }
 }
 
 - (void)setSliderHeight:(CGFloat)sliderHeight {

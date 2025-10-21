@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGFloat)magicView:(VTMagicView *)magicView sliderWidthAtIndex:(NSUInteger)itemIndex;
 
 /**
- *  contentView视图控制器左右滑动时触发， 无视 跳页切换，frame是否空等情况
+ *  contentView视图控制器左右滑动时触发
  *
  *  @param magicView self
  *  @param scrollView 内容视图
@@ -233,9 +233,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setNavigationSubview:(UIView *)navigationSubview;
 
 /**
- *  自定义MenuBar视图，使用后会清除自带导航菜单。
- *  新导航可调用 switchToPage: animated 方法进行内容视图的切换
- *  内容视图可以与自定义视图 使用 magicView.contentView 或 magicView: viewDidAppear:方法进行绑定
+ *  自定义MenuBar 视图，使用后会清除默认导航菜单及滑块（ menuBar、sliderView）
+ *  自定义MenuBar 点击 调用 switchToPage: animated 方法进行内容视图的切换
+ *  自定义MenuBar  与 内容视图 回调 magicView: viewDidAppear:方法进行滑动绑定，或使用 回调 magicView: scrollViewDidScroll: 方法自己进行计算
  */
 - (void)setMenuView:(UIView *)view;
 
@@ -253,6 +253,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  @warning 该属性在VTPositionStyleLeft,VTPositionStyleRight样式下 为是否允许页面上下滑动
  */
 @property (nonatomic, assign, getter=isMenuScrollEnabled) BOOL menuScrollEnabled;
+
+/**
+ *  菜单title的颜色是否渐变过渡，默认YES
+ */
+@property (nonatomic, assign, getter=isTitleColorEnabled) BOOL titleColorEnabled;
 
 /**
  *  是否允许切换，包括左右滑动和点击切换，默认YES
@@ -370,7 +375,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  顶部导航条的高度，默认是44
- *  @warning 该属性在VTNavPositionDefault,VTNavPositionBottom样式下无效
+ *  @warning 该属性在VTNavPositionDefault,VTNavPositionBottom样式下有效
  */
 @property (nonatomic, assign) CGFloat navigationHeight;
 

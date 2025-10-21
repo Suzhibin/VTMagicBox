@@ -34,9 +34,7 @@
         [self configCustomSlider];
         [self integrateComponents];
     }else if(self.type==VTDemoTypeSliderHideMenu){
-        UIView *bjView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 5)];
-        bjView.backgroundColor=[UIColor yellowColor];
-        [self.magicView setNavigationSubview:bjView];
+        self.magicView.navigationView.backgroundColor =[UIColor yellowColor];
         self.magicView.navigationHeight = 5;
         self.magicView.sliderColor= [UIColor orangeColor];
         self.magicView.sliderHeight=3;
