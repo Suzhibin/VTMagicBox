@@ -54,7 +54,7 @@ static NSInteger const kVTMenuBarTag = 1000;
         return;
     }
     BOOL isVertical = NO;
-    if (_navPosition == VTNavPositionLeft||_navPosition == VTNavPositionRight){
+    if (_navPosition == VTNavPositionLeft || _navPosition == VTNavPositionRight){
         isVertical = YES;
     }
     UIButton *menuItem = nil;
@@ -206,7 +206,7 @@ static NSInteger const kVTMenuBarTag = 1000;
     
     [self resetSliderFrames];
     CGRect lastFrame = [[_frameList lastObject] CGRectValue];
-    if(self.navPosition == VTNavPositionLeft||self.navPosition == VTNavPositionRight){
+    if(self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
         CGFloat contentHeight = CGRectGetMaxY(lastFrame);
         contentHeight += _menuInset.bottom;
         self.contentSize = CGSizeMake(0, contentHeight);
@@ -222,7 +222,7 @@ static NSInteger const kVTMenuBarTag = 1000;
 }
 
 - (void)resetFramesForDefault {
-    if(self.navPosition == VTNavPositionLeft||self.navPosition == VTNavPositionRight){
+    if(self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
         CGFloat itemHeight = _itemHeight;
         CGRect frame = CGRectZero;
         CGFloat itemY = _menuInset.top;
@@ -255,7 +255,7 @@ static NSInteger const kVTMenuBarTag = 1000;
 }
 
 - (void)resetFramesForDivide {
-    if(self.navPosition == VTNavPositionLeft||self.navPosition == VTNavPositionRight){
+    if(self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
         CGRect frame = CGRectZero;
         NSInteger count = _menuTitles.count;
         CGFloat width = self.frame.size.width;
@@ -289,7 +289,7 @@ static NSInteger const kVTMenuBarTag = 1000;
 - (void)resetFramesForCenter {
     [self resetFramesForDefault];
     CGFloat itemOffset = 0;
-    if(self.navPosition == VTNavPositionLeft||self.navPosition == VTNavPositionRight){
+    if(self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
         CGFloat menuHeight = CGRectGetHeight(self.frame);
         CGRect lastFame = [[_frameList lastObject] CGRectValue];
         CGFloat contentHeight = menuHeight - _menuInset.bottom;
@@ -313,7 +313,7 @@ static NSInteger const kVTMenuBarTag = 1000;
     [_frameList removeAllObjects];
     for (NSValue *value in frames) {
         frame = [value CGRectValue];
-        if(self.navPosition == VTNavPositionLeft||self.navPosition == VTNavPositionRight){
+        if(self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
             frame.origin.y += itemOffset;
         }else{
             frame.origin.x += itemOffset;
@@ -325,7 +325,7 @@ static NSInteger const kVTMenuBarTag = 1000;
 - (void)resetFramesForLast{
     [self resetFramesForDefault];
     CGFloat itemOffset = 0;
-    if(self.navPosition == VTNavPositionLeft||self.navPosition == VTNavPositionRight){
+    if(self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
         CGFloat menuHeight = CGRectGetHeight(self.frame);
         CGRect lastFame = [[_frameList lastObject] CGRectValue];
         CGFloat contentHeight  = menuHeight - _menuInset.bottom;
@@ -347,7 +347,7 @@ static NSInteger const kVTMenuBarTag = 1000;
     [_frameList removeAllObjects];
     for (NSValue *value in frames) {
         frame = [value CGRectValue];
-        if(self.navPosition == VTNavPositionLeft||self.navPosition == VTNavPositionRight){
+        if(self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
             frame.origin.y += itemOffset;
         }else{
             frame.origin.x += itemOffset;
@@ -400,7 +400,7 @@ static NSInteger const kVTMenuBarTag = 1000;
                 frame.size.width = itemFrame.size.width;
             }
         }
-        if(self.navPosition == VTNavPositionLeft||self.navPosition == VTNavPositionRight){
+        if(self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
             frame.origin.y =CGRectGetMaxY(itemFrame) - frame.size.height/2 - 1 + _sliderOffset;
             frame.origin.x = CGRectGetMidX(itemFrame) - frame.size.width/2;
         }else{

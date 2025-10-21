@@ -83,7 +83,7 @@
         self.magicView.navigationHeight = 0;
     }else if(self.type==VTDemoTypeBottom){
         self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.magicView.navPosition=VTNavPositionBottom;
+        self.magicView.navPosition = VTNavPositionBottom;
         self.magicView.againstSafeBottomBar =YES;
    
         self.magicView.headerHeight = 40;
@@ -98,15 +98,15 @@
         UIImageView *navImage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.magicView.navigationHeight+kSafeBottomHeight)];
         navImage.image=[UIImage imageNamed:@"bg"];
         [self.magicView setNavigationSubview:navImage];
-    }else if(self.type==VTDemoTypeBottomDivide){
+    }else if(self.type == VTDemoTypeBottomDivide){
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.magicView.layoutStyle = VTLayoutStyleDivide;
-        self.magicView.navPosition=VTNavPositionBottom;
+        self.magicView.navPosition = VTNavPositionBottom;
         self.magicView.againstSafeBottomBar =YES;
         self.magicView.safeBottomHeight = IS_IPhoneX_All ? 34 : 0.0;
         self.magicView.sliderWidth=20;
         [self createRightNavBtn];
-    }else if(self.type==VTDemoTypeAlphaNav){
+    }else if(self.type == VTDemoTypeAlphaNav){
         self.magicView.navigationColor = [UIColor clearColor];
         self.magicView.contentViewOffset = -(self.barHeight+60+44);
         self.magicView.separatorHidden=YES;

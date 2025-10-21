@@ -97,7 +97,7 @@
 
 #pragma mark - actions
 - (void)action0{
-    if(self.magicView.navPosition==VTNavPositionLeft){
+    if(self.magicView.navPosition == VTNavPositionLeft){
         if(self.magicView.navigationWidth == 100){
             self.magicView.navigationWidth = 130;
         }else{
@@ -131,19 +131,19 @@
     }
 }
 - (void)action3{
-    if(self.magicView.navPosition==VTNavPositionBottom){
-        self.magicView.navPosition=VTNavPositionDefault;
+    if(self.magicView.navPosition == VTNavPositionBottom){
+        self.magicView.navPosition = VTNavPositionDefault;
         self.magicView.againstStatusBar = YES;
     }else{
-        self.magicView.navPosition=VTNavPositionBottom;
+        self.magicView.navPosition = VTNavPositionBottom;
         self.magicView.againstStatusBar = YES;
     }
-    if(self.magicView.navPosition==VTNavPositionBottom){
+    if(self.magicView.navPosition == VTNavPositionBottom){
         self.infoLabel.text=@"导航位置底部";
     }else{
         self.infoLabel.text=@"导航位置正常";
     }
-    self.magicView.navigationInset=UIEdgeInsetsMake(0, 0, 0, 0);
+    self.magicView.navigationInset = UIEdgeInsetsMake(0, 0, 0, 0);
     [self.magicView reloadData];
 }
 - (void)action4{
@@ -224,7 +224,7 @@
 - (void)action12{
     if(self.magicView.navigationInset.left==0){
         [self.magicView switchToPage:0 animated:YES];
-        if(self.magicView.navPosition==VTNavPositionLeft){
+        if(self.magicView.navPosition == VTNavPositionLeft){
             self.magicView.navigationInset=UIEdgeInsetsMake(self.view.frame.size.width/2, 0, 0, 0);
             self.infoLabel.text=[NSString stringWithFormat:@"导航菜单上侧偏移量:%.2f",self.magicView.navigationInset.top];
         }else{
@@ -262,14 +262,14 @@
     [self.magicView reloadMenuTitles];
 }
 - (void)action15{
-    if(self.magicView.navPosition==VTNavPositionLeft){
+    if(self.magicView.navPosition == VTNavPositionLeft){
         self.infoLabel.text=@"导航栏位置恢复";
-        self.magicView.navPosition=VTNavPositionDefault;
+        self.magicView.navPosition = VTNavPositionDefault;
     }else{
-        self.magicView.navPosition=VTNavPositionLeft;
+        self.magicView.navPosition = VTNavPositionLeft;
         self.infoLabel.text=@"导航栏位置在左侧";
     }
-    self.magicView.navigationInset=UIEdgeInsetsMake(0, 0, 0, 0);
+    self.magicView.navigationInset = UIEdgeInsetsMake(0, 0, 0, 0);
     [self.magicView reloadData];
 }
 - (void)backAction{

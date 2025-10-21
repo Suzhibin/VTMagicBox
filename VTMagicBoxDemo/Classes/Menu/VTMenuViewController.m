@@ -81,10 +81,10 @@
     self.navImage.image=[UIImage imageNamed:[NSString stringWithFormat:@"image_%ld",index]];
 }
 - (void)buttonAction2:(UIButton *)sender{
-    if(self.magicView.navPosition==VTNavPositionBottom){
-        self.magicView.navPosition=VTNavPositionDefault;
+    if(self.magicView.navPosition == VTNavPositionBottom){
+        self.magicView.navPosition = VTNavPositionDefault;
     }else{
-        self.magicView.navPosition=VTNavPositionBottom;
+        self.magicView.navPosition = VTNavPositionBottom;
     }
     [self.magicView reloadData];
 }
@@ -207,7 +207,7 @@
 //    self.magicView.againstStatusBar = !self.magicView.againstStatusBar;
   
     if(self.type==VTDemoTypeMenuNavigationImage){
-        if(self.magicView.navPosition==VTNavPositionBottom){
+        if(self.magicView.navPosition == VTNavPositionBottom){
             [self.magicView setFooterHidden:!self.magicView.isFooterHidden duration:0.35];
         }else{
             [self.magicView setHeaderHidden:!self.magicView.isHeaderHidden duration:0.35];

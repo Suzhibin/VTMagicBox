@@ -29,17 +29,17 @@
         原生 menuBar 设置全部失效，需要在第三方或自定义导航上 设置与实现
      */
     
-    self.magicView.navPosition=VTNavPositionDefault;
-    self.magicView.headerView.backgroundColor=[UIColor greenColor];
-    self.magicView.footerView.backgroundColor=[UIColor orangeColor];
-    [self.magicView setMenuView:self.categoryView];
+    self.magicView.navPosition = VTNavPositionDefault;
+    self.magicView.headerView.backgroundColor = [UIColor greenColor];
+    self.magicView.footerView.backgroundColor = [UIColor orangeColor];
+    [self.magicView setMenuView:self.categoryView]; // categoryView添加 到 magicView导航上
     
     NSMutableArray *titleList = [NSMutableArray array];
     for (MenuInfo *menu in self.menuList) {
         [titleList addObject:menu.title];
     }
     self.categoryView.titles =titleList;
-    self.categoryView.contentScrollView = self.magicView.contentView; //移动内容视图 绑定 第三方或自定义菜单
+    self.categoryView.contentScrollView = self.magicView.contentView; // 移动内容视图 绑定 第三方或自定义菜单
     
     UIImageView *navImage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44+kSafeBottomHeight)];
     navImage.image=[UIImage imageNamed:@"bg"];
@@ -51,8 +51,6 @@
     rightNavBtn.titleLabel.font=[UIFont systemFontOfSize:16];
     UIBarButtonItem *rightBtnItem = [[UIBarButtonItem alloc] initWithCustomView:rightNavBtn];
     self.navigationItem.rightBarButtonItems =@[rightBtnItem];
-    
-    
 }
 #pragma mark -JXCategoryViewDelegate
 - (void)categoryView:(JXCategoryBaseView *)categoryView didSelectedItemAtIndex:(NSInteger)index {
@@ -74,6 +72,7 @@
         _categoryView = [[JXCategoryTitleView alloc]initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, 44)];
         _categoryView.delegate = self;
         _categoryView.indicators = @[self.indicatorView];
+        _categoryView.titleColorGradientEnabled = YES;
     }
     return _categoryView;
 }

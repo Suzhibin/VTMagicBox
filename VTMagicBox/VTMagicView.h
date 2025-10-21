@@ -235,7 +235,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  自定义MenuBar视图，使用后会清除自带导航菜单。
  *  新导航可调用 switchToPage: animated 方法进行内容视图的切换
- *  内容视图可以与自定义视图 使用 magicView: viewDidAppear:方法进行绑定
+ *  内容视图可以与自定义视图 使用 magicView.contentView 或 magicView: viewDidAppear:方法进行绑定
  */
 - (void)setMenuView:(UIView *)view;
 

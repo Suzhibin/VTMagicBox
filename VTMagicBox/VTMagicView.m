@@ -56,7 +56,7 @@ static const void *kVTMagicView = &kVTMagicView;
 @property (nonatomic, strong) UIColor *normalColor; // 顶部item正常的文本颜色
 @property (nonatomic, strong) UIColor *selectedColor; // 顶部item被选中时的文本颜色
 @property (nonatomic, assign) BOOL isPanValid;
-
+@property (nonatomic, assign) BOOL isCustomMenu; // 使用自定义菜单
 @end
 
 @implementation VTMagicView
@@ -134,7 +134,7 @@ static const void *kVTMagicView = &kVTMagicView;
 #endif
     
     //#warning andi 增加 导航位置 VTPositionStyle的逻辑
-    if(self.navPosition==VTNavPositionDefault)
+    if(self.navPosition == VTNavPositionDefault)
     {
         CGFloat headerY = _headerHidden ? -_headerHeight : topY;
         _headerView.frame = CGRectMake(0, headerY, size.width, _headerHeight);
@@ -171,7 +171,7 @@ static const void *kVTMagicView = &kVTMagicView;
         if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
             [_contentView resetPageFrames];
         }
-    }else if (self.navPosition==VTNavPositionBottom){
+    } else if (self.navPosition == VTNavPositionBottom){
         CGFloat bottomY = _againstSafeBottomBar ? _safeBottomHeight : 0;
 
         CGFloat contentH = size.height + (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
@@ -211,7 +211,7 @@ static const void *kVTMagicView = &kVTMagicView;
         if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
             [_contentView resetPageFrames];
         }
-    }else if (self.navPosition==VTNavPositionLeft){
+    } else if (self.navPosition == VTNavPositionLeft){
         CGFloat headerY = _headerHidden ? -_headerHeight : topY;
         CGFloat Hheight = _headerHidden ? 0 : _headerHeight;
         CGFloat FHeight = _footerHidden ? 0 : _footerHeight;
@@ -248,7 +248,7 @@ static const void *kVTMagicView = &kVTMagicView;
         if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
             [_contentView resetPageFrames];
         }
-    }else if (self.navPosition==VTNavPositionRight){
+    } else if (self.navPosition == VTNavPositionRight){
         CGFloat headerY = _headerHidden ? -_headerHeight : topY;
         CGFloat Hheight = _headerHidden ? 0 : _headerHeight;
         CGFloat FHeight = _footerHidden ? 0 : _footerHeight;
@@ -287,15 +287,16 @@ static const void *kVTMagicView = &kVTMagicView;
     }
     
     self.needSkipUpdate = NO;
-    
-    [self updateFrameForLeftNavigationItem];
-    [self updateFrameForRightNavigationItem];
+    if (self.isCustomMenu == false) {
+        [self updateFrameForLeftNavigationItem];
+        [self updateFrameForRightNavigationItem];
+    }
 }
 
 - (void)updateFrameForLeftNavigationItem {
     CGRect leftFrame = _leftNavigatoinItem.bounds;
     CGFloat y = 0;
-    if (self.navPosition==VTNavPositionBottom){
+    if (self.navPosition == VTNavPositionBottom){
         y = CGRectGetMinY(_navigationView.bounds);
         leftFrame.origin.y = y ;
     }else{
@@ -310,7 +311,7 @@ static const void *kVTMagicView = &kVTMagicView;
     CGRect rightFrame = _rightNavigatoinItem.bounds;
     rightFrame.origin.x = _navigationView.frame.size.width - rightFrame.size.width;
     CGFloat y = 0;
-    if (self.navPosition==VTNavPositionBottom){
+    if (self.navPosition == VTNavPositionBottom){
         y = CGRectGetMinY(_navigationView.bounds);
         rightFrame.origin.y = y ;
     }else{
@@ -485,7 +486,7 @@ static const void *kVTMagicView = &kVTMagicView;
     [_contentView creatViewControllerAtPage:pageIndex];
     [self subviewWillAppearAtPage:pageIndex];
     self.needSkipUpdate = YES;
-    if (self.navPosition==VTNavPositionLeft||self.navPosition==VTNavPositionRight){
+    if (self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
         CGFloat offset = _contentView.frame.size.height * pageIndex;
         _contentView.contentOffset = CGPointMake(0, offset);
     }else{
@@ -514,7 +515,7 @@ static const void *kVTMagicView = &kVTMagicView;
     NSInteger disIndex = _currentPage;
     CGFloat contentWidth = 0;
     CGFloat contentHeight = 0;
-    if (_navPosition==VTNavPositionLeft||_navPosition==VTNavPositionRight){
+    if (_navPosition == VTNavPositionLeft || _navPosition == VTNavPositionRight){
         contentHeight = CGRectGetHeight(_contentView.frame);
     }else{
         contentWidth = CGRectGetWidth(_contentView.frame);
@@ -527,7 +528,7 @@ static const void *kVTMagicView = &kVTMagicView;
         [self subviewWillAppearAtPage:pageIndex];
         [self viewControllerDidDisappear:disIndex];
         [_magicController setCurrentViewController:nil];
-        if (_navPosition==VTNavPositionLeft||_navPosition==VTNavPositionRight){
+        if (_navPosition == VTNavPositionLeft || _navPosition == VTNavPositionRight){
             NSInteger tempIndex = pageIndex + (_currentPage < pageIndex ? -1 : 1);
             _contentView.contentOffset = CGPointMake(0, contentHeight * tempIndex);
         }else{
@@ -546,7 +547,7 @@ static const void *kVTMagicView = &kVTMagicView;
     [UIView animateWithDuration:0.25 animations:^{
         [self.menuBar updateSelectedItem:YES];
         [self updateMenuBarState];
-        if (self.navPosition==VTNavPositionLeft||self.navPosition==VTNavPositionRight){
+        if (self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
             self.contentView.contentOffset = CGPointMake(0, contentHeight * pageIndex);
         }else{
             self.contentView.contentOffset = CGPointMake(contentWidth * pageIndex, 0);
@@ -576,7 +577,7 @@ static const void *kVTMagicView = &kVTMagicView;
         if (itemIndex < 0) itemIndex = 0;
         if (strongSelf.menuTitles.count <= itemIndex) itemIndex = strongSelf.menuTitles.count - 1;
         itemFrame = [strongSelf.menuBar itemFrameAtIndex:itemIndex];
-        if (strongSelf.navPosition==VTNavPositionLeft||strongSelf.navPosition==VTNavPositionRight){
+        if (strongSelf.navPosition == VTNavPositionLeft || strongSelf.navPosition == VTNavPositionRight){
             itemMinY = itemFrame.origin.y;
             itemMaxY = CGRectGetMaxY(itemFrame);
         }else{
@@ -591,7 +592,7 @@ static const void *kVTMagicView = &kVTMagicView;
     _sliderView.frame = sliderFrame;
     
     // update contentOffset
-    if (_navPosition==VTNavPositionLeft||_navPosition==VTNavPositionRight){
+    if (_navPosition == VTNavPositionLeft || _navPosition == VTNavPositionRight){
         CGFloat menuHeight = _menuBar.frame.size.height;
         CGFloat offsetY = _menuBar.contentOffset.y;
         CGFloat menuOffsetY = offsetY;
@@ -883,7 +884,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
         return;
     }
     CGFloat scale = 0;
-    if (self.navPosition==VTNavPositionLeft||self.navPosition==VTNavPositionRight){
+    if (self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
         scale = _contentView.contentOffset.y/_contentView.frame.size.height - _currentPage;
     }else{
         scale = _contentView.contentOffset.x/_contentView.frame.size.width - _currentPage;
@@ -900,7 +901,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     CGRect nextFrame  = [_menuBar sliderFrameAtIndex:_nextPageIndex];
     CGRect currentFrame = [_menuBar sliderFrameAtIndex:_currentPage];
     CGRect sliderFrame = _sliderView.frame;
-    if (self.navPosition==VTNavPositionLeft||self.navPosition==VTNavPositionRight){
+    if (self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
         CGFloat nextHeight = nextFrame.size.height;
         CGFloat currentHeight = currentFrame.size.height;
         sliderFrame.size.height = currentHeight - (currentHeight - nextHeight) * absScale;
@@ -916,7 +917,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
         if(_sliderStyle==VTSliderStyleDefaultZoom){
             [self sliderZoomScale:scale currentFrame:currentFrame nextFrame:nextFrame sliderFrame:sliderFrame];
         }else{
-            if (_navPosition==VTNavPositionLeft||_navPosition==VTNavPositionRight){
+            if (_navPosition == VTNavPositionLeft || _navPosition == VTNavPositionRight){
                 CGFloat offset = ABS(currentFrame.origin.y - nextFrame.origin.y) * scale;
                 sliderFrame.origin.y = currentFrame.origin.y + offset;
                 _sliderView.frame = sliderFrame;
@@ -939,7 +940,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 }
 
 - (void)sliderZoomScale:(CGFloat)scale currentFrame:(CGRect)currentFrame nextFrame:(CGRect)nextFrame sliderFrame:(CGRect)sliderFrame{
-    if (_navPosition==VTNavPositionLeft||_navPosition==VTNavPositionRight){
+    if (_navPosition == VTNavPositionLeft || _navPosition == VTNavPositionRight){
         CGFloat distance = fabs(CGRectGetMidY(nextFrame) - CGRectGetMidY(currentFrame));
         CGFloat fromY = CGRectGetMidY(currentFrame) - sliderFrame.size.height/2.0f;
         CGFloat toY = CGRectGetMidY(nextFrame) - sliderFrame.size.height/2.0f;
@@ -1148,7 +1149,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     NSInteger tempIndex;
     BOOL isSwipeToTop = NO;
     BOOL isSwipeToLeft = NO;
-    if (self.navPosition==VTNavPositionLeft||self.navPosition==VTNavPositionRight){
+    if (self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
         CGFloat offsetY = scrollView.contentOffset.y;
         CGFloat scrollHeight = scrollView.frame.size.height;
         isSwipeToTop = scrollHeight * _currentPage < offsetY;
@@ -1188,7 +1189,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
     if (_nextPageIndex != tempIndex) _isViewWillAppear = NO;
     if (!_isViewWillAppear && newIndex != tempIndex) {
         _isViewWillAppear = YES;
-        if (self.navPosition==VTNavPositionLeft||self.navPosition==VTNavPositionRight){
+        if (self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
             NSInteger nextPageIndex = newIndex + (isSwipeToTop ? 1 : -1);
             [self subviewWillAppearAtPage:nextPageIndex];
         }else{
@@ -1227,7 +1228,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
         return;
     }
     if (VTSwitchEventClick == _switchEvent) {
-        if (self.navPosition==VTNavPositionLeft||self.navPosition==VTNavPositionRight){
+        if (self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){
             CGFloat contentHeight = CGRectGetHeight(_contentView.frame);
             CGPoint offset = CGPointMake(contentHeight * _currentPage, 0);
             [_contentView setContentOffset:offset animated:YES];
@@ -1389,6 +1390,7 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 
 - (void)setMenuView:(UIView *)view{
     [_menuBar removeFromSuperview];
+    _isCustomMenu = YES;
     CGRect viewFrame = view.bounds;
     CGFloat y = 0;
     CGFloat topY = 0;
@@ -1397,17 +1399,17 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 #else
     topY = _againstStatusBar ? VTSTATUSBAR_HEIGHT : 0;
 #endif
-     if (_navPosition==VTNavPositionBottom){
+     if (_navPosition == VTNavPositionBottom){
         y = CGRectGetMinY(_navigationView.bounds);
         viewFrame.origin.y = y;
-    }else if (_navPosition==VTNavPositionLeft){
+    }else if (_navPosition == VTNavPositionLeft){
         viewFrame.origin.y = topY;
         viewFrame.size.height = view.frame.size.height - topY;
-    }else if (_navPosition==VTNavPositionRight){
+    }else if (_navPosition == VTNavPositionRight){
         viewFrame.origin.y = topY;
         viewFrame.size.height = view.frame.size.height - topY;
     }else{
-        viewFrame.origin.y =  _navigationHeight+topY-view.frame.size.height;
+        viewFrame.origin.y =  _navigationHeight + topY - view.frame.size.height;
     }
     view.frame = viewFrame;
     [_navigationView addSubview:view];
@@ -1453,23 +1455,27 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 
 - (void)setLeftNavigatoinItem:(UIView *)leftNavigatoinItem {
     _leftNavigatoinItem = leftNavigatoinItem;
-    if (self.navPosition==VTNavPositionDefault||self.navPosition==VTNavPositionBottom){
-        [_navigationView addSubview:leftNavigatoinItem];
-        [_navigationView bringSubviewToFront:_separatorView];
-        [_navigationView bringSubviewToFront:_menuBar];
-        leftNavigatoinItem.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
-        [self updateFrameForLeftNavigationItem];
+    if (self.navPosition == VTNavPositionDefault || self.navPosition == VTNavPositionBottom){
+        if (self.isCustomMenu == false) {
+            [_navigationView addSubview:leftNavigatoinItem];
+            [_navigationView bringSubviewToFront:_separatorView];
+            [_navigationView bringSubviewToFront:_menuBar];
+            leftNavigatoinItem.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+            [self updateFrameForLeftNavigationItem];
+        }
     }
 }
 
 - (void)setRightNavigatoinItem:(UIView *)rightNavigatoinItem {
     _rightNavigatoinItem = rightNavigatoinItem;
-    if (self.navPosition==VTNavPositionDefault||self.navPosition==VTNavPositionBottom){
-        [_navigationView addSubview:rightNavigatoinItem];
-        [_navigationView bringSubviewToFront:_separatorView];
-        [_navigationView bringSubviewToFront:_menuBar];
-        rightNavigatoinItem.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-        [self updateFrameForRightNavigationItem];
+    if (self.navPosition == VTNavPositionDefault || self.navPosition == VTNavPositionBottom){
+        if (self.isCustomMenu == false) {
+            [_navigationView addSubview:rightNavigatoinItem];
+            [_navigationView bringSubviewToFront:_separatorView];
+            [_navigationView bringSubviewToFront:_menuBar];
+            rightNavigatoinItem.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+            [self updateFrameForRightNavigationItem];
+        }
     }
 }
 
@@ -1520,10 +1526,10 @@ static VTPanRecognizerDirection direction = VTPanRecognizerDirectionUndefined;
 }
 
 - (void)setNavPosition:(VTNavPosition)navPosition{
-    _navPosition=navPosition;
-    _menuBar.navPosition=navPosition;
-    _contentView.navPosition=navPosition;
-    if(navPosition==VTNavPositionLeft||navPosition==VTNavPositionRight){
+    _navPosition = navPosition;
+    _menuBar.navPosition = navPosition;
+    _contentView.navPosition = navPosition;
+    if(navPosition == VTNavPositionLeft || navPosition == VTNavPositionRight){
         _separatorWidth = 0.5;
         _separatorHeight = self.frame.size.height;
     }

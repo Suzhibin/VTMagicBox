@@ -55,7 +55,7 @@
         return;
     }
     NSInteger currentPage;
-    if (_navPosition == VTNavPositionLeft||_navPosition == VTNavPositionRight){
+    if (_navPosition == VTNavPositionLeft || _navPosition == VTNavPositionRight){
         CGFloat offset = self.contentOffset.y;
         CGFloat height = self.frame.size.height;
         BOOL isNotBorder = 0 != (int)offset%(int)height;
@@ -73,7 +73,7 @@
         }
     }
     BOOL isVertical = NO;
-    if (_navPosition == VTNavPositionLeft||_navPosition == VTNavPositionRight){
+    if (_navPosition == VTNavPositionLeft || _navPosition == VTNavPositionRight){
         isVertical = YES;
     }
     _currentPage = currentPage;
@@ -140,7 +140,7 @@
 - (void)resetPageFrames {
     [_frameList removeAllObjects];
     CGRect frame = self.bounds;
-    if (_navPosition == VTNavPositionLeft||_navPosition == VTNavPositionRight){
+    if (_navPosition == VTNavPositionLeft || _navPosition == VTNavPositionRight){
         for (NSIndexPath *indexPath in _indexList) {
             frame.origin.y = indexPath.row * frame.size.height;
             [_frameList addObject:[NSValue valueWithCGRect:frame]];
