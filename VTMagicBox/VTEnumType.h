@@ -17,8 +17,8 @@ typedef NS_ENUM(NSUInteger, VTLayoutStyle) {
     VTLayoutStyleDivide,
     /** 导航栏居中布局，间距由itemSpacing决定 */
     VTLayoutStyleCenter,
-    /** 导航栏末尾布局，间距由itemSpacing决定 */
-    VTLayoutStyleLast,
+    /** 导航栏右侧布局，间距由itemSpacing决定 */
+    VTLayoutStyleRight,
 };
 
 /** 页面滑动切换样式 */
@@ -85,6 +85,14 @@ typedef NS_ENUM(NSUInteger, VTNavPosition) {
     VTNavPositionLeft,
     /** 导航布局到右侧 */
     VTNavPositionRight,
+};
+
+/** 菜单使用 */
+typedef NS_ENUM(NSUInteger, VTMenuBarStyle) {
+    /** 默认*/
+    VTMenuBarDefault,
+    /** 自定义菜单 */
+    VTMenuBarCustom
 };
 
 #endif /* VTEnumType_h */

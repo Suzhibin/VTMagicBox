@@ -73,7 +73,7 @@
         [self configSeparatorView];
     }else if (self.type==VTDemoTypeFooter){
         self.magicView.againstStatusBar = YES;
-        self.magicView.sliderWidth=20;
+        self.magicView.sliderWidth = 20;
         [self createFooterView];
         [self configSeparatorView];
     }else if (self.type==VTDemoTypeHideNav){
@@ -92,10 +92,10 @@
         self.magicView.footerHeight = 64;
 //        self.magicView.footerHidden = NO;
         self.magicView.footerView.backgroundColor=[UIColor orangeColor];
-        self.magicView.sliderWidth=20;
+        self.magicView.sliderWidth = 20;
         [self configSeparatorView];
         self.magicView.navigationView.backgroundColor = [UIColor redColor];
-        UIImageView *navImage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.magicView.navigationHeight+kSafeBottomHeight)];
+        UIImageView *navImage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.magicView.navigationHeight + kSafeBottomHeight)];
         navImage.image=[UIImage imageNamed:@"bg"];
         [self.magicView setNavigationSubview:navImage];
     }else if(self.type == VTDemoTypeBottomDivide){
@@ -104,16 +104,16 @@
         self.magicView.navPosition = VTNavPositionBottom;
         self.magicView.againstSafeBottomBar =YES;
         self.magicView.safeBottomHeight = IS_IPhoneX_All ? 34 : 0.0;
-        self.magicView.sliderWidth=20;
+        self.magicView.sliderWidth = 20;
         [self createRightNavBtn];
     }else if(self.type == VTDemoTypeAlphaNav){
         self.magicView.navigationColor = [UIColor clearColor];
-        self.magicView.contentViewOffset = -(self.barHeight+60+44);
+        self.magicView.contentViewOffset = -(self.barHeight + 60 + 44);
         self.magicView.separatorHidden=YES;
         self.magicView.sliderHidden = YES;
         self.magicView.itemScale = 1.2;
         self.magicView.headerHidden=NO;
-        self.magicView.headerHeight = self.barHeight+60;
+        self.magicView.headerHeight = self.barHeight + 60;
         self.magicView.headerView.backgroundColor = [UIColor clearColor];
         self.magicView.navigationHeight = 44;
         self.leftButton=[self createleftButton];
@@ -203,6 +203,7 @@
             [menuItem setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
             [menuItem setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];
         }
+//        menuItem.isTabSelected = menuItem.isSelected;
    
         menuItem.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
     }
@@ -433,7 +434,7 @@
     }else if(self.magicView.layoutStyle == VTLayoutStyleCenter){
         self.magicView.layoutStyle = VTLayoutStyleDefault;
     }else if(self.magicView.layoutStyle == VTLayoutStyleDefault){
-        self.magicView.layoutStyle = VTLayoutStyleLast;
+        self.magicView.layoutStyle = VTLayoutStyleRight;
     }else{
         self.magicView.layoutStyle = VTLayoutStyleDivide;
     }

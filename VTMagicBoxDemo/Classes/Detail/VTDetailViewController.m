@@ -77,7 +77,7 @@
         [menuItem setTitleColor:RGBCOLOR(169, 37, 37) forState:UIControlStateSelected];
         menuItem.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
     }
-    if(self.type==VTDemoTypeMenuNumber){
+    if(self.type == VTDemoTypeMenuNumber){
         menuItem.numberHidden = ( 1 == itemIndex) ? _numberHidden : YES;
         menuItem.numberText=self.numberText;
     }else{

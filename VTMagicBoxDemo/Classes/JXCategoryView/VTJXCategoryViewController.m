@@ -38,7 +38,7 @@
     for (MenuInfo *menu in self.menuList) {
         [titleList addObject:menu.title];
     }
-    self.categoryView.titles =titleList;
+    self.categoryView.titles = titleList;
     
     UIImageView *navImage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44+kSafeBottomHeight)];
     navImage.image=[UIImage imageNamed:@"bg"];

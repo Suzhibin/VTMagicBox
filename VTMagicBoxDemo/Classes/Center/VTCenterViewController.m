@@ -36,11 +36,11 @@
     if(self.type==VTDemoTypeCenter){
         self.magicController.magicView.layoutStyle = VTLayoutStyleCenter;
     }else if(self.type==VTDemoTypeRight){
-        self.magicController.magicView.layoutStyle = VTLayoutStyleLast;
+        self.magicController.magicView.layoutStyle = VTLayoutStyleRight;
     }else if(self.type==VTDemoTypeSegmentedControl){
         self.magicController.magicView.layoutStyle = VTLayoutStyleCenter;
         [self.magicController.magicView setNavigationSubview:self.sbackgroundView];
-        self.magicController.magicView.itemSpacing=53;//间隔
+        self.magicController.magicView.itemSpacing = 53;//间隔
         self.magicController.magicView.sliderStyle = VTSliderStyleBubble;
         self.magicController.magicView.sliderColor = [UIColor redColor];
         self.magicController.magicView.bubbleInset = UIEdgeInsetsMake(7, 22, 7, 22);
@@ -93,7 +93,7 @@
         searchButton.frame = CGRectMake(0, 0, 44, 20);
         [self.magicController.magicView setRightNavigatoinItem:searchButton];
         
-        if(self.magicController.magicView.leftNavigatoinItem==nil){
+        if(self.magicController.magicView.leftNavigatoinItem == nil){
             self.magicController.magicView.navigationInset = UIEdgeInsetsMake(0, kSearchBarWidth, 0, 0);
         }
     }
@@ -102,7 +102,7 @@
 #pragma mark - actions
 - (void)searchAction:(UIButton *)sender {
     NSLog(@"searchAction");
-    if(self.magicController.currentPage==0){
+    if(self.magicController.currentPage == 0){
         [self.magicController switchToPage:1 animated:YES];
     }else{
         [self.magicController switchToPage:0 animated:YES];
@@ -159,7 +159,7 @@
         _magicController.view.translatesAutoresizingMaskIntoConstraints = NO;
         _magicController.magicView.navigationColor = [UIColor whiteColor];
         _magicController.magicView.sliderColor = RGBCOLOR(169, 37, 37);
-        _magicController.magicView.sliderWidth=20;
+        _magicController.magicView.sliderWidth = 20;
         _magicController.magicView.switchStyle = VTSwitchStyleDefault;
         _magicController.magicView.navigationHeight = 44.f;
         _magicController.magicView.againstStatusBar = YES;

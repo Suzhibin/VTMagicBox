@@ -27,24 +27,24 @@
     self.magicView.layoutStyle = VTLayoutStyleDivide;
     self.magicView.switchStyle = VTSwitchStyleStiff;
     self.magicView.needPreloading = NO;
-    if(self.type==VTDemoTypeDivide||self.type==VTDemoTypeSliderTriangle){
+    if(self.type == VTDemoTypeDivide||self.type == VTDemoTypeSliderTriangle){
         self.magicView.navigationHeight = 44.f;
         self.magicView.againstStatusBar = YES;
         self.edgesForExtendedLayout = UIRectEdgeAll;
         [self configCustomSlider];
         [self integrateComponents];
     }else if(self.type==VTDemoTypeSliderHideMenu){
-        self.magicView.navigationView.backgroundColor =[UIColor yellowColor];
+        self.magicView.navigationView.backgroundColor = [UIColor yellowColor];
         self.magicView.navigationHeight = 5;
-        self.magicView.sliderColor= [UIColor orangeColor];
-        self.magicView.sliderHeight=3;
+        self.magicView.sliderColor = [UIColor orangeColor];
+        self.magicView.sliderHeight = 3;
     }else if (self.type==VTDemoTypeSliderPageControl){
-        self.magicView.sliderHidden=YES;
-        self.pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake(self.magicView.footerView.frame.size.width/2-160, 0, 320, 10)];
+        self.magicView.sliderHidden = YES;
+        self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(self.magicView.footerView.frame.size.width/2-160, 0, 320, 10)];
         [self.magicView.footerView addSubview:self.pageControl];
-        self.magicView.footerHeight=15;
-        self.magicView.footerView.hidden=NO;
-        self.magicView.separatorHidden=YES;
+        self.magicView.footerHeight = 15;
+        self.magicView.footerView.hidden = NO;
+        self.magicView.separatorHidden = YES;
     }
     NSInteger page = 1;
     [self generateTestData];

@@ -73,97 +73,97 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    VTTableItem *item=self.list[indexPath.section].items[indexPath.row];
+    VTTableItem *item = self.list[indexPath.section].items[indexPath.row];
     
-    if(item.type==VTDemoTypeNormal||item.type==VTDemoTypeHeader||item.type==VTDemoTypeFooter||item.type==VTDemoTypeHideNav||item.type==VTDemoTypeBottom||item.type==VTDemoTypeBottomDivide||item.type==VTDemoTypeAlphaNav){
-        VTHomeViewController *homeVC=[[VTHomeViewController alloc]init];
-        homeVC.type=item.type;
-        homeVC.title=item.title;
+    if(item.type == VTDemoTypeNormal || item.type==VTDemoTypeHeader || item.type == VTDemoTypeFooter || item.type == VTDemoTypeHideNav || item.type == VTDemoTypeBottom || item.type == VTDemoTypeBottomDivide || item.type == VTDemoTypeAlphaNav){
+        VTHomeViewController *homeVC = [[VTHomeViewController alloc]init];
+        homeVC.type = item.type;
+        homeVC.title = item.title;
         [self.navigationController pushViewController:homeVC animated:YES];
-    }else if(item.type==VTDemoTypeCenter||item.type==VTDemoTypeRight||item.type==VTDemoTypeSegmentedControl){
+    }else if(item.type == VTDemoTypeCenter || item.type == VTDemoTypeRight || item.type == VTDemoTypeSegmentedControl){
         VTCenterViewController *centerVC = [[VTCenterViewController alloc] init];
-        centerVC.type=item.type;
-        centerVC.title=item.title;
+        centerVC.type = item.type;
+        centerVC.title = item.title;
         [self.navigationController pushViewController:centerVC animated:YES];
-    }else if(item.type==VTDemoTypeDivide||item.type==VTDemoTypeSliderTriangle||item.type==VTDemoTypeSliderHideMenu||item.type==VTDemoTypeSliderPageControl){
+    }else if(item.type == VTDemoTypeDivide || item.type == VTDemoTypeSliderTriangle || item.type == VTDemoTypeSliderHideMenu || item.type == VTDemoTypeSliderPageControl){
         VTDivideViewController *divideVC = [[VTDivideViewController alloc] init];
-        divideVC.type=item.type;
-        divideVC.title=item.title;
+        divideVC.type = item.type;
+        divideVC.title = item.title;
         [self.navigationController pushViewController:divideVC animated:YES];
-    } else if(item.type==VTDemoTypeSliderLine||item.type==VTDemoTypeSliderBubble||item.type==VTDemoTypeSliderBubbleSelect||item.type==VTDemoTypeSliderBubbleShadow||item.type==VTDemoTypeSliderSquare||item.type==VTDemoTypeSliderCircle||item.type==VTDemoTypeSliderImage||item.type==VTDemoTypeSliderItmeLine||item.type==VTDemoTypeSliderRandomColor||item.type==VTDemoTypeSliderZoom||item.type==VTDemoTypeSliderDotZoom){
+    } else if(item.type == VTDemoTypeSliderLine || item.type == VTDemoTypeSliderBubble || item.type == VTDemoTypeSliderBubbleSelect || item.type == VTDemoTypeSliderBubbleShadow || item.type == VTDemoTypeSliderSquare || item.type == VTDemoTypeSliderCircle || item.type == VTDemoTypeSliderImage || item.type == VTDemoTypeSliderItmeLine || item.type == VTDemoTypeSliderRandomColor || item.type == VTDemoTypeSliderZoom || item.type == VTDemoTypeSliderDotZoom){
         VTSliderViewController *sliderVC = [[VTSliderViewController alloc] init];
-        sliderVC.type=item.type;
-        sliderVC.title=item.title;
+        sliderVC.type = item.type;
+        sliderVC.title = item.title;
         [self.navigationController pushViewController:sliderVC animated:YES];
-    }else if(item.type==VTDemoTypeFirstFixed||item.type==VTDemoTypeMenuGIf){
+    }else if(item.type == VTDemoTypeFirstFixed || item.type == VTDemoTypeMenuGIf){
         VTBubbleViewController *bubbleVC = [[VTBubbleViewController alloc] init];
-        bubbleVC.type=item.type;
-        bubbleVC.title=item.title;
+        bubbleVC.type = item.type;
+        bubbleVC.title = item.title;
         [self.navigationController pushViewController:bubbleVC animated:YES];
-    }else if(item.type==VTDemoTypeMenuImage||item.type==VTDemoTypeMenuImageTop||item.type==VTDemoTypeMenuImageBottom||item.type==VTDemoTypeMenuImageLeft||item.type==VTDemoTypeMenuImageRight||item.type==VTDemoTypeMenuMTText||item.type==VTDemoTypeMenuScale||item.type==VTDemoTypeMenuFont||item.type==VTDemoTypeMenuVLine||item.type==VTDemoTypeMenuNavigationImage){
+    }else if(item.type == VTDemoTypeMenuImage || item.type == VTDemoTypeMenuImageTop || item.type == VTDemoTypeMenuImageBottom || item.type == VTDemoTypeMenuImageLeft || item.type ==  VTDemoTypeMenuImageRight || item.type == VTDemoTypeMenuMTText || item.type == VTDemoTypeMenuScale || item.type == VTDemoTypeMenuFont || item.type == VTDemoTypeMenuVLine || item.type == VTDemoTypeMenuNavigationImage){
         VTMenuViewController *bubbleVC = [[VTMenuViewController alloc] init];
-        bubbleVC.type=item.type;
-        bubbleVC.title=item.title;
+        bubbleVC.type = item.type;
+        bubbleVC.title = item.title;
         [self.navigationController pushViewController:bubbleVC animated:YES];
-    }else if (item.type==VTDemoTypeMenuRedDot||item.type==VTDemoTypeMenuNumber){
+    }else if (item.type == VTDemoTypeMenuRedDot || item.type == VTDemoTypeMenuNumber){
         VTDetailViewController *detailVC = [[VTDetailViewController alloc] init];
-        detailVC.type=item.type;
-        detailVC.title=item.title;
+        detailVC.type = item.type;
+        detailVC.title = item.title;
         [self.navigationController pushViewController:detailVC animated:YES];
-    }else if(item.type==VTDemoTypeWebView){
+    }else if(item.type == VTDemoTypeWebView){
         VTDataViewController*dataVC = [[VTDataViewController alloc] init];
-        dataVC.title=item.title;
+        dataVC.title = item.title;
         [self.navigationController pushViewController:dataVC animated:YES];
-    }else if(item.type==VTDemoTypeBindListNormal||item.type==VTDemoTypeBindListLeft){
+    }else if(item.type == VTDemoTypeBindListNormal || item.type == VTDemoTypeBindListLeft){
         VTBindListViewController*bindListVC = [[VTBindListViewController alloc] init];
-        bindListVC.title=item.title;
-        bindListVC.type=item.type;
+        bindListVC.title = item.title;
+        bindListVC.type = item.type;
         [self.navigationController pushViewController:bindListVC animated:YES];
-    }else if(item.type==VTDemoTypeMenuMTAtt){
+    }else if(item.type == VTDemoTypeMenuMTAtt){
         VTMTAttViewController*mtattVC = [[VTMTAttViewController alloc] init];
-        mtattVC.title=item.title;
-        mtattVC.type=item.type;
+        mtattVC.title = item.title;
+        mtattVC.type = item.type;
         [self.navigationController pushViewController:mtattVC animated:YES];
-    }else if(item.type==VTDemoTypeOneController||item.type==VTDemoTypeAllController){
+    }else if(item.type == VTDemoTypeOneController || item.type == VTDemoTypeAllController){
         VTLoadAllViewController *allVC = [[VTLoadAllViewController alloc]init];
-        allVC.title=item.title;
-        allVC.type=item.type;
+        allVC.title = item.title;
+        allVC.type = item.type;
         [self.navigationController pushViewController:allVC animated:YES];
-    }else if(item.type==VTDemoTypeMenuScreening||item.type==VTDemoTypeMenuBar){
-        VTScreeningViewController *screeningVC= [[VTScreeningViewController alloc]init];
-        screeningVC.title=item.title;
+    }else if(item.type == VTDemoTypeMenuScreening || item.type == VTDemoTypeMenuBar){
+        VTScreeningViewController *screeningVC = [[VTScreeningViewController alloc]init];
+        screeningVC.title = item.title;
         [self.navigationController pushViewController:screeningVC animated:YES];
-    }else if(item.type==VTDemoTypeSwift){
-        SwiftExampleViewController *swift=[[SwiftExampleViewController alloc]init];
-        swift.title=item.title;
+    }else if(item.type == VTDemoTypeSwift){
+        SwiftExampleViewController *swift = [[SwiftExampleViewController alloc]init];
+        swift.title = item.title;
         [self.navigationController pushViewController:swift animated:YES];
-    }else if (item.type==VTDemoTypeShow){
+    }else if (item.type == VTDemoTypeShow){
         VTShowController *pager=[[VTShowController alloc]init];
-        pager.title=item.title;
-        pager.type=item.type;
+        pager.title = item.title;
+        pager.type = item.type;
         [self.navigationController pushViewController:pager animated:YES];
-    }else if(item.type==VTDemoTypeScroll){
-        VTScrollController*scrollVC=[[VTScrollController alloc]init];
-        scrollVC.title=item.title;
-        scrollVC.type=item.type;
+    }else if(item.type == VTDemoTypeScroll){
+        VTScrollController*scrollVC = [[VTScrollController alloc]init];
+        scrollVC.title = item.title;
+        scrollVC.type = item.type;
         [self.navigationController pushViewController:scrollVC animated:YES];
-    }else if(item.type==VTDemoTypeSliderCustomAnimation){
-        VTSliderCustomAnimationController*customAnimationVC=[[VTSliderCustomAnimationController alloc]init];
-        customAnimationVC.title=item.title;
-        customAnimationVC.type=item.type;
+    }else if(item.type == VTDemoTypeSliderCustomAnimation){
+        VTSliderCustomAnimationController*customAnimationVC = [[VTSliderCustomAnimationController alloc]init];
+        customAnimationVC.title = item.title;
+        customAnimationVC.type = item.type;
         [self.navigationController pushViewController:customAnimationVC animated:YES];
-    }else if (item.type==VTDemoTypeVerticalLeft||item.type==VTDemoTypeVerticalRight||item.type == VTDemoTypeSliderChunkZoom){
-        VTVerticalViewController*vc=[[VTVerticalViewController alloc]init];
-        vc.title=item.title;
-        vc.type=item.type;
+    }else if (item.type == VTDemoTypeVerticalLeft || item.type == VTDemoTypeVerticalRight || item.type == VTDemoTypeSliderChunkZoom){
+        VTVerticalViewController*vc = [[VTVerticalViewController alloc]init];
+        vc.title = item.title;
+        vc.type = item.type;
         [self.navigationController pushViewController:vc animated:YES];
-    }else if (item.type==VTDemoTypeJXCategoryView){
-        VTJXCategoryViewController*vc=[[VTJXCategoryViewController alloc]init];
-        vc.title=item.title;
+    }else if (item.type == VTDemoTypeJXCategoryView){
+        VTJXCategoryViewController*vc = [[VTJXCategoryViewController alloc]init];
+        vc.title = item.title;
         [self.navigationController pushViewController:vc animated:YES];
-    }else if (item.type==VTDemoTypeGKPageScroll){
-        VTGKViewController*vc=[[VTGKViewController alloc]init];
-        vc.title=item.title;
+    }else if (item.type == VTDemoTypeGKPageScroll){
+        VTGKViewController*vc = [[VTGKViewController alloc]init];
+        vc.title = item.title;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

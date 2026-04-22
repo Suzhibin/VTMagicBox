@@ -30,11 +30,11 @@
 //    self.magicView.headerView.backgroundColor = RGBCOLOR(243, 40, 47);
     self.magicView.layoutStyle = VTLayoutStyleDefault;
     self.magicView.navigationColor = [UIColor whiteColor];
-    if(self.type==VTDemoTypeFirstFixed){
-        self.magicView.navigationInset=UIEdgeInsetsMake(0, -60, 0, 0);//隐藏第一个菜单  使用left 代替
-        self.magicView.sliderWidth=20;
-        self.magicView.sliderColor =[UIColor redColor];
-        self.magicView.sliderOffset=-1;
+    if(self.type == VTDemoTypeFirstFixed){
+        self.magicView.navigationInset = UIEdgeInsetsMake(0, -60, 0, 0);//隐藏第一个菜单  使用left 代替
+        self.magicView.sliderWidth = 20;
+        self.magicView.sliderColor = [UIColor redColor];
+        self.magicView.sliderOffset = -1;
         self.magicView.menuBounces = NO;
         [self integrateComponents];
     }
@@ -150,7 +150,7 @@
     leftButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     self.magicView.leftNavigatoinItem = leftButton;
     
-    self.slider=[[UIView alloc]initWithFrame:CGRectMake(15, leftButton.frame.size.height-3, 20, 2)];
+    self.slider = [[UIView alloc]initWithFrame:CGRectMake(15, leftButton.frame.size.height-3, 20, 2)];
     self.slider.backgroundColor=[UIColor redColor];
     [leftButton addSubview:self.slider];
     

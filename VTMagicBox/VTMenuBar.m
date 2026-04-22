@@ -196,8 +196,8 @@ static NSInteger const kVTMenuBarTag = 1000;
         case VTLayoutStyleCenter:
             [self resetFramesForCenter];
             break;
-        case VTLayoutStyleLast:
-            [self resetFramesForLast];
+        case VTLayoutStyleRight:
+            [self resetFramesForRight];
             break;
         default:
             [self resetFramesForDefault];
@@ -322,7 +322,7 @@ static NSInteger const kVTMenuBarTag = 1000;
     }
 }
 // 居尾部布局下重置frame
-- (void)resetFramesForLast{
+- (void)resetFramesForRight{
     [self resetFramesForDefault];
     CGFloat itemOffset = 0;
     if(self.navPosition == VTNavPositionLeft || self.navPosition == VTNavPositionRight){

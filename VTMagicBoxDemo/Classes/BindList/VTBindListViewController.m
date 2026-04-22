@@ -63,12 +63,12 @@
         CGRect lastCellRect = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow: menu.listArr.count - 1 inSection:self.menuList.count - 1]];
         CGFloat lastSectionHeight = CGRectGetMaxY(lastCellRect) - CGRectGetMinY(lastHeaderRect);
         if(self.type == VTDemoTypeBindListLeft){
-            CGFloat value = self.view.bounds.size.height+self.magicView.navigationWidth- lastSectionHeight;
+            CGFloat value = self.view.bounds.size.height + self.magicView.navigationWidth - lastSectionHeight;
             if (value > 0) {
                 self.tableView.contentInset = UIEdgeInsetsMake(0, 0, value, 0);
             }
         }else{
-            CGFloat value = self.view.bounds.size.height+self.magicView.navigationHeight- lastSectionHeight;
+            CGFloat value = self.view.bounds.size.height + self.magicView.navigationHeight - lastSectionHeight;
             if (value > 0) {
                 self.tableView.contentInset = UIEdgeInsetsMake(0, 0, value, 0);
             }
@@ -135,7 +135,7 @@
 }
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.magicView.navigationHeight, self.view.frame.size.width, self.view.frame.size.height-self.magicView.navigationHeight) style:UITableViewStyleGrouped];
+        _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, self.magicView.navigationHeight, self.view.frame.size.width, self.view.frame.size.height - self.magicView.navigationHeight) style:UITableViewStyleGrouped];
         _tableView.delegate=self;
         _tableView.dataSource=self;
         _tableView.tableFooterView=[UIView new];
@@ -149,8 +149,6 @@
             _tableView.estimatedSectionFooterHeight = 0;
             _tableView.estimatedSectionHeaderHeight = 0;
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        } else {
-            self.automaticallyAdjustsScrollViewInsets=NO;
         }
         [self.tableView registerClass:[VTBindSectionListrFooterView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([VTBindSectionListrFooterView class])];
         

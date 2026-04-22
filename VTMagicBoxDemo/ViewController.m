@@ -43,6 +43,6 @@
 - (void)vtm_prepareForReuse {
     // reset content offset
     NSLog(@"clear old data if needed:%@", self);
-    self.icon.image =nil;
+    self.icon.image = nil;
 }
 @end

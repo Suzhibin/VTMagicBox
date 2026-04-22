@@ -41,23 +41,23 @@
 
     [self integrateComponents];
 
-    if(self.type==VTDemoTypeSliderLine){
-        self.magicView.sliderWidth=20;
-        self.magicView.sliderColor =[UIColor redColor];
+    if(self.type == VTDemoTypeSliderLine){
+        self.magicView.sliderWidth = 20;
+        self.magicView.sliderColor = [UIColor redColor];
         [self createNavBtn];
-    }else if(self.type==VTDemoTypeSliderItmeLine){
-        self.magicView.sliderExtension=0;
+    }else if(self.type == VTDemoTypeSliderItmeLine){
+        self.magicView.sliderExtension = 0;
         [self createNavBtn];
-    }else if(self.type==VTDemoTypeSliderRandomColor){
+    }else if(self.type == VTDemoTypeSliderRandomColor){
        //代理中设置
         [self createNavBtn];
-    }else if(self.type==VTDemoTypeSliderBubble){
+    }else if(self.type == VTDemoTypeSliderBubble){
         self.magicView.sliderStyle = VTSliderStyleBubble;
         self.magicView.sliderColor = RGBCOLOR(229, 229, 229);
         self.magicView.bubbleInset = UIEdgeInsetsMake(2, 7, 2, 7);
         self.magicView.bubbleRadius = 10;
         [self createNavBtn];
-    }else if(self.type==VTDemoTypeSliderBubbleShadow){
+    }else if(self.type == VTDemoTypeSliderBubbleShadow){
         self.magicView.sliderStyle = VTSliderStyleBubble;
         self.magicView.bubbleInset = UIEdgeInsetsMake(2, 7, 2, 7);
         self.magicView.bubbleRadius = 10;
@@ -72,13 +72,13 @@
         [self createNavBtn];
     }else if(self.type==VTDemoTypeSliderBubbleSelect){
         self.magicView.sliderHidden=YES;
-    }else if(self.type==VTDemoTypeSliderSquare){
+    }else if(self.type == VTDemoTypeSliderSquare){
         self.magicView.sliderStyle = VTSliderStyleBubble;
         self.magicView.sliderColor = RGBCOLOR(229, 229, 229);
         self.magicView.bubbleInset = UIEdgeInsetsMake(12, 7, 12, 7);
         self.magicView.bubbleRadius = 0;
         [self createNavBtn];
-    }else if (self.type==VTDemoTypeSliderCircle){
+    }else if (self.type == VTDemoTypeSliderCircle){
         self.magicView.sliderStyle = VTSliderStyleBubble;
         self.magicView.bubbleInset = UIEdgeInsetsMake(4, 15, 4, 15);
         UIView *slider = [[UIView alloc] init];
@@ -87,23 +87,23 @@
         slider.layer.masksToBounds = YES;
         slider.layer.cornerRadius = 13;
         [self.magicView setSliderView:slider];
-        self.insetLeft=0;
+        self.insetLeft = 0;
         [self createNavBtn];
-    }else if(self.type==VTDemoTypeSliderImage){
+    }else if(self.type == VTDemoTypeSliderImage){
         [self configCustomSliderBanner];
-    }else if(self.type==VTDemoTypeSliderZoom){
-        self.magicView.sliderWidth=20;
-        self.magicView.sliderColor =[UIColor redColor];
-        self.magicView.sliderStyle=VTSliderStyleDefaultZoom;
+    }else if(self.type == VTDemoTypeSliderZoom){
+        self.magicView.sliderWidth = 20;
+        self.magicView.sliderColor = [UIColor redColor];
+        self.magicView.sliderStyle = VTSliderStyleDefaultZoom;
         [self createNavBtn];
-    }else if(self.type==VTDemoTypeSliderDotZoom){
-        self.magicView.sliderWidth=10;
-        self.magicView.sliderHeight=10;
-        self.magicView.sliderStyle=VTSliderStyleDefaultZoom;
+    }else if(self.type == VTDemoTypeSliderDotZoom){
+        self.magicView.sliderWidth = 10;
+        self.magicView.sliderHeight = 10;
+        self.magicView.sliderStyle = VTSliderStyleDefaultZoom;
         UIView *slider = [[UIView alloc] init];
         slider.layer.masksToBounds = YES;
         slider.layer.cornerRadius = 5;
-        self.magicView.sliderColor=[UIColor redColor];
+        self.magicView.sliderColor = [UIColor redColor];
         [self.magicView setSliderView:slider];
         [self createNavBtn];
     }
@@ -151,9 +151,9 @@
         menuItem = [VTMenuItem buttonWithType:UIButtonTypeCustom];
         [menuItem setTitleColor:RGBCOLOR(50, 50, 50) forState:UIControlStateNormal];
         menuItem.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:15.f];
-        if (self.type==VTDemoTypeSliderCircle){
+        if (self.type == VTDemoTypeSliderCircle){
             [menuItem setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
-        }else if(self.type==VTDemoTypeSliderBubbleSelect){
+        }else if(self.type == VTDemoTypeSliderBubbleSelect){
             if (@available(iOS 13.0, *)) {
                 [menuItem setBackgroundImage:[UIImage systemImageNamed:@"rectangle"] forState:UIControlStateNormal];
             }
@@ -165,8 +165,8 @@
         }
     }
    
-    if(self.type==VTDemoTypeMenuVLine){
-        menuItem.verticalLineHidden=(_menuList.count-1==itemIndex)?YES:NO;
+    if(self.type == VTDemoTypeMenuVLine){
+        menuItem.verticalLineHidden = (_menuList.count - 1 == itemIndex) ? YES : NO;
     }
     return menuItem;
 }
@@ -182,7 +182,7 @@
 }
 - (void)magicView:(VTMagicView *)magicView viewDidAppear:(__kindof UIViewController *)viewController atPage:(NSUInteger)pageIndex{
     if(self.type==VTDemoTypeSliderRandomColor){
-        self.magicView.sliderColor =[self randomColor];
+        self.magicView.sliderColor = [self randomColor];
     }
 }
 
@@ -195,18 +195,18 @@
 - (void)subscribeAction {
     NSLog(@"subscribeAction");
     // against status bar or not
-    if (self.type==VTDemoTypeSliderCircle||self.type==VTDemoTypeSliderBubble||self.type==VTDemoTypeSliderSquare||self.type==VTDemoTypeSliderBubbleShadow){
-        self.insetLeft=self.insetLeft+10;
+    if (self.type == VTDemoTypeSliderCircle || self.type == VTDemoTypeSliderBubble || self.type == VTDemoTypeSliderSquare || self.type == VTDemoTypeSliderBubbleShadow){
+        self.insetLeft = self.insetLeft+10;
         self.magicView.navigationInset=UIEdgeInsetsMake(0, self.insetLeft, 0, 0);
     }else{
-        if(self.magicView.sliderOffset==0){
-            if(self.type==VTDemoTypeSliderDotZoom){
-                self.magicView.sliderOffset=-32;
+        if(self.magicView.sliderOffset == 0){
+            if(self.type == VTDemoTypeSliderDotZoom){
+                self.magicView.sliderOffset = -32;
             }else{
-                self.magicView.sliderOffset=-40;
+                self.magicView.sliderOffset = -40;
             }
         }else{
-            self.magicView.sliderOffset=0;
+            self.magicView.sliderOffset = 0;
         }
     }
     [self.magicView reloadMenuTitles];
@@ -216,7 +216,7 @@
     // select/deselect menu item
     if (self.magicView.isDeselected) {
         [self.magicView reselectMenuItem];
-        if(self.type!=VTDemoTypeSliderBubbleSelect){
+        if(self.type != VTDemoTypeSliderBubbleSelect){
             self.magicView.sliderHidden = NO;
         }
     } else {
@@ -236,7 +236,7 @@
 - (void)createNavBtn{
     UIButton *rightNavBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [rightNavBtn addTarget:self action:@selector(subscribeAction) forControlEvents:UIControlEventTouchUpInside];
-    if (self.type==VTDemoTypeSliderCircle||self.type==VTDemoTypeSliderBubble||self.type==VTDemoTypeSliderSquare||self.type==VTDemoTypeSliderBubbleShadow){
+    if (self.type == VTDemoTypeSliderCircle || self.type == VTDemoTypeSliderBubble || self.type == VTDemoTypeSliderSquare || self.type == VTDemoTypeSliderBubbleShadow){
         [rightNavBtn setTitle:@"导航边距" forState:UIControlStateNormal];
     }else{
         [rightNavBtn setTitle:@"滑块位置" forState:UIControlStateNormal];
@@ -250,12 +250,12 @@
     NSString *title = @"省份";
     NSMutableArray *menuList = [[NSMutableArray alloc] initWithCapacity:24];
     for (int index = 0; index < 20; index++) {
-        if(self.type==VTDemoTypeMenuImage){
+        if(self.type == VTDemoTypeMenuImage){
             title =@"";
         }else{
-            if(self.type==VTDemoTypeMenuMTText){
+            if(self.type == VTDemoTypeMenuMTText){
                 title = [NSString stringWithFormat:@"省份\n城市%d", index];
-            }else if(self.type==VTDemoTypeSliderImage||self.type==VTDemoTypeSliderBubbleSelect){
+            }else if(self.type == VTDemoTypeSliderImage || self.type == VTDemoTypeSliderBubbleSelect){
                 title = [NSString stringWithFormat:@"省份%d", index];
             }else{
                 if (index % 2) {

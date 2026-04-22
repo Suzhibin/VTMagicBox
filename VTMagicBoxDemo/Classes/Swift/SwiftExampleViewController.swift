@@ -12,40 +12,41 @@ import UIKit
     var menuList = [MenuInfo]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor=UIColor.white
+        view.backgroundColor = UIColor.white
         edgesForExtendedLayout = UIRectEdge.bottom
         
         createMagic()
-        let numbers=[Int](0...20)
+        
+        let numbers = [Int](0...20)
         for (index,_) in numbers.enumerated(){
             let title = String(format: "省份%d", index)
             let menu = MenuInfo()
-            menu.title=title
+            menu.title = title
             menuList.append(menu)
         }
         magicVC.magicView .reloadData()
 
     }
     func createMagic() {
-        magicVC.magicView.delegate=self
-        magicVC.magicView.dataSource=self
-        magicVC.magicView.navigationHeight=50
-        magicVC.magicView.displayCentered=true
+        magicVC.magicView.delegate = self
+        magicVC.magicView.dataSource = self
+        magicVC.magicView.navigationHeight = 50
+        magicVC.magicView.displayCentered = true
         magicVC.magicView.layoutStyle = .default
         magicVC.magicView.sliderWidth = 20
         magicVC.magicView.sliderOffset = -4
-        magicVC.magicView.itemScale=1.2
+        magicVC.magicView.itemScale = 1.2
         addChild(magicVC)
         view.addSubview(magicVC.view)
     }
 }
 extension SwiftExampleViewController:VTMagicViewDataSource, VTMagicViewDelegate{
     func menuTitles(for magicView: VTMagicView) -> [String] {
-        var titls = [String]()
+        var Titles = [String]()
         for menu in menuList {
-            titls.append(menu.title)
+            Titles.append(menu.title)
         }
-        return titls
+        return Titles
     }
     
     func magicView(_ magicView: VTMagicView, menuItemAt itemIndex: UInt) -> UIButton {
@@ -69,7 +70,7 @@ extension SwiftExampleViewController:VTMagicViewDataSource, VTMagicViewDelegate{
         }
         let Index = Int(pageIndex)
         let menuInfo =  menuList [Index]
-        gridViewController.menuInfo=menuInfo
+        gridViewController.menuInfo = menuInfo
         return gridViewController;
     }
     //VTMagicViewDelegate

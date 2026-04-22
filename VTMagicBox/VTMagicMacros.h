@@ -44,13 +44,6 @@ blue:((float)(hexValue & 0xFF))/255.0 alpha:1.0]
 // 判断设备是否是iPhone
 #define kiPhoneDevice ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
 #define KiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
-//#warning andi 添加IPhoneX系列及状态栏 宏判断
-#define IS_IPhoneX_All \
-({BOOL isPhoneX = NO;\
-if (@available(iOS 11.0, *)) {\
-isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
-}\
-(isPhoneX);})
 
 #define kStatusBarHeight \
 ^(){\
@@ -77,6 +70,13 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
  }\
 }()
 
+#define IS_IPhoneX_All \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = kSafeBottomHeight > 0.0;\
+}\
+(isPhoneX);})
+
 // tabbar高度
 #define VTTABBAR_HEIGHT (IS_IPhoneX_All?(49.0 + 34.0):(49.0))
 // 状态栏高度
@@ -84,5 +84,8 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 
 //#define VTSAFEAREA_BOTTOM_HEIGHT (CGFloat)(IS_IPhoneX_All?(34.0):(0.0))
 #define VTSAFEAREA_BOTTOM_HEIGHT (CGFloat)(kSafeBottomHeight)
+
+#define CALCULATE_TOP_Y(againstStatusBar) (againstStatusBar ? (TARGET_OS_MACCATALYST ? 36 : VTSTATUSBAR_HEIGHT) : 0)
+
 #endif
 

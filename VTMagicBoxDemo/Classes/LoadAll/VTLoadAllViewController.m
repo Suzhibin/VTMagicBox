@@ -27,26 +27,26 @@
 //子视图响应
 - (void)rightNavBtnAction:(UIButton *)sender{
     sender.selected=!sender.selected;
-    if(self.type==VTDemoTypeAllController){
+    if(self.type == VTDemoTypeAllController){
         //子视图已经全部创建
-        if(sender.selected==YES){
+        if(sender.selected == YES){
             [self.childVCs enumerateObjectsUsingBlock:^(VTRecomViewController  *viewController, NSUInteger idx, BOOL * _Nonnull stop) {
-                viewController.subVCChange=YES;
+                viewController.subVCChange = YES;
             }];
         }else{
             [self.childVCs enumerateObjectsUsingBlock:^(VTRecomViewController  *viewController, NSUInteger idx, BOOL * _Nonnull stop) {
-                viewController.subVCChange=NO;
+                viewController.subVCChange = NO;
             }];
         }
     }else {
         //子视图是复用的
-        if(sender.selected==YES){
+        if(sender.selected == YES){
             [_menuList enumerateObjectsUsingBlock:^(MenuInfo *menu, NSUInteger idx, BOOL * _Nonnull stop) {
-                menu.subVCChange=YES;
+                menu.subVCChange = YES;
             }];
         }else{
             [_menuList enumerateObjectsUsingBlock:^(MenuInfo *menu, NSUInteger idx, BOOL * _Nonnull stop) {
-                menu.subVCChange=NO;
+                menu.subVCChange = NO;
             }];
         }
         [self.magicView reloadData];
@@ -74,8 +74,8 @@
 }
 
 - (UIViewController *)magicView:(VTMagicView *)magicView viewControllerAtPage:(NSUInteger)pageIndex {
-    if(self.type==VTDemoTypeAllController){ //子视图已经全部创建
-        VTRecomViewController  *viewController=self.childVCs[pageIndex];
+    if(self.type == VTDemoTypeAllController){ //子视图已经全部创建
+        VTRecomViewController  *viewController = self.childVCs[pageIndex];
         viewController.menuInfo = _menuList[pageIndex];
         return viewController;
     }else{
@@ -111,7 +111,7 @@
         title = [NSString stringWithFormat:@"省份%d", index];
         MenuInfo *menu = [MenuInfo menuInfoWithTitle:title];
         [menuList addObject:menu];
-        if(self.type==VTDemoTypeAllController){
+        if(self.type == VTDemoTypeAllController){
             //子视图已经全部创建
             VTRecomViewController *viewController = [[VTRecomViewController alloc] init];
             [self.childVCs addObject:viewController];

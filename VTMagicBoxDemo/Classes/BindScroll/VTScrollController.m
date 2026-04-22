@@ -22,7 +22,7 @@
     // Do any additional setup after loading the view.
     self.headerImages = @[@"image_0",@"image_1",@"image_2",@"image_3",@"image_4"];
     self.footerImages = @[@"image_5",@"image_6",@"image_7",@"image_8",@"image_9"];
-    self.magicView.layoutStyle=VTLayoutStyleDivide;
+    self.magicView.layoutStyle = VTLayoutStyleDivide;
     [self createScrollView];
     [self generateTestDataArrCount:self.headerImages.count];
     [self.magicView reloadData];
@@ -34,21 +34,20 @@
     [self.footerView scrollViewToBeScroll:scrollView.contentOffset];
 }
 
-
 - (void)createScrollView{
-    self.magicView.headerHidden=NO;
-    self.magicView.headerHeight=120;
-    VTScrollView *headerView=[[VTScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 120)];
-    headerView.images=self.headerImages;
+    self.magicView.headerHidden = NO;
+    self.magicView.headerHeight = 120;
+    VTScrollView *headerView = [[VTScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 120)];
+    headerView.images = self.headerImages;
     [self.magicView.headerView addSubview:headerView];
-    self.headerView=headerView;
+    self.headerView = headerView;
     
-    self.magicView.footerHidden=NO;
-    self.magicView.footerHeight=80;
-    VTScrollView *footerView=[[VTScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 80)];
-    footerView.images=self.footerImages;
+    self.magicView.footerHidden = NO;
+    self.magicView.footerHeight = 80;
+    VTScrollView *footerView = [[VTScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 80)];
+    footerView.images = self.footerImages;
     [self.magicView.footerView addSubview:footerView];
-    self.footerView=footerView;
+    self.footerView = footerView;
 
 }
 

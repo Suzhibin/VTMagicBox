@@ -27,8 +27,8 @@
 //    self.magicView.headerView.backgroundColor = RGBCOLOR(243, 40, 47);
 
     self.magicView.navigationColor = [UIColor whiteColor];
-    self.magicView.itemSpacing=30;//间距
-    self.magicView.sliderWidth=20;
+    self.magicView.itemSpacing = 30;//间距
+    self.magicView.sliderWidth = 20;
    // [self integrateComponents];
     [self addNotification];
     

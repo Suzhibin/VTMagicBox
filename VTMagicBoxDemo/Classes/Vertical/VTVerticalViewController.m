@@ -50,7 +50,7 @@
 #if TARGET_OS_MACCATALYST
     self.magicView.againstStatusBar =YES;
     self.magicView.navigationWidth = 120;
-    UIImageView *navImage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,     self.magicView.navigationWidth, self.view.frame.size.height)];
+    UIImageView *navImage=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.magicView.navigationWidth, self.view.frame.size.height)];
     navImage.image=[UIImage imageNamed:@"bg"];
     [self.magicView setNavigationSubview:navImage];
 #else

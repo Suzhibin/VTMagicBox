@@ -38,9 +38,9 @@
     
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, VTSTATUSBAR_HEIGHT, 44, 44)];
     [leftButton addTarget:self action:@selector(leftButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.layer.cornerRadius=22;
-    leftButton.layer.masksToBounds=YES;
-    leftButton.backgroundColor=[[UIColor whiteColor]colorWithAlphaComponent:0.3];
+    leftButton.layer.cornerRadius = 22;
+    leftButton.layer.masksToBounds = YES;
+    leftButton.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:0.3];
     [leftButton setImage:[UIImage imageNamed:@"back_icon"] forState:UIControlStateNormal];
     [self.view addSubview:leftButton];
 }

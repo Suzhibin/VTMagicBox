@@ -15,10 +15,10 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.titleLabel.numberOfLines=2;
-        self.titleLabel.textAlignment=NSTextAlignmentCenter;
+        self.titleLabel.numberOfLines = 2;
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
         _topTitleLabel = [[UILabel alloc] init];
-        _topTitleLabel.textAlignment=NSTextAlignmentCenter;
+        _topTitleLabel.textAlignment = NSTextAlignmentCenter;
         _topTitleLabel.font=[UIFont systemFontOfSize:15];
         [self addSubview:_topTitleLabel];
         [self bringSubviewToFront:_topTitleLabel];
@@ -28,7 +28,7 @@
 }
 
 - (void)updateConstraints {
-    _topTitleLabel.frame=CGRectMake(0, 15, self.frame.size.width, 17);
+    _topTitleLabel.frame = CGRectMake(0, 15, self.frame.size.width, 17);
 
     [super updateConstraints];
 }

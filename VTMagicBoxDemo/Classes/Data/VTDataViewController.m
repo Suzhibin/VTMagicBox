@@ -97,8 +97,8 @@
         _magicController.magicView.navigationHeight = 44.f;
         _magicController.magicView.againstStatusBar = YES;
         _magicController.magicView.sliderExtension = 10.0;
-        _magicController.magicView.headerHidden=NO;
-        _magicController.magicView.headerHeight =44;
+        _magicController.magicView.headerHidden = NO;
+        _magicController.magicView.headerHeight = 44;
         _magicController.magicView.headerView.backgroundColor = [UIColor whiteColor];
         _magicController.magicView.dataSource = self;
         _magicController.magicView.delegate = self;

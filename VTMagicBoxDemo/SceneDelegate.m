@@ -6,7 +6,9 @@
 //
 
 #import "SceneDelegate.h"
-
+#import "VTNavigationController.h"
+#import "MainViewController.h"
+#import "VTVerticalViewController.h"
 @interface SceneDelegate ()
 
 @end
@@ -18,6 +20,28 @@
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+    if (![scene isKindOfClass:[UIWindowScene class]]) {
+        return;
+    }
+    
+    UIWindowScene *windowScene = (UIWindowScene *)scene;
+    self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
+    self.window.frame = windowScene.coordinateSpace.bounds;
+    
+#if TARGET_OS_MACCATALYST
+    UITitlebar *titlebar = windowScene.titlebar;
+    titlebar.titleVisibility = UITitlebarTitleVisibilityHidden;
+    windowScene.sizeRestrictions.maximumSize = CGSizeMake(1200, 800);
+    windowScene.sizeRestrictions.minimumSize = CGSizeMake(1200, 800);
+    VTVerticalViewController *mainVC = [[VTVerticalViewController alloc]init];
+    VTNavigationController *nc = [[VTNavigationController alloc]initWithRootViewController:mainVC];
+    self.window.rootViewController = nc;
+#else
+    MainViewController *mainVC = [[MainViewController alloc]init];
+    VTNavigationController *nc = [[VTNavigationController alloc]initWithRootViewController:mainVC];
+    self.window.rootViewController = nc;
+#endif
+    [self.window makeKeyAndVisible];
 }
 
 

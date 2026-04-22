@@ -18,9 +18,9 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor=[UIColor whiteColor];
     
-    self.magicView.layoutStyle=VTLayoutStyleDefault;
-    self.magicView.sliderWidth=15;
-    self.magicView.sliderHeight=6;
+    self.magicView.layoutStyle = VTLayoutStyleDefault;
+    self.magicView.sliderWidth = 15;
+    self.magicView.sliderHeight = 6;
     self.magicView.sliderColor = [UIColor redColor];
     [self generateTestData];
 }
@@ -34,21 +34,21 @@
     CGFloat progress =scale;
     if (progress > 0) {//向右移动
         if (progress <= 0.5) {
-            sliderFrame.origin.y =sliderFrame.origin.y +progress;
+            sliderFrame.origin.y = sliderFrame.origin.y + progress;
             sliderFrame.origin.x = fromX;
             sliderView.frame = sliderFrame;
         }else if (progress >= 0.5) {
-            sliderFrame.origin.y =magicView.navigationHeight -progress;
+            sliderFrame.origin.y = magicView.navigationHeight - progress;
             sliderFrame.origin.x = toX;
             sliderView.frame = sliderFrame;
         }
     }else {//向左移动
         if (progress >= -0.5) {
-            sliderFrame.origin.y =sliderFrame.origin.y -progress;
+            sliderFrame.origin.y = sliderFrame.origin.y - progress;
             sliderFrame.origin.x = fromX;
             sliderView.frame = sliderFrame;
         }else if (progress <= -0.5) {
-            sliderFrame.origin.y =magicView.navigationHeight +progress;
+            sliderFrame.origin.y = magicView.navigationHeight + progress;
             sliderFrame.origin.x = toX;
             sliderView.frame = sliderFrame;
         }

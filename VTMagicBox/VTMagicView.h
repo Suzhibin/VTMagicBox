@@ -168,6 +168,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) VTNavPosition navPosition;
 
 /**
+ *  菜单使用默认还是自定义 默认使用自带VTMenuBar
+ */
+@property (nonatomic, assign) VTMenuBarStyle menuBarStyle;
+
+/**
  *  导航菜单item的预览数，默认为1
  *
  *  @warning displayCentered为YES时，该属性无效
