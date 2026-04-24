@@ -95,7 +95,7 @@ static const void *kVTMagicView = &kVTMagicView;
     _sliderHeight = 2;
     _headerHeight = 64;
     _footerHeight = 64;
-//    _bubbleRadius = 10;
+    //    _bubbleRadius = 10;
     _navigationHeight = 44;
     _navigationWidth = 100;
     _separatorWidth = self.frame.size.width;
@@ -126,175 +126,14 @@ static const void *kVTMagicView = &kVTMagicView;
 }
 
 - (void)updateFrameForSubviews {
-    CGSize size = self.frame.size;
-    CGFloat topY = CALCULATE_TOP_Y(_againstStatusBar);
-    
-    if(self.navPosition == VTNavPositionDefault)
-    {
-        CGFloat headerY = _headerHidden ? -_headerHeight : topY;
-        _headerView.frame = CGRectMake(0, headerY, size.width, _headerHeight);
-        
-        CGFloat navigationY = _headerHidden ? 0 : CGRectGetMaxY(_headerView.frame);
-        CGFloat navigationH = _navigationHeight + (_headerHidden ? topY : 0);
-        _navigationView.frame = CGRectMake(0, navigationY, size.width, navigationH);
-        
-        CGFloat separatorY = CGRectGetHeight(_navigationView.frame) - _separatorHeight;
-        _separatorView.frame = CGRectMake(0, separatorY, size.width, _separatorHeight);
- 
-        CGFloat footerY = CGRectGetMaxY(_navigationView.frame);
-        _footerView.frame = CGRectMake(0, footerY, size.width, _footerHeight);
-        
-        if (self.menuBarStyle == VTMenuBarDefault) {
-            CGRect originalMenuFrame = _menuBar.frame;
-            CGFloat menuBarY = _headerHidden ? topY : 0;
-            CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
-            CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
-            CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
-            _menuBar.frame = CGRectMake(leftItemWidth, menuBarY, catWidth, _navigationHeight);
-            if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
-                [_menuBar resetItemFrames];
-                [self updateMenuBarState];
-            }
-            
-            CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
-            _sliderView.frame = sliderFrame;
-        } else {
-            VTLog(@"VTMenuBar hide");
-        }
-       
-        self.needSkipUpdate = YES;
-        CGRect originalContentFrame = _contentView.frame;
-        CGFloat contentY = _footerHidden ? CGRectGetMaxY(_navigationView.frame) + _contentViewOffset:CGRectGetMaxY(_footerView.frame) + _contentViewOffset;
-        CGFloat contentH = size.height - contentY + (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
-        _contentView.frame = CGRectMake(0, contentY, size.width, contentH);
-        if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
-            [_contentView resetPageFrames];
-        }
-    } else if (self.navPosition == VTNavPositionBottom){
-        CGFloat bottomY = _againstSafeBottomBar ? _safeBottomHeight : 0;
-
-        CGFloat contentH = size.height + (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
-
-        CGFloat footerY = _footerHidden? contentH - bottomY :contentH - _footerHeight - bottomY;
-        _footerView.frame = CGRectMake(0, footerY, size.width, _footerHeight);
-
-        CGFloat navigationY = footerY-_navigationHeight ;//_footerHidden ? footerY-_navigationHeight-bottomY : footerY-_navigationHeight;
-        CGFloat navigationH = _navigationHeight + (_footerHidden ? bottomY : 0);
-        _navigationView.frame = CGRectMake(0,navigationY, size.width, navigationH);
-        
-        _headerView.frame = CGRectMake(0, navigationY - _headerHeight, size.width, _headerHeight);
-    
-        CGFloat separatorY = CGRectGetHeight(_navigationView.frame) - _separatorHeight;
-        _separatorView.frame = CGRectMake(0, separatorY, size.width, _separatorHeight);
-     
-        if (self.menuBarStyle == VTMenuBarDefault) {
-            CGRect originalMenuFrame = _menuBar.frame;
-            CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
-            CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
-            CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
-            _menuBar.frame = CGRectMake(leftItemWidth, 0, catWidth, _navigationHeight);
-            if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
-                [_menuBar resetItemFrames];
-                [self updateMenuBarState];
-            }
-            
-            CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
-            _sliderView.frame = sliderFrame;
-        } else {
-            VTLog(@"VTMenuBar hide");
-        }
-         
-        self.needSkipUpdate = YES;
-        CGRect originalContentFrame = _contentView.frame;
-      
-        CGFloat headerH = _headerHidden ? 0 : _headerHeight;
-        CGFloat footerH = _footerHidden ? 0 : _footerHeight;
- 
-        _contentView.frame = CGRectMake(0, topY, size.width, contentH - (navigationH + headerH + footerH + _contentViewOffset + topY));
-        if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
-            [_contentView resetPageFrames];
-        }
-    } else if (self.navPosition == VTNavPositionLeft){
-        CGFloat headerY = _headerHidden ? - _headerHeight : topY;
-        CGFloat Hheight = _headerHidden ? 0 : _headerHeight;
-        CGFloat FHeight = _footerHidden ? 0 : _footerHeight;
-        CGFloat navigationW = _navigationWidth;
-        _headerView.frame = CGRectMake(0, headerY, navigationW, _headerHeight);
-        
-        CGFloat navigationY = _headerHidden ? 0 : CGRectGetMaxY(_headerView.frame);
-        CGFloat navigationH = size.height - Hheight - FHeight;
-        _navigationView.frame = CGRectMake(0, navigationY, navigationW, navigationH);
-        
-        CGFloat separatorX = CGRectGetWidth(_navigationView.frame) - _separatorWidth;
-        _separatorView.frame = CGRectMake(separatorX, 0, _separatorWidth, _separatorHeight);
-
-        CGFloat footerY = CGRectGetMaxY(_navigationView.frame);
-        _footerView.frame = CGRectMake(0, footerY, navigationW, _footerHeight);
-        
-        if (self.menuBarStyle == VTMenuBarDefault) {
-            CGRect originalMenuFrame = _menuBar.frame;
-            CGFloat menuBarY = _headerHidden ? topY : 0;
-            _menuBar.frame = CGRectMake(0, menuBarY, navigationW, navigationH - menuBarY);
-            if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
-                [_menuBar resetItemFrames];
-                [self updateMenuBarState];
-            }
-            
-            CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
-            _sliderView.frame = sliderFrame;
-        } else {
-            VTLog(@"VTMenuBar hide");
-        }
-      
-        self.needSkipUpdate = YES;
-        CGRect originalContentFrame = _contentView.frame;
-        CGFloat contentY = 0;
-        CGFloat contentX = CGRectGetWidth(_navigationView.frame) + _contentViewOffset;
-        CGFloat contentH = size.height -  (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
-        _contentView.frame = CGRectMake(contentX, contentY, size.width - contentX, contentH);
-        if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
-            [_contentView resetPageFrames];
-        }
-    } else if (self.navPosition == VTNavPositionRight){
-        CGFloat headerY = _headerHidden ? -_headerHeight : topY;
-        CGFloat Hheight = _headerHidden ? 0 : _headerHeight;
-        CGFloat FHeight = _footerHidden ? 0 : _footerHeight;
-        CGFloat navigationW = _navigationWidth;
-        _headerView.frame = CGRectMake(size.width - navigationW, headerY, navigationW, _headerHeight);
-        
-        CGFloat navigationY = _headerHidden ? 0 : CGRectGetMaxY(_headerView.frame);
-        CGFloat navigationH = size.height - Hheight - FHeight;
-        _navigationView.frame = CGRectMake(size.width - navigationW, navigationY, navigationW, navigationH);
-        
-        _separatorView.frame = CGRectMake(0, 0, _separatorWidth, _separatorHeight);
-        
-        CGFloat footerY = CGRectGetMaxY(_navigationView.frame);
-        _footerView.frame = CGRectMake(size.width - navigationW,footerY, navigationW, _footerHeight);
-        
-        if (self.menuBarStyle == VTMenuBarDefault) {
-            CGRect originalMenuFrame = _menuBar.frame;
-            CGFloat menuBarY = _headerHidden ? topY : 0;
-            _menuBar.frame = CGRectMake(0, menuBarY, navigationW, navigationH - menuBarY);
-            if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
-                [_menuBar resetItemFrames];
-                [self updateMenuBarState];
-            }
-            
-            CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
-            _sliderView.frame = sliderFrame;
-        } else {
-            VTLog(@"VTMenuBar hide");
-        }
-       
-        self.needSkipUpdate = YES;
-        CGRect originalContentFrame = _contentView.frame;
-        CGFloat contentY = 0;
-        CGFloat contentX = CGRectGetWidth(_navigationView.frame) - _contentViewOffset;
-        CGFloat contentH = size.height -  (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
-        _contentView.frame = CGRectMake(0, contentY, size.width - contentX, contentH);
-        if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
-            [_contentView resetPageFrames];
-        }
+    if(self.navPosition == VTNavPositionDefault) {
+        [self updateFrameForSubviewsDefault];
+    } else if (self.navPosition == VTNavPositionBottom) {
+        [self updateFrameForSubviewsBottom];
+    } else if (self.navPosition == VTNavPositionLeft) {
+        [self updateFrameForSubviewsLeft];
+    } else if (self.navPosition == VTNavPositionRight) {
+        [self updateFrameForSubviewsRight];
     }
     
     self.needSkipUpdate = NO;
@@ -303,6 +142,190 @@ static const void *kVTMagicView = &kVTMagicView;
         [self updateFrameForRightNavigationItem];
     } else {
         VTLog(@"VTMenuBar hide");
+    }
+}
+
+- (void)updateFrameForSubviewsDefault {
+    CGSize size = self.frame.size;
+    CGFloat topY = CALCULATE_TOP_Y(_againstStatusBar);
+    
+    CGFloat headerY = _headerHidden ? -_headerHeight : topY;
+    _headerView.frame = CGRectMake(0, headerY, size.width, _headerHeight);
+    
+    CGFloat navigationY = _headerHidden ? 0 : CGRectGetMaxY(_headerView.frame);
+    CGFloat navigationH = _navigationHeight + (_headerHidden ? topY : 0);
+    _navigationView.frame = CGRectMake(0, navigationY, size.width, navigationH);
+    
+    CGFloat separatorY = CGRectGetHeight(_navigationView.frame) - _separatorHeight;
+    _separatorView.frame = CGRectMake(0, separatorY, size.width, _separatorHeight);
+
+    CGFloat footerY = CGRectGetMaxY(_navigationView.frame);
+    _footerView.frame = CGRectMake(0, footerY, size.width, _footerHeight);
+    
+    if (self.menuBarStyle == VTMenuBarDefault) {
+        CGRect originalMenuFrame = _menuBar.frame;
+        CGFloat menuBarY = _headerHidden ? topY : 0;
+        CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
+        CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
+        CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
+        _menuBar.frame = CGRectMake(leftItemWidth, menuBarY, catWidth, _navigationHeight);
+        if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
+            [_menuBar resetItemFrames];
+            [self updateMenuBarState];
+        }
+        
+        CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
+        _sliderView.frame = sliderFrame;
+    } else {
+        VTLog(@"VTMenuBar hide");
+    }
+   
+    self.needSkipUpdate = YES;
+    CGRect originalContentFrame = _contentView.frame;
+    CGFloat contentY = _footerHidden ? CGRectGetMaxY(_navigationView.frame) + _contentViewOffset:CGRectGetMaxY(_footerView.frame) + _contentViewOffset;
+    CGFloat contentH = size.height - contentY + (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
+    _contentView.frame = CGRectMake(0, contentY, size.width, contentH);
+    if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
+        [_contentView resetPageFrames];
+    }
+}
+
+- (void)updateFrameForSubviewsBottom {
+    CGSize size = self.frame.size;
+    CGFloat topY = CALCULATE_TOP_Y(_againstStatusBar);
+    CGFloat bottomY = _againstSafeBottomBar ? _safeBottomHeight : 0;
+
+    CGFloat contentH = size.height + (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
+
+    CGFloat footerY = _footerHidden? contentH - bottomY :contentH - _footerHeight - bottomY;
+    _footerView.frame = CGRectMake(0, footerY, size.width, _footerHeight);
+
+    CGFloat navigationY = footerY-_navigationHeight ;//_footerHidden ? footerY-_navigationHeight-bottomY : footerY-_navigationHeight;
+    CGFloat navigationH = _navigationHeight + (_footerHidden ? bottomY : 0);
+    _navigationView.frame = CGRectMake(0,navigationY, size.width, navigationH);
+    
+    _headerView.frame = CGRectMake(0, navigationY - _headerHeight, size.width, _headerHeight);
+
+    CGFloat separatorY = CGRectGetHeight(_navigationView.frame) - _separatorHeight;
+    _separatorView.frame = CGRectMake(0, separatorY, size.width, _separatorHeight);
+ 
+    if (self.menuBarStyle == VTMenuBarDefault) {
+        CGRect originalMenuFrame = _menuBar.frame;
+        CGFloat leftItemWidth = CGRectGetWidth(_leftNavigatoinItem.frame);
+        CGFloat rightItemWidth = CGRectGetWidth(_rightNavigatoinItem.frame);
+        CGFloat catWidth = size.width - leftItemWidth - rightItemWidth;
+        _menuBar.frame = CGRectMake(leftItemWidth, 0, catWidth, _navigationHeight);
+        if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
+            [_menuBar resetItemFrames];
+            [self updateMenuBarState];
+        }
+        
+        CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
+        _sliderView.frame = sliderFrame;
+    } else {
+        VTLog(@"VTMenuBar hide");
+    }
+     
+    self.needSkipUpdate = YES;
+    CGRect originalContentFrame = _contentView.frame;
+  
+    CGFloat headerH = _headerHidden ? 0 : _headerHeight;
+    CGFloat footerH = _footerHidden ? 0 : _footerHeight;
+
+    _contentView.frame = CGRectMake(0, topY, size.width, contentH - (navigationH + headerH + footerH + _contentViewOffset + topY));
+    if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
+        [_contentView resetPageFrames];
+    }
+}
+
+- (void)updateFrameForSubviewsLeft {
+    CGSize size = self.frame.size;
+    CGFloat topY = CALCULATE_TOP_Y(_againstStatusBar);
+    
+    CGFloat headerY = _headerHidden ? - _headerHeight : topY;
+    CGFloat Hheight = _headerHidden ? 0 : _headerHeight;
+    CGFloat FHeight = _footerHidden ? 0 : _footerHeight;
+    CGFloat navigationW = _navigationWidth;
+    _headerView.frame = CGRectMake(0, headerY, navigationW, _headerHeight);
+    
+    CGFloat navigationY = _headerHidden ? 0 : CGRectGetMaxY(_headerView.frame);
+    CGFloat navigationH = size.height - Hheight - FHeight;
+    _navigationView.frame = CGRectMake(0, navigationY, navigationW, navigationH);
+    
+    CGFloat separatorX = CGRectGetWidth(_navigationView.frame) - _separatorWidth;
+    _separatorView.frame = CGRectMake(separatorX, 0, _separatorWidth, _separatorHeight);
+
+    CGFloat footerY = CGRectGetMaxY(_navigationView.frame);
+    _footerView.frame = CGRectMake(0, footerY, navigationW, _footerHeight);
+    
+    if (self.menuBarStyle == VTMenuBarDefault) {
+        CGRect originalMenuFrame = _menuBar.frame;
+        CGFloat menuBarY = _headerHidden ? topY : 0;
+        _menuBar.frame = CGRectMake(0, menuBarY, navigationW, navigationH - menuBarY);
+        if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
+            [_menuBar resetItemFrames];
+            [self updateMenuBarState];
+        }
+        
+        CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
+        _sliderView.frame = sliderFrame;
+    } else {
+        VTLog(@"VTMenuBar hide");
+    }
+  
+    self.needSkipUpdate = YES;
+    CGRect originalContentFrame = _contentView.frame;
+    CGFloat contentY = 0;
+    CGFloat contentX = CGRectGetWidth(_navigationView.frame) + _contentViewOffset;
+    CGFloat contentH = size.height -  (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
+    _contentView.frame = CGRectMake(contentX, contentY, size.width - contentX, contentH);
+    if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
+        [_contentView resetPageFrames];
+    }
+}
+
+- (void)updateFrameForSubviewsRight {
+    CGSize size = self.frame.size;
+    CGFloat topY = CALCULATE_TOP_Y(_againstStatusBar);
+    
+    CGFloat headerY = _headerHidden ? -_headerHeight : topY;
+    CGFloat Hheight = _headerHidden ? 0 : _headerHeight;
+    CGFloat FHeight = _footerHidden ? 0 : _footerHeight;
+    CGFloat navigationW = _navigationWidth;
+    _headerView.frame = CGRectMake(size.width - navigationW, headerY, navigationW, _headerHeight);
+    
+    CGFloat navigationY = _headerHidden ? 0 : CGRectGetMaxY(_headerView.frame);
+    CGFloat navigationH = size.height - Hheight - FHeight;
+    _navigationView.frame = CGRectMake(size.width - navigationW, navigationY, navigationW, navigationH);
+    
+    _separatorView.frame = CGRectMake(0, 0, _separatorWidth, _separatorHeight);
+    
+    CGFloat footerY = CGRectGetMaxY(_navigationView.frame);
+    _footerView.frame = CGRectMake(size.width - navigationW,footerY, navigationW, _footerHeight);
+    
+    if (self.menuBarStyle == VTMenuBarDefault) {
+        CGRect originalMenuFrame = _menuBar.frame;
+        CGFloat menuBarY = _headerHidden ? topY : 0;
+        _menuBar.frame = CGRectMake(0, menuBarY, navigationW, navigationH - menuBarY);
+        if (!CGRectEqualToRect(_menuBar.frame, originalMenuFrame)) {
+            [_menuBar resetItemFrames];
+            [self updateMenuBarState];
+        }
+        
+        CGRect sliderFrame = [_menuBar sliderFrameAtIndex:_currentPage];
+        _sliderView.frame = sliderFrame;
+    } else {
+        VTLog(@"VTMenuBar hide");
+    }
+    
+    self.needSkipUpdate = YES;
+    CGRect originalContentFrame = _contentView.frame;
+    CGFloat contentY = 0;
+    CGFloat contentX = CGRectGetWidth(_navigationView.frame) - _contentViewOffset;
+    CGFloat contentH = size.height -  (_needExtendBottom ? VTTABBAR_HEIGHT : 0);
+    _contentView.frame = CGRectMake(0, contentY, size.width - contentX, contentH);
+    if (!CGRectEqualToRect(_contentView.frame, originalContentFrame)) {
+        [_contentView resetPageFrames];
     }
 }
 
